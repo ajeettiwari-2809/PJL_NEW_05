@@ -1,0 +1,36 @@
+
+  
+
+   
+  :host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  mat-drawer {
+    /* width: 220px; */
+    background-color: transparent;
+    /* background: #e8173a; */
+  }
+  
+  mat-drawer-container {
+    height: 100%;
+  }
+  /* styles.css */
+.example-container {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 200px;
+}
+
+.content {
+  padding: 16px;
+}
+
+  
+
+   
+  

@@ -1,0 +1,173 @@
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <!-- <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <img class="img-fluid position-absolute w-100 h-100" src="img/about.jpg" alt="" style="object-fit: cover;">
+                </div>
+            </div> -->
+            <div class="wow fadeInUp" data-wow-delay="0.3s">
+                <h6 class="section-title bg-white text-start text-primary pe-3" style="font-size: larger;">Test On DNS & APT Attacks</h6><br><br>
+                <form> <!--(ngSubmit)="submitForm()" #form="ngForm"-->
+                    <ol>
+                        
+                        <li>                            
+                            <p>What is the purpose of the Domain Name System (DNS)?</p>
+                            <input type="radio" id="q1a" name="q1" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1a">To regulate internet service providers  </label><br>
+
+                            <input type="radio" id="q1b" name="q1" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1b">To encrypt internet traffic  </label><br>
+
+                            <input type="radio" id="q1c" name="q1" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1c">To monitor network traffic </label><br>
+
+                            <input type="radio" id="q1d" name="q1" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1d">To provide email services  </label><br>
+
+                            <input type="radio" id="q1e" name="q1" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1e">To translate human-readable domain names into IP addresses </label><br>
+
+                        </li><br>
+                        <li>
+                            <p>Which type of DNS attack involves providing false DNS responses to redirect users to malicious websites?</p>
+                            <input type="radio" id="q2a" name="q2" value="a" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2a">Fast Flux DNS  </label><br>
+                            
+                            <input type="radio" id="q2b" name="q2" value="b" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2b">DNS Amplification Attack  </label><br>
+                            
+                            <input type="radio" id="q2c" name="q2" value="c" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2c">NXDomain Attack  </label><br>
+
+                            <input type="radio" id="q2d" name="q2" value="d" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2d">DNS Spoofing</label><br>
+
+                            <input type="radio" id="q2e" name="q2" value="e" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2e">DNSSEC Zone Walking  </label><br>
+                        </li><br>
+
+                        <li>
+                            <p>What does DNS Tunneling achieve?</p>
+                            <input type="radio" id="q3a" name="q3" value="a" style="margin-right: 3vh;"  [(ngModel)]="model.q3">
+                            <label for="q3a">It encrypts DNS traffic  </label><br>
+
+                            <input type="radio" id="q3b" name="q3" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q3">
+                            <label for="q3b">It speeds up domain registration processes  </label><br>
+                            
+                            <input type="radio" id="q3c" name="q3" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q3">
+                            <label for="q3c">It bypasses security measures by encapsulating non-DNS traffic</label><br>
+
+                            <input type="radio" id="q3d" name="q3" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q3">
+                            <label for="q3d">It reduces the size of DNS responses  </label><br>
+
+                            <input type="radio" id="q3e" name="q3" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q3">
+                            <label for="q3e">It increases the speed of DNS resolution  </label><br>
+                        </li><br>
+
+                        <li>
+                            <p>What does APT stand for in cybersecurity?</p>
+                            <input type="radio" id="q4a" name="q4" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4a">Automated Phishing Threat  </label><br>
+                            
+                            <input type="radio" id="q4b" name="q4" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4b">Advanced Persistent Threat </label><br>         
+                            
+                            <input type="radio" id="q4c" name="q4" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4c">Active Protocol Termination  </label><br>
+
+                            <input type="radio" id="q4d" name="q4" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4d">Active Passive Tracking  </label><br>
+
+                            <input type="radio" id="q4e" name="q4" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4e">Automated Penetration Test</label><br>
+                        </li><br>
+
+                        <li>
+                            <p>In the context of cyber attacks, what is SQL Injection used for?</p>
+                            <input type="radio" id="q5a" name="q5" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5a">To create backups of the database  </label><br>
+
+                            <input type="radio" id="q5b" name="q5" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5b">To clean the database  </label><br>
+
+                            <input type="radio" id="q5c" name="q5" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5c">To monitor database performance  </label><br>
+
+                            <input type="radio" id="q5d" name="q5" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5d">To enhance database security  </label><br>
+
+                            <input type="radio" id="q5e" name="q5" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5e">To manipulate the database </label><br>
+                        </li><br>
+
+                        <li>
+                            <p>What is a common security measure against Man-in-the-Middle (MITM) attacks?</p>
+                            <input type="radio" id="q6a" name="q6" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6a">Using weak Wi-Fi connections  </label><br>
+                            <input type="radio" id="q6b" name="q6" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6b">Sharing passwords over the internet  </label><br>
+                            <input type="radio" id="q6c" name="q6" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6c">Using HTTPS </label><br>
+                            <input type="radio" id="q6d" name="q6" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6d">Avoiding public key infrastructure (PKI)  </label><br>
+                            <input type="radio" id="q6e" name="q6" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6e">Using unencrypted communication protocol  </label><br>
+                        </li><br>
+                        <li>
+                            <p>DNS is a protocol that is primarily used for encrypting internet communication.</p>
+                            <input type="radio" id="q7a" name="q7" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7a">True</label><br>
+                            <input type="radio" id="q7b" name="q7" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7b">False</label><br>                            
+                        </li><br>
+                        <li>
+                            <p>DNS Amplification Attacks are a type of Distributed Denial of Service (DDoS) attack.</p>
+                            <input type="radio" id="q8a" name="q8" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8a">True</label><br>
+                            <input type="radio" id="q8b" name="q8" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8b">False</label><br>                            
+                        </li><br>
+                        <li>
+                            <p>APT stands for Average Persistent Threat.</p>
+                            <input type="radio" id="q9a" name="q9" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q9">
+                            <label for="q9a">True</label><br>
+                            <input type="radio" id="q9b" name="q9" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q9">
+                            <label for="q9b">False</label><br>                            
+                        </li><br>
+                        <li>
+                            <p>SQL injection attacks are only possible on websites that use SQL databases.</p>
+                            <input type="radio" id="q10a" name="q10" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q10">
+                            <label for="q10a">True</label><br>
+                            <input type="radio" id="q10b" name="q10" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q10">
+                            <label for="q10b">False</label><br>
+                        </li>
+                    </ol>
+                    <button type="submit" (click)="Start()" >Submit Answers</button> <!--(click)="submitForm()"-->
+                </form>
+            </div>
+            <a *ngIf="submitted" class="btn btn-primary py-3 px-5 mt-2" (click)="CheckTest001('')">Go to the Next Chapter!</a>
+        </div>
+    </div>
+</div>
+
+<div class="container-xxl py-5 justify-content-center align-items-center modal-open" *ngIf="start"> <!-- *ngIf="start"-->
+    <div class="container">
+        <div class="card shadow confirmation-card">
+            <div class="row g-5">                
+                <div class="col-lg-6 wow" >
+                    <div class="card-body">                        
+                        <!-- Confirmation Card -->
+                        <div class="confirmation-card confirmation-buttons">
+                            <p class="confirmation-text">Are you sure you want to submit?</p>
+                            <button class="btn btn-primary"  (click)="submitForm()">Yes</button> <!--(click)="submitEnrollment()"-->
+                            <button class="btn btn-secondary" (click)="closeCard()">Cancel</button> <!-- (click)="cancelEnrollment()"-->
+                        </div>
+                        <!-- End Confirmation Card -->
+                        <button type="button" class="btn-close position-absolute top-0 end-0 mt-3 me-3" aria-label="Close" (click)="closeCard()"></button> <!--(click)="closeCard()"-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

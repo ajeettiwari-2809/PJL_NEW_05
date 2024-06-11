@@ -1,0 +1,406 @@
+<!-- Navbar Start -->
+<nav
+  class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+  <a class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+    <h2 class="m-0"><i class="fa fa-solid fa-bars" (click)="drawer.toggle()"
+        style="cursor: pointer; font-size: 30px;"></i> eLEARNING</h2>
+  </a>  
+</nav>
+<!-- Navbar End -->
+
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened #drawer>    
+    <div class="sidebar open">      
+      <ul class="nav-list">
+
+        <!-----------Chapter 1--------------------------------------------->
+
+        <li>
+          <a (click)="toggleChapter1Topics()" [class.active]="isChapter1Active">
+            <i class="bx bx-task"></i>
+            <span class="links_name2">Information Security & CIA Triad</span>            
+            <i class="bx bx-chevron-down" style="padding-left: 5vh; padding-right: 1vh;" [class.bx-chevron-up]="showChapter1Topics" [class.bx-chevron-down]="!showChapter1Topics"></i> <!--style="margin-left: 15vh;"-->
+          </a>
+          <span class="tooltip">Information Security & CIA Triad</span>
+          <ul *ngIf="showChapter1Topics">
+            <li>
+              <a [routerLink]="['information-security-and-cia-triad/information-security']" (click)="toggleChapter1Sub1Topics()" [class.active]="isChapter1Sub1Active">
+                <i class='bx bx-task'></i>
+                <span class="links_name2">Information Security</span>
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['information-security-and-cia-triad/cia-triad']" (click)="toggleChapter1Sub2Topics()" [class.active]="isChapter1Sub2Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">CIA Triad</span>                
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['information-security-and-cia-triad/cyber-threat']" (click)="toggleChapter1Sub3Topics()" [class.active]="isChapter1Sub3Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Threat, Vulnerability & Risk: Threat</span>                
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['information-security-and-cia-triad/cyber-vulnerability']" (click)="toggleChapter1Sub4Topics()" [class.active]="isChapter1Sub4Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Threat, Vulnerability & Risk: Vulnerability</span>                
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['information-security-and-cia-triad/cyber-risk']" (click)="toggleChapter1Sub5Topics()" [class.active]="isChapter1Sub5Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Threat, Vulnerability & Risk: Risk</span>                
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['information-security-and-cia-triad/protect-network']" (click)="toggleChapter1Sub6Topics()" [class.active]="isChapter1Sub6Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Protecting Our Network</span>                
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!--------------------------Chapter 2------------------------------------------>
+
+        <li>
+          <a (click)="toggleChapter2Topics()" [class.active]="isChapter2Active">
+            <i class="bx bx-task"></i>
+            <span class="links_name2">Attack Surfaces & It's Types</span>            
+            <i class="bx bx-chevron-down" style="padding-left: 5vh; padding-right: 1vh;" [class.bx-chevron-up]="showChapter2Topics" [class.bx-chevron-down]="!showChapter2Topics"></i> <!--style="margin-left: 15vh;"-->
+          </a>
+          <span class="tooltip">Attack Surfaces & It's Types</span>
+          <ul *ngIf="showChapter2Topics">
+            <li>
+              <a (click)="CheckAttackVectorsTest001('')" (click)="toggleChapter2Sub1Topics()" [class.active]="isChapter2Sub1Active">
+                <i class='bx bx-task'></i>
+                <span class="links_name2">Attack Vectors</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckAttackSurfacesTest001('')" (click)="toggleChapter2Sub2Topics()" [class.active]="isChapter2Sub2Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Attack Surfaces</span>                
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckTypesAttackSurfacesTest001('')" (click)="toggleChapter2Sub3Topics()" [class.active]="isChapter2Sub3Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Types of attack surfaces</span>                
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckattacksurfacelimitedTest001('')" (click)="toggleChapter2Sub4Topics()" [class.active]="isChapter2Sub4Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">How can the attack surface be limited?</span>                
+              </a>
+            </li>            
+          </ul>
+        </li>
+
+        <!--------------------------Chapter 3------------------------------------------>
+
+        <li>
+          <a (click)="toggleChapter3Topics()" [class.active]="isChapter3Active">
+            <i class="bx bx-task"></i>
+            <span class="links_name2">Phishing/Spoofing & It's Types</span>            
+            <i class="bx bx-chevron-down" style="padding-left: 5vh; padding-right: 1vh;" [class.bx-chevron-up]="showChapter3Topics" [class.bx-chevron-down]="!showChapter3Topics"></i> <!--style="margin-left: 15vh;"-->
+          </a>
+          <span class="tooltip">Phishing/Spoofing & It's Types</span>
+          <ul *ngIf="showChapter3Topics">
+            <li>
+              <a (click)="CheckPhishingSpoofingTypes('')" (click)="toggleChapter3Sub1Topics()" [class.active]="isChapter3Sub1Active">
+                <i class='bx bx-task'></i>
+                <span class="links_name2">Phishing & It's Types</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckSpoofingTypes('')" (click)="toggleChapter3Sub2Topics()" [class.active]="isChapter3Sub2Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Spoofing & It's Types</span>                
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckRansonware('')" (click)="toggleChapter3Sub3Topics()" [class.active]="isChapter3Sub3Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Ransomware</span>                
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckWifiSecurity('')" (click)="toggleChapter3Sub4Topics()" [class.active]="isChapter3Sub4Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Wifi Security</span>                
+              </a>
+            </li>            
+          </ul>
+        </li>
+
+        <!--------------------------Chapter 4------------------------------------------>
+
+        <li>
+          <a (click)="toggleChapter4Topics()" [class.active]="isChapter4Active">
+            <i class="bx bx-task"></i>
+            <span class="links_name2">Wireless Environment, Scams & Precautions</span>            
+            <i class="bx bx-chevron-down" style="padding-left: 5vh; padding-right: 1vh;" [class.bx-chevron-up]="showChapter4Topics" [class.bx-chevron-down]="!showChapter4Topics"></i> <!--style="margin-left: 15vh;"-->
+          </a>
+          <span class="tooltip">Wireless Environment, Scams & Precautions</span>
+          <ul *ngIf="showChapter4Topics">
+            <li>
+              <a (click)="CheckAttacksWireless('')" (click)="toggleChapter4Sub1Topics()" [class.active]="isChapter4Sub1Active">
+                <i class='bx bx-task'></i>
+                <span class="links_name2">Types of Attacks on Wireless Environment</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckGuidelines('')" (click)="toggleChapter4Sub2Topics()" [class.active]="isChapter4Sub2Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Guidelines for securing Wireless Communications</span>                
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckScams('')" [routerLink]="['wireless-environment-scams-and-precautions/scams']" (click)="toggleChapter4Sub3Topics()" [class.active]="isChapter4Sub3Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Email/Lottery Scams</span>                
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckPrecautions('')" (click)="toggleChapter4Sub4Topics()" [class.active]="isChapter4Sub4Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Precautions</span>
+              </a>
+            </li>            
+            <li>
+              <a (click)="CheckSecurity('')" (click)="toggleChapter4Sub5Topics()" [class.active]="isChapter4Sub5Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Desktop Security</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!--------------------------Chapter 5------------------------------------------>
+
+        <li>
+          <a (click)="toggleChapter5Topics()" [class.active]="isChapter5Active">
+            <i class="bx bx-task"></i>
+            <span class="links_name2">Do's and Don'ts to keep system secure</span>            
+            <i class="bx bx-chevron-down" style="padding-left: 5vh; padding-right: 1vh;" [class.bx-chevron-up]="showChapter5Topics" [class.bx-chevron-down]="!showChapter5Topics"></i> <!--style="margin-left: 15vh;"-->
+          </a>
+          <span class="tooltip">Do's and Don'ts to keep system secure</span>
+          <ul *ngIf="showChapter5Topics">
+            <li>
+              <a (click)="CheckPractices('')" 
+              (click)="toggleChapter5Sub1Topics()" 
+              [class.active]="isChapter5Sub1Active">
+                <i class='bx bx-task'></i>
+                <span class="links_name2">Best Practices to follow</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckDos('')"
+              (click)="toggleChapter5Sub2Topics()" 
+              [class.active]="isChapter5Sub2Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Do's to keep system secure</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckDonts('')"
+              (click)="toggleChapter5Sub3Topics()" 
+              [class.active]="isChapter5Sub3Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Don'ts to keep system secure</span>
+              </a>
+            </li>            
+          </ul>
+        </li>
+
+        <!--------------------------Chapter 6------------------------------------------>
+
+        <li>
+          <a (click)="toggleChapter6Topics()" [class.active]="isChapter6Active">
+            <i class="bx bx-task"></i>
+            <span class="links_name2">Incident Response Management</span>            
+            <i class="bx bx-chevron-down" style="padding-left: 5vh; padding-right: 1vh;" [class.bx-chevron-up]="showChapter6Topics" [class.bx-chevron-down]="!showChapter6Topics"></i> <!--style="margin-left: 15vh;"-->
+          </a>
+          <span class="tooltip">Incident Response Management</span>
+          <ul *ngIf="showChapter6Topics">
+            <li>
+              <a (click)="CheckIR('')" 
+              (click)="toggleChapter6Sub1Topics()" 
+              [class.active]="isChapter6Sub1Active">
+                <i class='bx bx-task'></i>
+                <span class="links_name2">What is Incident Response Management?</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckPhases('')"
+              (click)="toggleChapter6Sub2Topics()" 
+              [class.active]="isChapter6Sub2Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Phases of Incident Response Management</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckRole('')"
+              (click)="toggleChapter6Sub3Topics()" 
+              [class.active]="isChapter6Sub3Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">What is the role of Incident Response Manager?</span>
+              </a>
+            </li>            
+          </ul>
+        </li>
+
+        <!--------------------------Chapter 7------------------------------------------>
+
+        <li>
+          <a (click)="toggleChapter7Topics()" [class.active]="isChapter7Active">
+            <i class="bx bx-task"></i>
+            <span class="links_name2">Data Protection</span>            
+            <i class="bx bx-chevron-down" style="padding-left: 15vh; padding-right: 1vh;" [class.bx-chevron-up]="showChapter7Topics" [class.bx-chevron-down]="!showChapter7Topics"></i> <!--style="margin-left: 15vh;"-->
+          </a>
+          <span class="tooltip">Data Protection</span>
+          <ul *ngIf="showChapter7Topics">
+            <li>
+              <a (click)="CheckDataProtection('')"
+              (click)="toggleChapter7Sub1Topics()" 
+              [class.active]="isChapter7Sub1Active"> 
+                <i class='bx bx-task'></i>
+                <span class="links_name2">What do you mean by Data Protection?</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckProtection('')"
+              (click)="toggleChapter7Sub2Topics()" 
+              [class.active]="isChapter7Sub2Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Data Protection Measures</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckTarget('')"
+              (click)="toggleChapter7Sub3Topics()" 
+              [class.active]="isChapter7Sub3Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Attack Surfaces which Hackers generally Target</span>
+              </a>
+            </li>            
+            <li>
+              <a (click)="CheckTools('')"
+              (click)="toggleChapter7Sub4Topics()" 
+              [class.active]="isChapter7Sub4Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Tools and Technologies used to protect IT from cyber criminals?</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!--------------------------Chapter 8------------------------------------------>
+
+        <li>
+          <a (click)="toggleChapter8Topics()" [class.active]="isChapter8Active">
+            <i class="bx bx-task"></i>
+            <span class="links_name2">DNS & APT Attacks</span>            
+            <i class="bx bx-chevron-down" style="padding-left: 15vh; padding-right: 1vh;" [class.bx-chevron-up]="showChapter8Topics" [class.bx-chevron-down]="!showChapter8Topics"></i> <!--style="margin-left: 15vh;"-->
+          </a>
+          <span class="tooltip">DNS & APT Attacks</span>
+          <ul *ngIf="showChapter8Topics">
+            <li>
+              <a (click)="CheckDNS('')" 
+              (click)="toggleChapter8Sub1Topics()" 
+              [class.active]="isChapter8Sub1Active">
+                <i class='bx bx-task'></i>
+                <span class="links_name2">DNS Attacks & It's Types</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckAPT('')"
+              (click)="toggleChapter8Sub2Topics()" 
+              [class.active]="isChapter8Sub2Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">APT Attacks & It's Types</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckSQL('')"
+              (click)="toggleChapter8Sub3Topics()" 
+              [class.active]="isChapter8Sub3Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">SQL Injection</span>
+              </a>
+            </li>            
+            <li>
+              <a (click)="CheckExploit('')"
+              (click)="toggleChapter8Sub4Topics()" 
+              [class.active]="isChapter8Sub4Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">How attackers exploit web applications using SQL Injection?</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckMIM('')"
+              (click)="toggleChapter8Sub5Topics()" 
+              [class.active]="isChapter8Sub5Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Man-in-the-Middle Attack</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!--------------------------Chapter 9------------------------------------------>
+
+        <li>
+          <a (click)="toggleChapter9Topics()" [class.active]="isChapter9Active">
+            <i class="bx bx-task"></i>
+            <span class="links_name2">CyberStalking & CyberBullying</span>            
+            <i class="bx bx-chevron-down" style="padding-left: 15vh; padding-right: 1vh;" [class.bx-chevron-up]="showChapter9Topics" [class.bx-chevron-down]="!showChapter9Topics"></i> <!--style="margin-left: 15vh;"-->
+          </a>
+          <span class="tooltip">CyberStalking & CyberBullying</span>
+          <ul *ngIf="showChapter9Topics">
+            <li>
+              <a (click)="CheckCyber('')"
+              (click)="toggleChapter9Sub1Topics()" 
+              [class.active]="isChapter9Sub1Active">
+                <i class='bx bx-task'></i>
+                <span class="links_name2">Distributed Denial of Service Attack</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckCStalk('')"
+              (click)="toggleChapter9Sub2Topics()" 
+              [class.active]="isChapter9Sub2Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Cyberstalking & Cyberbullying</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="CheckPrevention('')"
+              (click)="toggleChapter9Sub3Topics()" 
+              [class.active]="isChapter9Sub3Active">
+                <i class="bx bx-task"></i>
+                <span class="links_name2">Prevent Cyberstalking/ Cyberbullying?</span>
+              </a>
+            </li>            
+          </ul>
+        </li>        
+        <li class="profile">
+          <div class="profile-details">
+            <i class='bx bxs-user-circle' style="font-size: 30px;"></i>            
+            <div class="name_job">
+              <div class="name">{{fullName}}</div>
+              <div class="job">{{email}}</div>
+            </div>
+          </div>
+          <i class='bx bx-log-out' id="log_out" (click)="logout()" style="cursor: pointer;"></i>
+        </li>
+      </ul>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

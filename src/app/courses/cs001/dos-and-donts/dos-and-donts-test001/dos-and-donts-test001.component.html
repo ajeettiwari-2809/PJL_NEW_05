@@ -1,0 +1,164 @@
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <!-- <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <img class="img-fluid position-absolute w-100 h-100" src="img/about.jpg" alt="" style="object-fit: cover;">
+                </div>
+            </div> -->
+            <div class="wow fadeInUp" data-wow-delay="0.3s">
+                <h6 class="section-title bg-white text-start text-primary pe-3" style="font-size: larger;">Test On Do's & Don'ts To Keep System Secure</h6><br><br>
+                <form> <!--(ngSubmit)="submitForm()" #form="ngForm"-->
+                    <ol>
+                        
+                        <li>                            
+                            <p>Which of the following is the recommended minimum length for a strong password?</p>
+                            <input type="radio" id="q1a" name="q1" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1a">Eight characters</label><br>
+
+                            <input type="radio" id="q1b" name="q1" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1b">Ten characters  </label><br>
+
+                            <input type="radio" id="q1c" name="q1" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1c">Six characters  </label><br>
+
+                            <input type="radio" id="q1d" name="q1" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1d">Five characters</label><br>
+
+                        </li><br>
+                        <li>
+                            <p>When should you change your password to maintain security?</p>
+                            <input type="radio" id="q2a" name="q2" value="a" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2a">Every week</label><br>
+                            
+                            <input type="radio" id="q2b" name="q2" value="b" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2b">Every month</label><br>
+                            
+                            <input type="radio" id="q2c" name="q2" value="c" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2c">Once a year  </label><br>
+
+                            <input type="radio" id="q2d" name="q2" value="d" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2d">Every ninety days</label><br>
+                        </li><br>
+
+                        <li>
+                            <p>What should you check to ensure your connection to a website is secure?</p>
+                            <input type="radio" id="q3a" name="q3" value="a" style="margin-right: 3vh;"  [(ngModel)]="model.q3">
+                            <label for="q3a">If the website is well known  </label><br>
+
+                            <input type="radio" id="q3b" name="q3" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q3">
+                            <label for="q3b">For the presence of HTTPS in the URL</label><br>
+                            
+                            <input type="radio" id="q3c" name="q3" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q3">
+                            <label for="q3c">If the website has many ads </label><br>
+
+                            <input type="radio" id="q3d" name="q3" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q3">
+                            <label for="q3d">If the website uses HTTP instead of HTTPS  </label><br>
+                        </li><br>
+
+                        <li>
+                            <p>Why should you avoid using the "Remember My Password" feature on websites and applications?</p>
+                            <input type="radio" id="q4a" name="q4" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4a">It makes logging in more difficult  </label><br>
+                            
+                            <input type="radio" id="q4b" name="q4" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4b">Many applications do not store passwords securely </label><br>         
+                            
+                            <input type="radio" id="q4c" name="q4" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4c">It locks the account after several attempts </label><br>
+
+                            <input type="radio" id="q4d" name="q4" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4d">It increases the password strength</label><br>
+                        </li><br>
+
+                        <li>
+                            <p>Which of the following is NOT a recommended practice when receiving emails?</p>
+                            <input type="radio" id="q5a" name="q5" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5a">Open all attachments to verify contents  </label><br>
+
+                            <input type="radio" id="q5b" name="q5" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5b">Verify that an attachment was expected before opening</label><br>
+
+                            <input type="radio" id="q5c" name="q5" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5c">Avoid sharing personal information through email  </label><br>
+
+                            <input type="radio" id="q5d" name="q5" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5d">Regularly update your antivirus software  </label><br>
+                        </li><br>
+
+                        <li>
+                            <p>What is a key reason to avoid using common words or personal information in passwords?</p>
+                            <input type="radio" id="q6a" name="q6" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6a">To make the password easier to type  </label><br>
+                            <input type="radio" id="q6b" name="q6" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6b">To reduce the size of the password  </label><br>
+                            <input type="radio" id="q6c" name="q6" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6c">To prevent password-cracking attempts</label><br>
+                            <input type="radio" id="q6d" name="q6" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6d">To ensure you forget the password easily </label><br>
+                        </li><br>
+                        <li>
+                            <p>After discovering adware on your machine, what should be your next step?</p>
+                            <input type="radio" id="q7a" name="q7" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7a">Purchase something using the adware </label><br>
+                            <input type="radio" id="q7b" name="q7" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7b">Ignore the adware notifications  </label><br>
+                            <input type="radio" id="q7c" name="q7" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7c">Remove the adware from your machine</label><br>
+                            <input type="radio" id="q7d" name="q7" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7d">Distribute the adware  </label><br>
+                        </li><br>
+                        <li>
+                            <p>What should you do if you find an unexpected warning pop-up on your computer?</p>
+                            <input type="radio" id="q8a" name="q8" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8a">Click within the pop-up to close it  </label><br>
+                            <input type="radio" id="q8b" name="q8" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8b">Click the "X" button in the uppermost right-hand corner of the window</label><br>
+                            <input type="radio" id="q8c" name="q8" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8c">Call the phone number listed in the pop-up for support  </label><br>
+                            <input type="radio" id="q8d" name="q8" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8d">Follow the instructions provided in the pop-up </label><br>
+                        </li><br>
+                        <li>
+                            <p>Creating a strong password includes using at least eight characters with a mix of letters, numbers, and symbols.</p>
+                            <input type="radio" id="q9a" name="q9" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q9">
+                            <label for="q9a">True</label><br>
+                            <input type="radio" id="q9b" name="q9" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q9">
+                            <label for="q9b">False</label><br>                            
+                        </li><br>
+                        <li>
+                            <p>It is recommended to change your password every thirty days, rather than every ninety days.</p>
+                            <input type="radio" id="q10a" name="q10" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q10">
+                            <label for="q10a">True</label><br>
+                            <input type="radio" id="q10b" name="q10" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q10">
+                            <label for="q10b">False</label><br>                            
+                        </li>
+                    </ol>
+                    <button type="submit" (click)="Start()" >Submit Answers</button> <!--(click)="submitForm()"-->
+                </form>
+            </div>
+            <a *ngIf="submitted" class="btn btn-primary py-3 px-5 mt-2" (click)="CheckTest001('')">Go to the Next Chapter!</a>
+        </div>
+    </div>
+</div>
+
+<div class="container-xxl py-5 justify-content-center align-items-center modal-open" *ngIf="start"> <!-- *ngIf="start"-->
+    <div class="container">
+        <div class="card shadow confirmation-card">
+            <div class="row g-5">                
+                <div class="col-lg-6 wow" >
+                    <div class="card-body">                        
+                        <!-- Confirmation Card -->
+                        <div class="confirmation-card confirmation-buttons">
+                            <p class="confirmation-text">Are you sure you want to submit?</p>
+                            <button class="btn btn-primary"  (click)="submitForm()">Yes</button> <!--(click)="submitEnrollment()"-->
+                            <button class="btn btn-secondary" (click)="closeCard()">Cancel</button> <!-- (click)="cancelEnrollment()"-->
+                        </div>
+                        <!-- End Confirmation Card -->
+                        <button type="button" class="btn-close position-absolute top-0 end-0 mt-3 me-3" aria-label="Close" (click)="closeCard()"></button> <!--(click)="closeCard()"-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

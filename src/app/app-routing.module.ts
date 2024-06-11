@@ -1,0 +1,47 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HomepageComponent } from './homepage/homepage.component';
+
+import { SigninComponent } from './homepage/signin/signin.component';
+import { SignupComponent } from './homepage/signup/signup.component';
+
+import { AuthGuard } from './guards/auth.guard';
+import { DashboardHomeComponent } from './NEWCODE/dashboard-home/dashboard-home.component';
+import { SalesModulesComponent } from './NEWCODE/sales-modules/sales-modules.component';
+import { PlayVediosComponent } from './NEWCODE/play-vedios/play-vedios.component';
+
+
+
+
+const routes: Routes = [
+ 
+
+  { path: '', component: SigninComponent },
+
+  { path: 'homepage/signin', component: SigninComponent },
+  { path: 'signup', component: SignupComponent },
+ 
+  
+  
+  //For Active Authguard
+  {
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    children: [
+      { path: 'dashboardhome', component: DashboardHomeComponent },
+      { path: 'salesmoduleScreens', component: SalesModulesComponent },
+      // { path: 'salesmoduleScreens', component: SalesModuleComponent },
+      { path: 'playvedios', component: PlayVediosComponent },
+    ]
+  } 
+
+ 
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes,{useHash: true})],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

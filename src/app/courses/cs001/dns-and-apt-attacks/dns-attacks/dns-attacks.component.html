@@ -1,0 +1,47 @@
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <img class="img-fluid position-absolute w-100 h-100" src="../../../../assets/img2/dnsattacks.jpg" alt="" style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                <h6 class="section-title bg-white text-start text-primary pe-3">ADVANCED CYBER THREATS In DIGITAL ERA</h6>
+                <h1 class="mb-4">What is DNS?<br>What are the types of DNS attacks?</h1>
+                <p class="mb-4">DNS (Domain Name System) is a critical component of the internet infrastructure, translating human-readable domain names into IP addresses. Various types of DNS attacks exploit vulnerabilities in the DNS to compromise network integrity, disrupt services, or redirect traffic. Here are common types of DNS attacks:</p>
+                <!-- <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p> -->
+                <div class="row gy-2 gx-4 mb-4">
+                    <div class="col-m-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i><b>DNS Spoofing:</b> Attackers provide false DNS responses to redirect users to malicious websites. This is often achieved by injecting false DNS records into the cache of a DNS resolver.</p>
+                    </div>
+                    <div class="col-m-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i><b>DNS Amplification Attack:</b> Exploiting DNS servers to amplify the size of a DDoS attack. Attackers send small DNS queries with a spoofed source IP address, and the server responds to the target with a much larger response.</p>
+                    </div>
+                    <div class="col-m-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i><b>DNS Tunneling:</b> Encapsulating non-DNS traffic within DNS requests and responses to bypass security measures and exfiltrate data.</p>
+                    </div>
+                    <div class="col-m-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i><b>DNSSEC (DNS Security Extensions) Zone Walking:</b> Exploiting weaknesses in DNSSEC to obtain a list of all resource records in a DNS zone, potentially aiding attackers in reconnaissance.</p>
+                    </div>
+                    <div class="col-m-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i><b>Distributed Denial of Service (DDoS) Attack on DNS Infrastructure:</b> Overwhelming DNS servers or infrastructure with a high volume of traffic to disrupt DNS resolution services.</p>
+                    </div>
+                    <div class="col-m-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i><b>DNS Hijacking:</b> Unauthorized changes to the registration of a domain, diverting traffic from legitimate servers to malicious ones.</p>
+                    </div>
+                    <div class="col-m-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i><b>NXDomain Attacks:</b> Forging DNS responses to indicate that a domain does not exist (NXDOMAIN), causing recursive DNS resolvers to repeatedly query for the non-existent domain.</p>
+                    </div>
+                    <div class="col-m-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i><b>Fast Flux DNS:</b> Frequently changing the IP addresses associated with a domain to make it challenging for security systems to track and block malicious activity.</p>
+                    </div>
+                    <div class="col-m-6">
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i><b>Random Subdomain Attacks:</b> Creating a large number of random subdomains to overwhelm DNS resolvers and evade security measures.</p>
+                    </div>                    
+                </div>
+                <a class="btn btn-primary py-3 px-5 mt-2" [routerLink]="['../apt-attacks']">Next</a>
+            </div>
+        </div>
+    </div>
+</div>

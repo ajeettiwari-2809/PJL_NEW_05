@@ -1,0 +1,185 @@
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <!-- <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <img class="img-fluid position-absolute w-100 h-100" src="img/about.jpg" alt="" style="object-fit: cover;">
+                </div>
+            </div> -->
+            <div class="wow fadeInUp" data-wow-delay="0.3s">
+                <h6 class="section-title bg-white text-start text-primary pe-3" style="font-size: larger;">Test On Incident Response Management</h6><br><br>
+                <form> <!--(ngSubmit)="submitForm()" #form="ngForm"-->
+                    <ol>
+                        
+                        <li>                            
+                            <p>Which phase of Incident Response Management involves establishing and training an incident response team?</p>
+                            <input type="radio" id="q1a" name="q1" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1a">Preparation </label><br>
+
+                            <input type="radio" id="q1b" name="q1" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1b">Recovery </label><br>
+
+                            <input type="radio" id="q1c" name="q1" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1c">Containment  </label><br>
+
+                            <input type="radio" id="q1d" name="q1" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1d">Identification </label><br>
+
+                            <input type="radio" id="q1e" name="q1" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1e">Lessons Learned </label><br>
+
+                        </li><br>
+                        <li>
+                            <p>What is the main goal of the Containment phase in Incident Response Management?</p>
+                            <input type="radio" id="q2a" name="q2" value="a" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2a">Isolating affected systems to prevent further damage</label><br>
+                            
+                            <input type="radio" id="q2b" name="q2" value="b" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2b">Communicating with stakeholders</label><br>
+                            
+                            <input type="radio" id="q2c" name="q2" value="c" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2c">Training the incident response team</label><br>
+
+                            <input type="radio" id="q2d" name="q2" value="d" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2d">Restoring systems to normal operation</label><br>
+
+                            <input type="radio" id="q2e" name="q2" value="e" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2e">Eliminating the root cause of the incident</label><br>
+                        </li><br>
+
+                        <li>
+                            <p>During which phase are permanent solutions applied to remove vulnerabilities?</p>
+                            <input type="radio" id="q3a" name="q3" value="a" style="margin-right: 3vh;"  [(ngModel)]="model.q3">
+                            <label for="q3a">Eradication</label><br>
+
+                            <input type="radio" id="q3b" name="q3" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q3">
+                            <label for="q3b">Containment</label><br>
+                            
+                            <input type="radio" id="q3c" name="q3" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q3">
+                            <label for="q3c">Identification</label><br>
+
+                            <input type="radio" id="q3d" name="q3" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q3">
+                            <label for="q3d">Recovery</label><br>
+
+                            <input type="radio" id="q3e" name="q3" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q3">
+                            <label for="q3e">Preparation</label><br>
+                        </li><br>
+
+                        <li>
+                            <p>What is the purpose of the Recovery phase in Incident Response Management?</p>
+                            <input type="radio" id="q4a" name="q4" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4a">To establish an incident response team</label><br>
+                            
+                            <input type="radio" id="q4b" name="q4" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4b">To restore systems and services to normal operation</label><br>         
+                            
+                            <input type="radio" id="q4c" name="q4" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4c">To maintain detailed records of the incident</label><br>
+
+                            <input type="radio" id="q4d" name="q4" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4d">To conduct post-incident analysis</label><br>
+
+                            <input type="radio" id="q4e" name="q4" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4e">To isolate affected systems</label><br>
+                        </li><br>
+
+                        <li>
+                            <p>What is the focus of the Lessons Learned phase in Incident Response Management?</p>
+                            <input type="radio" id="q5a" name="q5" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5a">Training the incident response team</label><br>
+
+                            <input type="radio" id="q5b" name="q5" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5b">Establishing clear communication channels</label><br>
+
+                            <input type="radio" id="q5c" name="q5" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5c">Restoring systems to normal operation</label><br>
+
+                            <input type="radio" id="q5d" name="q5" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5d">Conducting a post-incident analysis to understand the incident's causes and effects</label><br>
+
+                            <input type="radio" id="q5e" name="q5" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5e">Applying permanent solutions to vulnerabilities</label><br>
+                        </li><br>
+
+                        <li>
+                            <p>During which phase should all relevant information be documented for regulatory compliance and future reference?</p>
+                            <input type="radio" id="q6a" name="q6" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6a">Documentation</label><br>
+                            <input type="radio" id="q6b" name="q6" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6b">Eradication</label><br>
+                            <input type="radio" id="q6c" name="q6" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6c">Identification</label><br>
+                            <input type="radio" id="q6d" name="q6" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6d">Recovery</label><br>
+                            <input type="radio" id="q6e" name="q6" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6e">Preparation</label><br>
+                        </li><br>
+                        <li>
+                            <p>What responsibility does the Incident Response Manager have during an actual security incident?</p>
+                            <input type="radio" id="q7a" name="q7" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7a">Upgrading software routinely</label><br>
+                            <input type="radio" id="q7b" name="q7" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7b">Leading the incident response team</label><br>
+                            <input type="radio" id="q7c" name="q7" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7c">Identifying user needs</label><br>
+                            <input type="radio" id="q7d" name="q7" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7d">Developing marketing strategies</label><br>
+                            <input type="radio" id="q7e" name="q7" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7e">Regularly backing up systems</label><br>
+                        </li><br>
+                        <li>
+                            <p>What is expected from the Incident Response Manager during the Communication phase?</p>
+                            <input type="radio" id="q8a" name="q8" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8a">To conduct regular training and simulation exercises</label><br>
+                            <input type="radio" id="q8b" name="q8" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8b">To isolate affected systems</label><br>
+                            <input type="radio" id="q8c" name="q8" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8c">To apply updates to security policies</label><br>
+                            <input type="radio" id="q8d" name="q8" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8d">To serve as the primary point of contact for communication with internal and external stakeholders</label><br>
+                            <input type="radio" id="q8e" name="q8" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8e">To oversee the process of identifying and assessing security incidents</label><br>
+                        </li><br>
+                        <li>
+                            <p>Incident Response Management's primary goal is to prevent security incidents from occurring.</p>
+                            <input type="radio" id="q9a" name="q9" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q9">
+                            <label for="q9a">True</label><br>
+                            <input type="radio" id="q9b" name="q9" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q9">
+                            <label for="q9b">False</label><br>                            
+                        </li><br>
+                        <li>
+                            <p>The IRM process is typically linear, with each phase occurring only once per incident.</p>
+                            <input type="radio" id="q10a" name="q10" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q10">
+                            <label for="q10a">True</label><br>
+                            <input type="radio" id="q10b" name="q10" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q10">
+                            <label for="q10b">False</label><br>
+                        </li>
+                    </ol>
+                    <button type="submit" (click)="Start()" >Submit Answers</button> <!--(click)="submitForm()"-->
+                </form>
+            </div>
+            <a *ngIf="submitted" class="btn btn-primary py-3 px-5 mt-2" (click)="CheckTest001('')">Go to the Next Chapter!</a>
+        </div>
+    </div>
+</div>
+
+<div class="container-xxl py-5 justify-content-center align-items-center modal-open" *ngIf="start"> <!-- *ngIf="start"-->
+    <div class="container">
+        <div class="card shadow confirmation-card">
+            <div class="row g-5">                
+                <div class="col-lg-6 wow" >
+                    <div class="card-body">                        
+                        <!-- Confirmation Card -->
+                        <div class="confirmation-card confirmation-buttons">
+                            <p class="confirmation-text">Are you sure you want to submit?</p>
+                            <button class="btn btn-primary"  (click)="submitForm()">Yes</button> <!--(click)="submitEnrollment()"-->
+                            <button class="btn btn-secondary" (click)="closeCard()">Cancel</button> <!-- (click)="cancelEnrollment()"-->
+                        </div>
+                        <!-- End Confirmation Card -->
+                        <button type="button" class="btn-close position-absolute top-0 end-0 mt-3 me-3" aria-label="Close" (click)="closeCard()"></button> <!--(click)="closeCard()"-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

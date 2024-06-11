@@ -1,0 +1,281 @@
+  
+        <div class="main-panel" style="width: 100%;" *ngIf="false">
+            <div class="content-wrapper pb-0">
+              <div class="page-header flex-wrap" style="background: transparent;">
+                <h3 class="mb-0"> Sale Modules  <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block">Our Sales Modules are meticulously designed to equip sales professionals</span>
+
+                </h3>
+                <div class="d-flex" *ngIf="false">
+                  <button type="button" class="btn btn-sm bg-white btn-icon-text border">
+                    <i class="mdi mdi-email btn-icon-prepend"></i> Email </button>
+                  <button type="button" class="btn btn-sm bg-white btn-icon-text border ml-3">
+                    <i class="mdi mdi-printer btn-icon-prepend"></i> Print </button>
+                  <button type="button" class="btn btn-sm ml-3 btn-success"> Add User </button>
+                </div>
+              </div>
+
+              <!-- for sales vedio design -->
+              <div class="row">
+                <div class="col-xl-2 col-lg-12 stretch-card grid-margin" >
+                  <div class="row">
+                    <div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3"  (click)="selectList(0)">
+                      <div class="card bg-warning">
+                        <div class="card-body px-3 py-4">
+                          <div class="d-flex justify-content-between align-items-start">
+                            <div class="color-card">
+                              <p class="mb-0 color-card-head" >Customer </p>
+
+                              
+                            </div>
+                            <!-- <i class="card-icon-indicator mdi mdi-account bg-inverse-icon-warning"></i> -->
+
+                          </div>
+                         
+                          <h6 class="text-white"> Vedios  : 3</h6>
+                          <h6 class="text-white"> Documents : 3</h6>
+                         
+
+
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3"  (click)="selectList(1)" >
+                      <div class="card bg-danger">
+                        <div class="card-body px-3 py-4">
+                          <div class="d-flex justify-content-between align-items-start">
+                            <div class="color-card">
+                                <p class="mb-0 color-card-head" >Error & Solution </p>
+  
+                                
+                              </div>
+                              <!-- <i class="card-icon-indicator mdi mdi-cube-outline bg-inverse-icon-danger"></i> -->
+  
+                            </div>
+                           
+                            <h6 class="text-white"> Vedios  : 2</h6>
+                            <h6 class="text-white"> Documents : 2</h6>
+                           
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 pb-lg-0 pb-xl-3" *ngIf="false">
+                      <div class="card bg-primary">
+                        <div class="card-body px-3 py-4">
+                          <div class="d-flex justify-content-between align-items-start">
+                            <div class="color-card">
+                              <p class="mb-0 color-card-head">Orders</p>
+                              <h2 class="text-white"> $1,753.<span class="h5">00</span>
+                              </h2>
+                            </div>
+                            <i class="card-icon-indicator mdi mdi-briefcase-outline bg-inverse-icon-primary"></i>
+                          </div>
+                          <h6 class="text-white">67.98% Since last month</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-12 col-md-6 stretch-card pb-sm-3 pb-lg-0" *ngIf="false">
+                      <div class="card bg-success">
+                        <div class="card-body px-3 py-4">
+                          <div class="d-flex justify-content-between align-items-start">
+                            <div class="color-card">
+                              <p class="mb-0 color-card-head">Affiliate</p>
+                              <h2 class="text-white">2368</h2>
+                            </div>
+                            <i class="card-icon-indicator mdi mdi-account-circle bg-inverse-icon-success"></i>
+                          </div>
+                          <h6 class="text-white">20.32% Since last month</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<!-- for all values details list -->
+                <div class="col-xl-10 stretch-card grid-margin" >
+                 
+                  <div class="card" >
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-sm-7">
+                          <h5>Customer  </h5>
+                          <p class="text-muted"> All Vedio & Document For Supporting Purpose <a class="text-muted font-weight-medium pl-2" ></a>
+                          </p>
+                        </div>
+                        <div class="col-sm-5 text-md-right">
+
+                          <!-- <button type="button" class="btn btn-icon-text mb-3 mb-sm-0 btn-inverse-primary font-weight-normal">
+                            <i class="mdi mdi-email btn-icon-prepend"></i>Download Report </button> -->
+                            <li class="nav-item nav-search border-0 ml-1 ml-md-3 ml-lg-5 d-none d-md-flex">
+                                <div class="input-group custom-search">
+                                  <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchKeyWord">
+                                  <div class="input-group-append">
+                                    <span class="input-group-text">
+                                      <i class="mdi mdi-magnify"></i>
+                                    </span>
+                                  </div>
+                                </div>
+                              </li>
+                              
+                              <!-- <div class="col-6">
+                                <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchKeyWord">
+                              </div> -->
+                      
+                        </div>
+                      </div>
+
+                      <!-- For multiple card related to Customers  1-->
+
+
+                      <div class="row"   > 
+                        <div class="col-sm-3" *ngFor="let listvalues of samelistforall;" style="padding: 5px;">
+
+                            <div class="card mb-3 mb-sm-0">
+                              <div class="card-body py-3 px-4" style="">
+                                <p class="m-0 survey-head" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);color: blue;font-size: 15px;">{{listvalues['name']}}</p>
+                               
+                                <div class="d-flex justify-content-between align-items-end flot-bar-wrapper">
+                                
+
+                                 
+
+                                  <!-- Google Drive Icon -->
+                           <!-- <i class="card-icon-indicator mdi mdi-google-drive bg-inverse-icon-success" (click)="openDocumentDrive()"></i> -->
+
+                                 
+                                  <i class="card-icon-indicator mdi mdi-youtube bg-inverse-icon-success" (click)="playVedio()"></i>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          </div>
+
+
+                      
+
+
+                     
+                      
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+             
+   
+              
+             
+            </div>
+            <footer class="footer">
+              <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Developed By :IT</span>
+                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">  <a href="" target="_blank">Prism Johnson Limited</a>www.prismcement.com</span>
+              </div>
+            </footer>
+          </div>
+
+          <div class="container-fluid page-body-wrapper">
+
+          <div class="main-panel" style="width: 100%;">
+            <div class="content-wrapper pb-0">
+                
+                <div class="page-header flex-wrap">
+                    <h3 class="mb-0">
+                        Sale Modules 
+                        <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block">
+                            Our Sales Modules are meticulously designed to equip sales professionals
+                        </span>
+                    </h3>
+                    <div class="gradient-bg">
+                        <button (click)="goBack()" class="back-button">Back</button>
+                    </div>
+                </div>
+               
+                <div class="row">
+                    <div class="col-xl-2 col-lg-12 stretch-card grid-margin">
+                        <!-- Sales video design -->
+                        <div class="row">
+                            <div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 video-card" (click)="selectList(0)">
+                                <div class="card bg-warning">
+                                    <div class="card-body px-3 py-4">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <div class="color-card">
+                                                <p class="mb-0 color-card-head">Customer</p>
+                                            </div>
+                                        </div>
+                                        <h6 class="text-white">Videos: 3</h6>
+                                        <h6 class="text-white">Documents: 3</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 video-card" (click)="selectList(1)">
+                                <div class="card bg-danger">
+                                    <div class="card-body px-3 py-4">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <div class="color-card">
+                                                <p class="mb-0 color-card-head">Error & Solution</p>
+                                            </div>
+                                        </div>
+                                        <h6 class="text-white">Videos: 2</h6>
+                                        <h6 class="text-white">Documents: 2</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-10 stretch-card grid-margin">
+                        <!-- All values details list -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        <h5>Customer</h5>
+                                        <p class="text-muted">All Video & Documents For Supporting Purpose</p>
+                                    </div>
+                                    <div class="col-sm-5 text-md-right">
+                                        <li class="nav-item nav-search border-0 ml-1 ml-md-3 ml-lg-5 d-none d-md-flex">
+                                            <div class="input-group custom-search">
+                                                <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchKeyWord">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <i class="mdi mdi-magnify"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </div>
+                                </div>
+                                <!-- Multiple card related to Customers -->
+                                <div class="row">
+                                    <div class="col-sm-3" *ngFor="let listvalues of samelistforall;" style="padding: 5px;">
+                                        <div class="card mb-3 mb-sm-0">
+                                            <div class="card-body py-3 px-4" style="">
+                                                <p class="m-0 survey-head">{{listvalues['name']}}</p>
+                                                <div class="d-flex justify-content-between align-items-end flot-bar-wrapper">
+                                                   
+                                                    <i class="fas fa-file-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0" (click)="openDocument()"></i>
+
+                                                    <i class="fas fa-play-circle icon-md text-muted mb-0 mb-md-3 mb-xl-0" (click)="playVedio()"></i>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Developed By: IT</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+                            <a href="" target="_blank">Prism Johnson Limited</a> www.prismcement.com
+                        </span>
+                    </div>
+                </footer>
+            </div>
+        </div>
+          </div>
+        

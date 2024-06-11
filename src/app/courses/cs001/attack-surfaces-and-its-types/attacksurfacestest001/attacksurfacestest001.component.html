@@ -1,0 +1,145 @@
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <!-- <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <img class="img-fluid position-absolute w-100 h-100" src="img/about.jpg" alt="" style="object-fit: cover;">
+                </div>
+            </div> -->
+            <div class="wow fadeInUp" data-wow-delay="0.3s">
+                <h6 class="section-title bg-white text-start text-primary pe-3" style="font-size: larger;">Test On Attack Surfaces & It's Types</h6><br><br>
+                <form> <!--(ngSubmit)="submitForm()" #form="ngForm"-->
+                    <ol>
+                        
+                        <li>                            
+                            <p>An attack vector involves only digital means like viruses and malware.</p>
+                            <input type="radio" id="q1a" name="q1" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1a"> True</label><br>
+                            <input type="radio" id="q1b" name="q1" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q1">
+                            <label for="q1b"> False</label><br>                            
+                        </li><br>
+                        <li>
+                            <p>The attack surface of a company typically remains static and doesn't change over time.</p>
+                            <input type="radio" id="q2a" name="q2" value="a" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2a"> True  </label><br>
+                            <input type="radio" id="q2b" name="q2" value="b" style="margin-right: 3vh;"  [(ngModel)]="model.q2">
+                            <label for="q2b"> False </label><br>                            
+                        </li><br>
+                        <li>
+                            <p>Poor coding practices can contribute to an organization's digital attack surface.</p>
+                            <input type="radio" id="q3a" name="q3" value="a" style="margin-right: 3vh;"  [(ngModel)]="model.q3">
+                            <label for="q3a"> True</label><br>
+                            <input type="radio" id="q3b" name="q3" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q3">
+                            <label for="q3b"> False </label><br>                            
+                        </li><br>
+                        <li>
+                            <p>Network segmentation increases the complexity and size of an attack surface.</p>
+                            <input type="radio" id="q4a" name="q4" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4a"> True  </label><br>
+                            <input type="radio" id="q4b" name="q4" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q4">
+                            <label for="q4b"> False  </label><br>                            
+                        </li><br>
+                        <li>
+                            <p>Attack surface reduction can be achieved by eliminating complexity and maintaining system functionalities.</p>
+                            <input type="radio" id="q5a" name="q5" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5a"> True </label><br>
+                            <input type="radio" id="q5b" name="q5" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q5">
+                            <label for="q5b"> False  </label><br>                            
+                        </li><br>
+                        <li>
+                            <p>Which of the following is NOT an example of an attack vector as defined in the context?</p>
+                            <input type="radio" id="q6a" name="q6" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6a"> Deception  </label><br>
+                            <input type="radio" id="q6b" name="q6" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6b"> Biometric systems </label><br>
+                            <input type="radio" id="q6c" name="q6" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6c"> Email attachments   </label><br>
+                            <input type="radio" id="q6d" name="q6" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6d"> Pop-up windows  </label><br>
+                            <input type="radio" id="q6e" name="q6" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q6">
+                            <label for="q6e"> Instant messages   </label><br>
+                        </li><br>
+                        <li>
+                            <p>What is deception in the context of cybersecurity?</p>
+                            <input type="radio" id="q7a" name="q7" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7a">A method where a human operator is fooled into compromising system defenses</label><br>
+                            <input type="radio" id="q7b" name="q7" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7b">A hardware tool used by hackers</label><br>
+                            <input type="radio" id="q7c" name="q7" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7c">A virus that steals data</label><br>
+                            <input type="radio" id="q7d" name="q7" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7d">A programming vulnerability</label><br>
+                            <input type="radio" id="q7e" name="q7" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q7">
+                            <label for="q7e">An unauthorized system access point</label><br>
+                        </li><br>
+                        <li>
+                            <p>An attack surface refers to:</p>
+                            <input type="radio" id="q8a" name="q8" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8a">The team of hackers trying to break into a system</label><br>
+                            <input type="radio" id="q8b" name="q8" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8b">The total number of vulnerabilities in a system</label><br>
+                            <input type="radio" id="q8c" name="q8" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8c">The hacking tools used by cybercriminals</label><br>
+                            <input type="radio" id="q8d" name="q8" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8d">All possible entry points and vulnerabilities that can be exploited</label><br>
+                            <input type="radio" id="q8e" name="q8" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q8">
+                            <label for="q8e">A single vulnerability within software</label><br>
+                        </li><br>
+                        <li>
+                            <p>Which factor contributes to the complexity of a modern business's attack surface?</p>
+                            <input type="radio" id="q9a" name="q9" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q9">
+                            <label for="q9a">The physical security measures in place</label><br>
+                            <input type="radio" id="q9b" name="q9" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q9">
+                            <label for="q9b">The use of high-quality coding practices</label><br>
+                            <input type="radio" id="q9c" name="q9" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q9">
+                            <label for="q9c">Fewer devices being used in the business</label><br>
+                            <input type="radio" id="q9d" name="q9" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q9">
+                            <label for="q9d">Reduction in web applications use</label><br>
+                            <input type="radio" id="q9e" name="q9" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q9">
+                            <label for="q9e">A multitude of devices and network nodes</label><br>
+                        </li><br>
+                        <li>
+                            <p>Digital attack surfaces do NOT include:</p>
+                            <input type="radio" id="q10a" name="q10" value="a" style="margin-right: 3vh;" [(ngModel)]="model.q10">
+                            <label for="q10a">Poorly maintained software</label><br>
+                            <input type="radio" id="q10b" name="q10" value="b" style="margin-right: 3vh;" [(ngModel)]="model.q10">
+                            <label for="q10b">Websites</label><br>
+
+                            <input type="radio" id="q10c" name="q10" value="c" style="margin-right: 3vh;" [(ngModel)]="model.q10">
+                            <label for="q10c">Properly discarded hardware</label><br>
+
+                            <input type="radio" id="q10d" name="q10" value="d" style="margin-right: 3vh;" [(ngModel)]="model.q10">
+                            <label for="q10d">Exposed application programming interfaces</label><br>
+
+                            <input type="radio" id="q10e" name="q10" value="e" style="margin-right: 3vh;" [(ngModel)]="model.q10">
+                            <label for="q10e">Vulnerabilities left by weak passwords</label><br>
+                        </li>
+                    </ol>
+                    <button type="submit" (click)="Start()" >Submit Answers</button> <!--(click)="submitForm()"-->
+                </form>
+            </div>
+            <a *ngIf="submitted" class="btn btn-primary py-3 px-5 mt-2" (click)="CheckTest001('')">Go to the Next Chapter!</a>
+        </div>
+    </div>
+</div>
+
+<div class="container-xxl py-5 justify-content-center align-items-center modal-open" *ngIf="start"> <!-- *ngIf="start"-->
+    <div class="container">
+        <div class="card shadow confirmation-card">
+            <div class="row g-5">                
+                <div class="col-lg-6 wow" >
+                    <div class="card-body">                        
+                        <!-- Confirmation Card -->
+                        <div class="confirmation-card confirmation-buttons">
+                            <p class="confirmation-text">Are you sure you want to submit?</p>
+                            <button class="btn btn-primary"  (click)="submitForm()">Yes</button> <!--(click)="submitEnrollment()"-->
+                            <button class="btn btn-secondary" (click)="closeCard()">Cancel</button> <!-- (click)="cancelEnrollment()"-->
+                        </div>
+                        <!-- End Confirmation Card -->
+                        <button type="button" class="btn-close position-absolute top-0 end-0 mt-3 me-3" aria-label="Close" (click)="closeCard()"></button> <!--(click)="closeCard()"-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

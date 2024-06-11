@@ -1,0 +1,57 @@
+
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar"  >
+  <a class="navbar-brand brand-logo-mini" href="index.html" style=""><img src="assets/newcss/images/PRISM/prismlogo.png" alt="logo" height="100px" width="60%" center /></a>
+  
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/dashboardhome']">
+          <i class="ti-shield menu-icon"></i>
+          <span class="menu-title">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+          <i class="ti-palette menu-icon"></i>
+          <span class="menu-title">Sales Modules</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="ui-basic">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link"  [routerLink]="['/salesmoduleScreens']">Customer</a></li>
+            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Invoice</a></li>
+            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Sales Order</a></li>
+            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Delevery</a></li>
+          </ul>
+        </div>
+        
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="d">
+          <i class="ti-layout-list-post menu-icon"></i>
+          <span class="menu-title">Finance Modules</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="c">
+          <i class="ti-pie-chart menu-icon"></i>
+          <span class="menu-title">Production Modules</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="b">
+          <i class="ti-view-list-alt menu-icon"></i>
+          <span class="menu-title">CLMS</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="a">
+          <i class="ti-star menu-icon"></i>
+          <span class="menu-title">Material</span>
+        </a>
+      </li>
+      
+     
+    </ul>
+  </nav>
+

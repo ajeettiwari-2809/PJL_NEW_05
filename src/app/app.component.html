@@ -1,0 +1,30 @@
+<!-- <router-outlet></router-outlet>
+<lib-ng-toast></lib-ng-toast> -->
+<!--   *ngIf="isUserAuthenticated()" -->
+
+<mat-drawer-container >
+       
+       
+    <mat-drawer class="d-print-none" mode="side" [opened]="sideBarOpen" *ngIf="isUserAuthenticated()"  >
+     
+       
+     <app-sidenan> </app-sidenan>
+
+    </mat-drawer>
+
+    <mat-drawer-content>
+        
+     
+         <app-headernav   (toggleSidebarForMe)="sideBarToggler()" ></app-headernav>
+        <router-outlet> </router-outlet>
+       
+   
+    </mat-drawer-content>
+
+  </mat-drawer-container>
+
+
+      
+
+
+      
