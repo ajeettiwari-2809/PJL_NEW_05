@@ -19,13 +19,14 @@ export class SignupComponent {
   signupForm!: FormGroup;
   hide = true;
   showPassword: boolean = false;
+  otpstatus:boolean=false;
   
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private toastr: ToastrService) {
     // this.initializeForms();
     this.signupForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      username: ['', Validators.required],
+      emaildata: ['', Validators.required],
+      usercode: ['', Validators.required]
     })    
   }
 
@@ -59,7 +60,7 @@ export class SignupComponent {
 
   email: string = '';
   dropdownVisible: boolean = false;
-  emailDomains: string[] = ['@gmail.com', '@yahoo.com', '@outlook.com', '@example.com'];
+  emailDomains: string[] = ['@gmail.com', '@prismjohnson.in'];
 
   toggleDropdown(): void {
     this.dropdownVisible = !this.dropdownVisible;
@@ -70,9 +71,22 @@ export class SignupComponent {
   }
 
   selectDomain(domain: string): void {
-    const atIndex = this.email.indexOf('@');
-    const emailPrefix = atIndex !== -1 ? this.email.substring(0, atIndex) : this.email;
-    this.email = emailPrefix + domain;
+    const emailControl = this.signupForm.get('emaildata');
+
+   if (emailControl) {
+    const email = emailControl.value;
+    const atIndex = email.indexOf('@');
+    const emailPrefix = atIndex !== -1 ? email.substring(0, atIndex) : email;
+    const updatedEmail = emailPrefix + domain;
+
+    // Update the emaildata control with the new value
+    emailControl.setValue(updatedEmail);
+  }
     this.closeDropdown();
+  }
+
+  getOTPVerify()
+  {
+this.otpstatus=true;
   }
 }

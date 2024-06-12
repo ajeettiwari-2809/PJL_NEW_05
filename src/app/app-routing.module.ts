@@ -9,6 +9,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { DashboardHomeComponent } from './NEWCODE/dashboard-home/dashboard-home.component';
 import { SalesModulesComponent } from './NEWCODE/sales-modules/sales-modules.component';
 import { PlayVediosComponent } from './NEWCODE/play-vedios/play-vedios.component';
+import { AdminDashboardComponent } from './NEWCODE/ADMIN/admin-dashboard/admin-dashboard.component';
 
 
 
@@ -34,6 +35,7 @@ const routes: Routes = [
       { path: 'salesmoduleScreens', component: SalesModulesComponent },
       // { path: 'salesmoduleScreens', component: SalesModuleComponent },
       { path: 'playvedios', component: PlayVediosComponent },
+      { path: 'admindashboard', component: AdminDashboardComponent },
     ]
   } 
 

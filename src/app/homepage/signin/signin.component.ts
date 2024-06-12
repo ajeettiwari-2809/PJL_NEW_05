@@ -131,8 +131,13 @@ export class SigninComponent {
     console.log("Method callinfs");
     if (this.loginForm.valid) {
 
-      console.log(this.loginForm.value);
-     this.auth.login(this.loginForm.value)
+
+      const userDetails = {
+        username: this.loginForm.value.email,
+        password: this.loginForm.value.password
+      };
+   
+     this.auth.login(userDetails)
       .subscribe({
         next:(res) =>{
 
@@ -153,7 +158,7 @@ this.refreshDashboard();
           // window.location.reload();
   }
   else{
-    this.toastr.success(res.message);  
+    this.toastr.error(res.message);  
   }
 
          

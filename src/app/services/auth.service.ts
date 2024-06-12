@@ -41,12 +41,12 @@ export class AuthService {
   }
 
   login(loginObj: any){
+    console.log("My loginob");
+    console.log(loginObj);
 
-    return this.http.post<any>(`${this.baseUrl}Auth/userloginDevlopment`, {
-      "userCode": "lokesh.gupta@prismjohnson.in",
-      "userName": "lokesh.gupta@prismjohnson.in",
-      "password": "Prism@789"
-    });
+    const loginObjJson = JSON.stringify(loginObj);
+
+    return this.http.post<any>(`${this.baseUrl}Auth/userloginDevlopment`,loginObj);
   }
 
   forgot(userObj: any){
