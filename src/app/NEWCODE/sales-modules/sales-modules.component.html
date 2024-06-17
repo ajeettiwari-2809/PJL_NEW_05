@@ -175,12 +175,12 @@
             </footer>
           </div>
 
-          <div class="container-fluid page-body-wrapper">
+          <div class="container-fluid page-body-wrapper" style="width: 100%;height: 100vh;">
 
           <div class="main-panel" style="width: 100%;">
             <div class="content-wrapper pb-0">
                 
-                <div class="page-header flex-wrap">
+                <div class="page-header flex-wrap" >
                     <h3 class="mb-0">
                         Sale Modules 
                         <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block">
@@ -267,6 +267,42 @@
                         </div>
                     </div>
                 </div>
+
+              <div class="container" style="height: 500px;">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div style="display: block">
+                      <canvas baseChart
+                              [data]="pieChartData"
+                              [labels]="pieChartLabels"
+                              [type]="pieChartType"
+                              (chartHover)="chartHovered($event)"
+                              (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div style="display: block">
+                      <canvas baseChart
+                              [data]="pieChartData"
+                              [labels]="pieChartLabels"
+                              [type]="pieChartType"
+                              (chartHover)="chartHovered($event)"
+                              (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div style="display: block">
+                      <canvas baseChart
+                              [data]="pieChartData"
+                              [labels]="pieChartLabels"
+                              [type]="pieChartType"
+                              (chartHover)="chartHovered($event)"
+                              (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
                         <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Developed By: IT</span>
@@ -277,5 +313,7 @@
                 </footer>
             </div>
         </div>
+
+
           </div>
         

@@ -3,6 +3,7 @@ import { Component, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService, Overlay } from 'ngx-toastr';
 import { Location } from '@angular/common';
+import { ChartData, ChartType } from 'chart.js';
 @Component({
   selector: 'app-sales-modules',
   templateUrl: './sales-modules.component.html',
@@ -87,8 +88,27 @@ this.samelistforall=this.saleslist;
   }
   goBack(): void {
 
-    // window.history.back();
-    this.router.navigateByUrl('/dashboardhome');
+    window.history.back();
+    // this.router.navigateByUrl('/dashboardhome');
   }
 
+  public pieChartLabels:string[] = ['Chrome', 'Safari', 'Firefox','Internet Explorer','Other'];
+  public pieChartData: ChartData<'pie', number[], string>={
+    labels: this.pieChartLabels,
+    datasets: [{
+      data: [300, 500, 100,23,10]
+    }]
+  };
+ 
+  // public pieChartType:string = 'pie';
+  public pieChartType: ChartType = 'pie';
+ 
+  // events
+  public chartClicked(e:any):void {
+    console.log(e);
+  }
+ 
+  public chartHovered(e:any):void {
+    console.log(e);
+  }
 }

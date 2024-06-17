@@ -1,5 +1,6 @@
 // import { Component } from '@angular/core';
 import { Component, OnInit, ChangeDetectorRef, Renderer2,OnDestroy } from '@angular/core';
+import { ChartType, ChartData, ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -17,22 +18,7 @@ export class DashboardHomeComponent implements OnInit,OnDestroy{
 this.isrefresh=false;
    
     
-
-    // if (this.scriptsLoaded) {
-    //   // this.loadScript('assets/newcss/vendors/base/vendor.bundle.base.js');
-    // this.loadScript('assets/newcss/vendors/chart.js/Chart.min.js');
-    // this.loadScript('assets/newcss/js/jquery.cookie.js');
-    // this.loadScript('assets/newcss/js/off-canvas.js');
-    // this.loadScript('assets/newcss/js/hoverable-collapse.js');
-    // this.loadScript('assets/newcss/js/template.js');
-    // this.loadScript('assets/newcss/js/todolist.js');
-    // this.loadScript('assets/newcss/js/dashboard.js');
-    //   this.scriptsLoaded = true;
-    // } 
-
-   
-
-
+this.initializeChartData();
 
 
   }
@@ -79,5 +65,50 @@ this.isrefresh=false;
   }
 
   
+  updatechart()
+  {
+    
+  }
+  public pieChartOptions: ChartOptions<'pie'> = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      }
+    },
+    elements: {
+      arc: {
+        borderWidth: 2,
+        borderColor: '#fff',
+        borderRadius: 20, // Set the border radius here
+      }
+    }
+  };
+
+ 
+
+  public pieChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+  public pieChartData: ChartData<'pie', number[], string> = {
+    labels: this.pieChartLabels,
+    datasets: [{
+      data: [300, 500, 100],
+      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+      hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+    }]
+  };
+
+  public pieChartType: ChartType = 'pie';
+  public pieChartLegend = true;
+  public pieChartPlugins = [];
   
+  initializeChartData() {
+    this.pieChartData = {
+      labels: this.pieChartLabels,
+      datasets: [{
+        data: [300, 500, 100]
+      }]
+    };
+  }
+
+ 
 }

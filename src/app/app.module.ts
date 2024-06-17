@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -84,7 +84,11 @@ import { DashboardHomeComponent } from './NEWCODE/dashboard-home/dashboard-home.
 import { SalesModulesComponent } from './NEWCODE/sales-modules/sales-modules.component';
 import { PlayVediosComponent } from './NEWCODE/play-vedios/play-vedios.component';
 import { AdminDashboardComponent } from './NEWCODE/ADMIN/admin-dashboard/admin-dashboard.component';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { Chart } from 'chart.js';
+// import { NgChartsModule } from 'ng2-charts';
+// import { ChartsModule } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -154,10 +158,15 @@ import { AdminDashboardComponent } from './NEWCODE/ADMIN/admin-dashboard/admin-d
     DashboardHomeComponent,
     SalesModulesComponent,
     PlayVediosComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+   
   ],
   imports: [
+    
     BrowserModule,
+    // NgChartsModule,
+    NgChartsModule,
+
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -175,7 +184,8 @@ import { AdminDashboardComponent } from './NEWCODE/ADMIN/admin-dashboard/admin-d
     MatSelectModule,
     MatFormFieldModule,
     MatSidenavModule,
-    MatMenuModule
+    MatMenuModule,
+   
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

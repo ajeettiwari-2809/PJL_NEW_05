@@ -1,0 +1,72 @@
+.detailed-reports {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  h3 {
+    font-weight: normal;
+    color: #555;
+  }
+  
+  .total-records {
+    display: flex;
+    align-items: center;
+  }
+  
+  .chart-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
+  }
+  
+  .chart-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .total-text {
+    flex: 1;
+  }
+  
+  .total-text h2 {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.2;
+  }
+  
+  .total-text small {
+    font-size: 14px;
+    color: #777;
+  }
+  
+  .details-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .details-list li {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+  }
+  
+  .details-list .color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 10px;
+  }
+  
+  .details-list .sales { background-color: #66bb6a; }
+  .details-list .production { background-color: #42a5f5; }
+  .details-list .finances { background-color: #29b6f6; }
+  .details-list .clms { background-color: #26c6da; }
+  .details-list .material { background-color: #26a69a; }
+  .details-list .hcm { background-color: #ab47bc; }
+  

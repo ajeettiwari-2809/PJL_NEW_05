@@ -329,6 +329,22 @@
           </div>
         </div>
       </div>
+
+       <div style="display: block;" >
+        <canvas baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+               
+                [options]="pieChartOptions"
+                [legend]="pieChartLegend"
+                [plugins]="pieChartPlugins">
+        </canvas>
+
+      </div>
+
+   
+      
+
     </div>
     <!-- content-wrapper ends -->
     <!-- partial:partials/_footer.html -->

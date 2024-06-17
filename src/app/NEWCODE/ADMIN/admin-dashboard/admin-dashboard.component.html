@@ -17,21 +17,21 @@
               </p></div>
             
             <div class="col-md-10" >
-                <div class="form-group row">
+                <div class="form-group row" style="background-color: transparent;">
                   <label class="col-sm-2 col-form-label">Type</label>
                   <div class="col-sm-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
                         <label class="form-check-label" for="flexRadioDefault1">
-                          Default radio
+                          Help
                         </label>
                       </div>
                   </div>
                   <div class="col-sm-5">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
                         <label class="form-check-label" for="flexRadioDefault2">
-                          Default checked radio
+                         Error & Solution
                         </label>
                       </div>
                   </div>
@@ -40,7 +40,8 @@
              
         </div>
         <br>
-          <form class="form-sample">
+  
+          <form class="form-sample" [formGroup]="muduleform" >
                
             
              
@@ -49,7 +50,8 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Modules</label>
                     <div class="col-sm-9">
-                      <select class="form-control">
+    
+                      <select class="form-control"formControlName="modules" >
                         <option>Sales</option>
                         <option>Finance</option>
                       </select>
@@ -60,7 +62,7 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">SubModules</label>
                       <div class="col-sm-9">
-                        <select class="form-control">
+                        <select class="form-control" formControlName="submodule">
                           <option>Category1</option>
                           <option>Category2</option>
                           <option>Category3</option>
@@ -78,7 +80,7 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Title</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" />
+                      <input type="text" class="form-control" formControlName="title" />
                     </div>
                   </div>
                 </div>
@@ -86,7 +88,7 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Description</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" />
+                      <input type="text" class="form-control" formControlName="description" />
                     </div>
                   </div>
                 </div>
@@ -96,7 +98,7 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Document Link</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" />
+                      <input type="text" class="form-control" formControlName="documentlink" />
                     </div>
                   </div>
                 </div>
@@ -104,12 +106,12 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Vedio Link</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" />
+                      <input type="text" class="form-control" formControlName="vediolink" />
                     </div>
                   </div>
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary mb-2">Submit</button> 
+              <button type="submit" class="btn btn-primary mb-2" [disabled]="!muduleform.valid" (click)="submitDetails()">Submit</button> 
             </form>
           </div>
         </div>
