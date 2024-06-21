@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { SidebarService } from 'src/app/services/sidebar.service';
 
 @Component({
   selector: 'app-headernav',
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeadernavComponent {
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
-  constructor(private auth: AuthService,
+  constructor(private auth: AuthService,private sidebarService: SidebarService,
     private router: Router ){}
  
   isUserAuthenticated()
@@ -27,6 +28,7 @@ export class HeadernavComponent {
    
   }
   toggleSidebar() {
-    this.toggleSidebarForMe.emit();
+    this.sidebarService.toggleSidebar();
+    // this.toggleSidebarForMe.emit();
   }
 }

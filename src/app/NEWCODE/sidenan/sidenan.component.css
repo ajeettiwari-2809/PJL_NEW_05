@@ -1,0 +1,42 @@
+/* sidenav.component.css */
+
+.sidebar-offcanvas.minimized {
+    width: 80px; /* Adjust the width as per your requirement */
+  }
+  
+  .sidebar-offcanvas.minimized .nav-item .menu-title {
+    display: none; /* Hide the menu titles when minimized */
+  }
+  
+  .sidebar-offcanvas.minimized .navbar-brand img {
+    width: 50px; /* Adjust the logo size as per your requirement */
+  }
+
+  /* sidenan.component.css */
+.sidebar {
+    width: 250px;
+    transition: width 0.3s;
+  }
+  
+  .sidebar.minimized {
+    width: 80px; /* Adjust this width as needed */
+  }
+  
+  .sidebar .nav-link {
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar .menu-icon {
+    margin-right: 10px;
+    font-size: 20px;
+  }
+  
+  .sidebar.minimized .menu-title {
+    display: none;
+  }
+  
+  .sidebar .nav-link {
+    white-space: nowrap;
+  }
+  
