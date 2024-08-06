@@ -89,6 +89,14 @@ import { Chart } from 'chart.js';
 // import { NgChartsModule } from 'ng2-charts';
 // import { ChartsModule } from 'ng2-charts';
 import { NgChartsModule } from 'ng2-charts';
+import { GooglemapComponent } from './NEWCODE/googlemap/googlemap.component';
+import { GoogleMapWithColorsComponent } from './NEWCODE/google-map-with-colors/google-map-with-colors.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+
+// import { AgmCoreModule } from '@agm/core';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,7 +104,7 @@ import { NgChartsModule } from 'ng2-charts';
     CoursesComponent,
     SigninComponent,
     SignupComponent,
-    CS001Component,                  
+    CS001Component,
     AllcoursesComponent,
     InformationSecurityComponent,
     CiaTriadComponent,
@@ -159,10 +167,13 @@ import { NgChartsModule } from 'ng2-charts';
     SalesModulesComponent,
     PlayVediosComponent,
     AdminDashboardComponent,
-   
+    GooglemapComponent,
+
+
+
   ],
   imports: [
-    
+
     BrowserModule,
     // NgChartsModule,
     NgChartsModule,
@@ -177,7 +188,7 @@ import { NgChartsModule } from 'ng2-charts';
     CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 3000,                 
+      timeOut: 3000,
     }),
     MatIconModule,
     MatButtonModule,
@@ -185,7 +196,13 @@ import { NgChartsModule } from 'ng2-charts';
     MatFormFieldModule,
     MatSidenavModule,
     MatMenuModule,
-   
+    GoogleMapsModule
+
+
+
+
+
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

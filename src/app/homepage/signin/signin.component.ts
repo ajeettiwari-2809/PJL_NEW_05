@@ -15,6 +15,7 @@ import { UserstoreService } from 'src/app/services/userstore.service';
 export class SigninComponent {
 
   loginForm!: FormGroup;
+  loginFormotp!:FormGroup;
   signupForm!: FormGroup;
   forgotPassword!: FormGroup;
   start: boolean = false;
@@ -32,9 +33,14 @@ export class SigninComponent {
     // this.initializeForms();
 
     this.loginForm = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
-    });    
+      userCode: ['', Validators.required],
+    password:['', ],
+    });   
+    
+    // this.loginFormotp== this.fb.group({
+      
+    //   password: ['', Validators.required]
+    // });   
   }
 
   togglePasswordVisibility() {
@@ -133,8 +139,10 @@ export class SigninComponent {
 
 
       const userDetails = {
-        username: this.loginForm.value.email,
-        password: this.loginForm.value.password
+        userName:'',
+
+        userOTP: this.loginForm.value.password,
+        password:''
       };
    
      this.auth.login(userDetails)
@@ -144,15 +152,19 @@ export class SigninComponent {
 if(res.status==200)
   {
  console.log("After login"),
-          this.loginForm.reset();
-          this.auth.storeToken(res.token); 
+          // this.loginForm.reset();
+         console.log(res), 
+         this.auth.storeToken(res.token); 
           localStorage.setItem('user', JSON.stringify(res));
+
           const tokenPayload = this.auth.decodeToken();
+         
           this.userStore.setFullNameForStore(tokenPayload.name);
+
           this.toastr.success(res.message);    
 console.log("Navigate"),
 this.refreshDashboard();
-          // this.router.navigate(['/dashnoardhome']);
+          // this.router.navigate(['/dashboardhome']);
           console.log("Navigate after");
 
           // window.location.reload();
@@ -181,6 +193,7 @@ this.refreshDashboard();
   }
 
   refreshDashboard() {
+console.log("inside login")
     this.router.navigateByUrl('/dashboardhome', { skipLocationChange: true }).then(() => {
       this.router.navigate(['/dashboardhome']);
     });
@@ -204,5 +217,51 @@ this.refreshDashboard();
       window.location.reload();
      
    
+  }
+  otpstatus:boolean=false;
+  getOTPVerify()
+  {
+
+    console.log(this.loginForm.value.userCode)
+      
+      if (this.loginForm.valid) {
+  
+  
+        const userCode = {
+          userCode: this.loginForm.value.userCode,
+        
+        };
+     
+       this.auth.getOTP(userCode)
+        .subscribe({
+          next:(res) =>{
+  
+  if(res.status==200)
+    {
+   console.log("After login"),
+           
+            this.toastr.success(res.message);    
+            this.otpstatus=true;
+           
+    }
+    else{
+      this.toastr.error(res.message);  
+    }
+  },
+    error:(err)=>{
+            this.toastr.error(err?.error.message);
+            // alert(err?.error.message);
+          }
+        })
+        //send the obj to database
+      }
+      else {
+        
+        ValidateForm.validateAllFormFields(this.loginForm);
+        this.toastr.error("Your Form is Invalid!");
+        
+      }
+    
+
   }
 }

@@ -70,3 +70,32 @@
   .details-list .material { background-color: #26a69a; }
   .details-list .hcm { background-color: #ab47bc; }
   
+
+  /* pie-chart.component.css */
+.chart-container {
+  display: flex;
+  align-items: center;
+}
+.chart {
+  position: relative;
+  width: 40%;
+  margin-right: 20px;
+}
+.chart-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+}
+.details {
+  flex-grow: 1;
+}
+.details ul {
+  list-style-type: none;
+  padding: 0;
+}
+.details li {
+  margin: 5px 0;
+}

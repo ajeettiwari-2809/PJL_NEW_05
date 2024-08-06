@@ -17,10 +17,7 @@
   mat-drawer-container {
     height: 100%;
   }
-  mat-drawer-content
-  {
-    width: 100%;
-  }
+ 
   /* styles.css */
 .example-container {
   height: 100%;

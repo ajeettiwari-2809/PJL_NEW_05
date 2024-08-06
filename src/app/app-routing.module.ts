@@ -10,20 +10,22 @@ import { DashboardHomeComponent } from './NEWCODE/dashboard-home/dashboard-home.
 import { SalesModulesComponent } from './NEWCODE/sales-modules/sales-modules.component';
 import { PlayVediosComponent } from './NEWCODE/play-vedios/play-vedios.component';
 import { AdminDashboardComponent } from './NEWCODE/ADMIN/admin-dashboard/admin-dashboard.component';
+import { GooglemapComponent } from './NEWCODE/googlemap/googlemap.component';
+import { GoogleMapWithColorsComponent } from './NEWCODE/google-map-with-colors/google-map-with-colors.component';
 
 
 
 
 const routes: Routes = [
- 
+
 
   { path: '', component: SigninComponent },
 
   { path: 'homepage/signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
- 
-  
-  
+
+
+
   //For Active Authguard
   {
     path: '',
@@ -36,10 +38,12 @@ const routes: Routes = [
       // { path: 'salesmoduleScreens', component: SalesModuleComponent },
       { path: 'playvedios', component: PlayVediosComponent },
       { path: 'admindashboard', component: AdminDashboardComponent },
+      { path: 'googlemap', component: GooglemapComponent },
+      { path: 'googlemapcolor', component: GoogleMapWithColorsComponent },
     ]
-  } 
+  }
 
- 
+
 ];
 
 @NgModule({

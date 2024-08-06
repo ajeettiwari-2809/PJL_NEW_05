@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private baseUrl:string = "https://appdev.prismcement.com/aspiredev/";
+  private baseUrl:string = "https://appdev.prismcement.com/pjlexpressqasapi/";
 
   // private baseUrl:string = "https://appdev.prismcement.com/pjlexpress"
 
@@ -46,7 +46,11 @@ export class AuthService {
 
     const loginObjJson = JSON.stringify(loginObj);
 
-    return this.http.post<any>(`${this.baseUrl}Auth/userloginDevlopment`,loginObj);
+    return this.http.post<any>(`${this.baseUrl}Auth/loginWithOTP`,loginObj);
+  }
+
+  getOTP(otpobj: any){
+     return this.http.post<any>(`${this.baseUrl}Auth/userloginWithOTP`,otpobj);
   }
 
   forgot(userObj: any){

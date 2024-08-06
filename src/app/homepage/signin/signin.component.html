@@ -11,47 +11,43 @@
               <h6 class="font-weight-light">Login</h6>
               <form class="pt-3" [formGroup]="loginForm">
                 <div class="form-group">
-                  <label for="exampleInputEmail">Email</label>
+                  <label for="exampleInputEmail">UserCode</label>
                   <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
                       <span class="input-group-text bg-transparent border-right-0">
                         <i class="ti-user text-primary"></i>
                       </span>
                     </div>
-                    <input type="text" class="form-control form-control-lg border-left-0" id="exampleInputEmail" placeholder="Username" formControlName="email">
+                    <input type="text" class="form-control form-control-lg border-left-0" id="exampleInputEmail" placeholder="10****" formControlName="userCode" [disabled]="otpstatus">
                   </div>
                 </div>
+
+                <button type="submit" class="btn btn-primary btn-block mb-4" style="justify-content: center;align-items: center;text-align: center;" (click)="getOTPVerify()" *ngIf="!otpstatus">
+                  GET OTP
+                </button>
+              
+
+              
+                <div *ngIf="otpstatus">
                 <div class="form-group">
-                  <label for="exampleInputPassword">Password</label>
+                  <label for="exampleInputPassword">OTP</label>
                   <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
                       <span class="input-group-text bg-transparent border-right-0">
                         <i class="ti-lock text-primary"></i>
                       </span>
                     </div>
-                    <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Password" formControlName="password">                        
+                    <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="******" formControlName="password">                        
                   </div>
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
-                  <div class="form-check" *ngIf="false">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      Keep me signed in
-                    </label>
-                  </div>
+                  
                   <a href="#" class="auth-link text-black">Forgot password?</a>
                 </div>
                 <div class="my-3">
                   <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" (click)="onLogin()">LOGIN</a>
                 </div>
-                <div class="mb-2 d-flex" *ngIf="false">
-                  <button type="button" class="btn btn-facebook auth-form-btn flex-grow me-1">
-                    <i class="ti-facebook me-2"></i>Facebook
-                  </button>
-                  <button type="button" class="btn btn-google auth-form-btn flex-grow ms-1">
-                    <i class="ti-google me-2"></i>Google
-                  </button>
-                </div>
+              </div>
                 <div class="text-center mt-4 font-weight-light">
                   Don't have an account? <a [routerLink]="['/signup']" class="text-primary">Create</a>
                 </div>

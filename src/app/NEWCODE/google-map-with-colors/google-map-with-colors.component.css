@@ -1,0 +1,20 @@
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+.blinking-marker {
+  animation: blinking 1s infinite;
+}
+
+@keyframes blinking {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+html, body, app-root, #map {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
