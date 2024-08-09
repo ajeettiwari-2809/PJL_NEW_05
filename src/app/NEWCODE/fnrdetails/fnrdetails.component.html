@@ -1,0 +1,61 @@
+<div class="container-fluid page-body-wrapper">
+
+
+
+<div class="container-fluid">
+  <!-- Search Box and Back Button -->
+<div class="header">
+  <button class="btn btn-secondary"  (click)="getBack()">Back</button>
+  <input type="text" class="form-control search-box" placeholder="Search..." />
+</div>
+
+<!-- Record Cards -->
+<div class="card-container">
+
+
+
+  <div class="card"   *ngFor="let record of filteredRecords">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <span><strong>FNR No:</strong> {{ record.fnrNo }}</span>
+        </div>
+        <div class="col-sm-3">
+          <span><strong>Unique No:</strong> {{ record.uniqNo }}</span>
+        </div>
+        <div class="col-sm-3">
+          <span><strong>Source DateTime:</strong> {{ record.sourceDateTime }}</span>
+        </div>
+        <div class="col-sm-3">
+          <span><strong>Source Latitude:</strong> {{ record.sourceLat }}</span>
+        </div>
+        <div class="col-sm-3">
+          <span><strong>Source Longitude:</strong> {{ record.sourcLong }}</span>
+        </div>
+        <div class="col-sm-3">
+          <span><strong>Destination Station:</strong> {{ record.stationTo }}</span>
+        </div>
+        <div class="col-sm-3">
+          <span><strong>Destination Latitude:</strong> {{ record.destinationLat }}</span>
+        </div>
+        <div class="col-sm-3">
+          <span><strong>Destination Longitude:</strong> {{ record.destinationLong }}</span>
+        </div>
+        <div class="col-sm-3">
+          <span><strong>Current Status:</strong> {{ record.currentStatus }}</span>
+        </div>
+        <div class="col-sm-3">
+          <span><strong>Remark:</strong> {{ record.remark || 'N/A' }}</span>
+        </div>
+      </div>
+      <button class="btn btn-primary float-end">View Map</button>
+    </div>
+  </div>
+
+
+
+</div>
+
+</div>
+
+</div>

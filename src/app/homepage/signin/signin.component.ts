@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastModule, NgToastService, Position } from 'ng-angular-popup';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import ValidateForm from 'src/app/helpers/validateform';
 import { AuthService } from 'src/app/services/auth.service';
@@ -26,21 +27,21 @@ export class SigninComponent {
   otp!: string;
   newPassword!: string;
   showOTPInput: boolean = false;
-  otpVerified: boolean = false;  
+  otpVerified: boolean = false;
 
   hide = true;
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private toastr: ToastrService, private userStore: UserstoreService) {
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private toastr: ToastrService, private userStore: UserstoreService,private spinner: NgxSpinnerService) {
     // this.initializeForms();
 
     this.loginForm = this.fb.group({
       userCode: ['', Validators.required],
     password:['', ],
-    });   
-    
+    });
+
     // this.loginFormotp== this.fb.group({
-      
+
     //   password: ['', Validators.required]
-    // });   
+    // });
   }
 
   togglePasswordVisibility() {
@@ -50,7 +51,7 @@ export class SigninComponent {
   togglePasswordVisibilityfor(){
     this.forshowPassword = !this.forshowPassword;
   }
-  
+
   // onSubmit(){
   //   if(this.forgotPassword.valid){
   //     // console.log(this.signupForm.value);
@@ -79,20 +80,20 @@ export class SigninComponent {
     if (forgotPasswordForm.invalid) {
       // Form is invalid, do not proceed
       return;
-    }    
+    }
   }
 
   sendOTP(){
     this.showOTPInput = true;
     this.auth.sendOTP(this.email)
       .subscribe({
-        next: (response) => {          
+        next: (response) => {
           this.toastr.success(response.message);
         },
-        error: (err) => {          
+        error: (err) => {
           this.toastr.error(err?.error.message);
         }
-      });    
+      });
   }
 
   verifyOTP() {
@@ -102,25 +103,25 @@ export class SigninComponent {
         next: (response) => {
           this.toastr.success(response.message);
           this.showOTPInput = false;
-          this.otpVerified= true;          
+          this.otpVerified= true;
         },
         error: (err) => {
           this.toastr.error(err?.error.message);
         }
-      });      
+      });
   }
 
   updatePassword() {
     this.auth.UpdatePassword(this.email, this.newPassword)
       .subscribe({
         next: (response) => {
-          this.toastr.success(response.message);   
-          this.closeForm();              
+          this.toastr.success(response.message);
+          this.closeForm();
         },
         error: (err) => {
           this.toastr.error(err?.error.message);
         }
-      });    
+      });
   }
 
   closeForm() {
@@ -129,7 +130,7 @@ export class SigninComponent {
     this.otp = '';
     this.newPassword = '';
     this.showOTPInput = false;
-    this.otpVerified = false;    
+    this.otpVerified = false;
   }
 
   onLogin() {
@@ -144,7 +145,7 @@ export class SigninComponent {
         userOTP: this.loginForm.value.password,
         password:''
       };
-   
+
      this.auth.login(userDetails)
       .subscribe({
         next:(res) =>{
@@ -153,15 +154,15 @@ if(res.status==200)
   {
  console.log("After login"),
           // this.loginForm.reset();
-         console.log(res), 
-         this.auth.storeToken(res.token); 
+         console.log(res),
+         this.auth.storeToken(res.token);
           localStorage.setItem('user', JSON.stringify(res));
 
           const tokenPayload = this.auth.decodeToken();
-         
+
           this.userStore.setFullNameForStore(tokenPayload.name);
 
-          this.toastr.success(res.message);    
+          this.toastr.success(res.message);
 console.log("Navigate"),
 this.refreshDashboard();
           // this.router.navigate(['/dashboardhome']);
@@ -170,11 +171,11 @@ this.refreshDashboard();
           // window.location.reload();
   }
   else{
-    this.toastr.error(res.message);  
+    this.toastr.error(res.message);
   }
 
-         
-          
+
+
         },
         error:(err)=>{
           this.toastr.error(err?.error.message);
@@ -184,11 +185,11 @@ this.refreshDashboard();
       //send the obj to database
     }
     else {
-      
+
       ValidateForm.validateAllFormFields(this.loginForm);
       this.toastr.error("Your Form is Invalid!");
       // alert("Your form is invalid");
-      //throw the error 
+      //throw the error
     }
   }
 
@@ -212,40 +213,43 @@ console.log("inside login")
   }
   reloadWindow()
   {
-    
+
 
       window.location.reload();
-     
-   
+
+
   }
   otpstatus:boolean=false;
   getOTPVerify()
   {
+    this.spinner.show();
 
     console.log(this.loginForm.value.userCode)
-      
+
       if (this.loginForm.valid) {
-  
-  
+
+
         const userCode = {
           userCode: this.loginForm.value.userCode,
-        
+
         };
-     
+
+
        this.auth.getOTP(userCode)
         .subscribe({
           next:(res) =>{
-  
+            this.spinner.hide();
+
   if(res.status==200)
     {
    console.log("After login"),
-           
-            this.toastr.success(res.message);    
+
+            this.toastr.success(res.message);
             this.otpstatus=true;
-           
+
     }
     else{
-      this.toastr.error(res.message);  
+      this.toastr.error(res.message);
     }
   },
     error:(err)=>{
@@ -256,12 +260,14 @@ console.log("inside login")
         //send the obj to database
       }
       else {
-        
+
         ValidateForm.validateAllFormFields(this.loginForm);
         this.toastr.error("Your Form is Invalid!");
-        
+
       }
-    
+
 
   }
+
+
 }

@@ -28,6 +28,8 @@ html, body, app-root, #map {
     justify-items: center;
     align-items: center;
     text-align: center;
+    cursor: pointer;
+    z-index: 700;
 }
 
 
@@ -55,7 +57,7 @@ html, body, app-root, #map {
   background-color: rgb(225, 225, 249);
   color: black;
   opacity: .2;
-
-
+  z-index: 100;
+  pointer-events: none;
 
 }

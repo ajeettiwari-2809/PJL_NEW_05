@@ -1,0 +1,48 @@
+
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.search-box {
+  width: 300px;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column; /* Ensure cards stack vertically */
+  gap: 3px;
+}
+
+.card {
+  width: 100%; /* Make the card take up the full width of its container */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  margin-bottom: 15px;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column; /* Stack the text vertically */
+  gap: 5px; /* Add some space between text items */
+}
+
+.btn {
+  margin-top: 15px;
+  align-self: flex-end; /* Align the button to the right */
+}

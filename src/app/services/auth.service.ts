@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private baseUrl:string = "https://appdev.prismcement.com/pjlexpressqasapi/";
+   baseUrl:string = "https://appdev.prismcement.com/pjlexpressqasapi/";
 
   // private baseUrl:string = "https://appdev.prismcement.com/pjlexpress"
 
@@ -24,7 +24,7 @@ export class AuthService {
   private irmngmnturl: string = "https://localhost:7243/api/IRMngmntAnswer001";
   private dataprotecturl: string = "https://localhost:7243/api/DataProtectAnswer001";
   private dnsapturl: string = "https://localhost:7243/api/DnsAptAnswer001";
-  private cyberstalkurl: string = "https://localhost:7243/api/CyberStalkBullyAnswer001";  
+  private cyberstalkurl: string = "https://localhost:7243/api/CyberStalkBullyAnswer001";
 
   private courseurl: string = "https://localhost:7243/api/CourseEnrollments";
   private coursecompl: string = "https://localhost:7243/api/CoursesCompleted";
@@ -72,7 +72,7 @@ export class AuthService {
 
   isLoggedIn(): boolean{
     return !!localStorage.getItem('token')
-  }  
+  }
 
   decodeToken() {
     const jwtHelper = new JwtHelperService();
@@ -184,14 +184,16 @@ export class AuthService {
     return this.http.post<any>(url, {email});
   }
 
-  VerifyOTP(email: string, otp: string): Observable<any> {      
+  VerifyOTP(email: string, otp: string): Observable<any> {
     const url = `https://localhost:7243/api/OTPSender/verify?email=${email.toString()}&otp=${otp.toString()}`;
-    return this.http.post<any>(url, {email, otp});    
+    return this.http.post<any>(url, {email, otp});
   }
 
   UpdatePassword(email: string, newPassword: string): Observable<any> {
     const url = `https://localhost:7243/api/OTPSender/reset?email=${email.toString()}&newPassword=${newPassword.toString()}`;
     return this.http.post<any>(url, {email, newPassword});
   }
+
+
 
 }

@@ -92,6 +92,9 @@ import { NgChartsModule } from 'ng2-charts';
 import { GooglemapComponent } from './NEWCODE/googlemap/googlemap.component';
 import { GoogleMapWithColorsComponent } from './NEWCODE/google-map-with-colors/google-map-with-colors.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { FNRDETAILSComponent } from './NEWCODE/fnrdetails/fnrdetails.component';
+
 
 // import { AgmCoreModule } from '@agm/core';
 
@@ -168,6 +171,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     PlayVediosComponent,
     AdminDashboardComponent,
     GooglemapComponent,
+    GoogleMapWithColorsComponent,
+    FNRDETAILSComponent,
 
 
 
@@ -196,8 +201,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     MatFormFieldModule,
     MatSidenavModule,
     MatMenuModule,
-    GoogleMapsModule
-
+    GoogleMapsModule,
+    NgxSpinnerModule
 
 
 

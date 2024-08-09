@@ -6,24 +6,27 @@
       <div class="content-wrapper">
 
         <div class="row">
-          <div class="col-md-3 grid-margin stretch-card" >
+          <div class="col-md-3 grid-margin stretch-card"  *ngFor="let details of transitrecords " >
             <div class="card">
               <div class="card-body">
-                <p class="card-title text-md-center text-xl-left">MP ZONE</p>
+                <p class="card-title text-md-center text-xl-left">{{details.zoneCode}}</p>
                 <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                  <p class="mb-0 mt-2 text-primary" >In-Transit<span class="text-black ms-1"><small>(20 )</small></span></p>
+                  <p class="mb-0 mt-2 text-primary" >In-Transit<span class="text-black ms-1"><small>({{details.inTransit}})</small></span></p>
                   <!-- <i class="fas fa-chart-line icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i> -->
-<img src="assets/pjlphotos/MP_ZONE.png" alt="" width="50px" style="color: blue;">
+<img src="assets/pjlphotos/MP_ZONE.png" alt="" width="50px" style="color: blue;" *ngIf="details.zoneCode == 'MP'"  >
+<img src="assets/pjlphotos/CU_ZONE.png" alt="" width="50px" style="color: blue;" *ngIf="details.zoneCode=='UPCenter'">
+<img src="assets/pjlphotos/EU_ZONE.png" alt="" width="50px" style="color: blue;" *ngIf="details.zoneCode=='EasternUP'">
+<img src="assets/pjlphotos/BIHAR_ZONE.png" alt="" width="50px" style="color: blue;" *ngIf="details.zoneCode=='BIHAR'">
 
 
                 </div>
-               <div class="more" >
+               <div class="more" (click)="ByZoneRecord(details.zoneCode)">
                 <p class="mb-0 mt-2 text-primary" style="float: right;" id="more">more details..</p>
                </div>
               </div>
             </div>
           </div>
-          <div class="col-md-3 grid-margin stretch-card">
+          <div class="col-md-3 grid-margin stretch-card" *ngif="false">
             <div class="card">
               <div class="card-body">
                 <p class="card-title text-md-center text-xl-left">CENTRAL UP ZONE</p>
@@ -38,7 +41,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-3 grid-margin stretch-card">
+          <div class="col-md-3 grid-margin stretch-card" *ngif="false">
             <div class="card">
               <div class="card-body">
                 <p class="card-title text-md-center text-xl-left">EASTERN UP ZONE</p>
@@ -53,7 +56,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-3 grid-margin stretch-card">
+          <div class="col-md-3 grid-margin stretch-card" *ngif="false">
             <div class="card">
               <div class="card-body">
                 <p class="card-title text-md-center text-xl-left">BIHAR ZONE</p>

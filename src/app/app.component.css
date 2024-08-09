@@ -1,23 +1,24 @@
 
-  
 
-   
+
+
   :host {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
-  
+
   mat-drawer {
     /* width: 220px; */
     background-color: transparent;
+    height: 100%;
     /* background: #e8173a; */
   }
-  
+
   mat-drawer-container {
     height: 100%;
   }
- 
+
   /* styles.css */
 .example-container {
   height: 100%;
@@ -32,7 +33,34 @@ mat-sidenav {
 }
 /* new */
 
-  
 
-   
-  
+.spinner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loading-text {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 10px; /* Space between text and loader */
+}
+
+.circle-loader {
+  border: 8px solid rgba(255, 255, 255, 0.2); /* Light border for the loader */
+  border-radius: 50%; /* Make it a circle */
+  border-top: 8px solid white; /* Color of the spinner */
+  width: 50px; /* Width of the spinner */
+  height: 50px; /* Height of the spinner */
+  animation: spin 1.5s linear infinite; /* Rotate animation */
+}
+
+/* Keyframes for spinning animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+

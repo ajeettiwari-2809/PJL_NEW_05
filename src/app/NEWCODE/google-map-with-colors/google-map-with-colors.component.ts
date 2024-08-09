@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 declare const google: any;
 
@@ -14,15 +16,31 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
   directionsService: any;
   records: any[] = [];
   infoWindow: any; // Info window for displaying details
+  mpzoneinstransit:any;
+  ceupzoneintransit:any;
+  eupzoneintransit:any;
+  biharzoneintransit:any;
+  transitrecords: any[] = [];
 
-  constructor(private http: HttpClient, private router: Router) { }
+  baseurl:String=this.authService.baseUrl;
+
+  constructor(private http: HttpClient, private router: Router,private authService: AuthService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.loadMap();
     this.fetchData();
     this.startAutoRefresh();
+    this.fetchTransitCount();
   }
 
+
+  ByZoneRecord(zonecode:String)
+  {
+
+
+    this.router.navigateByUrl('/fnrDetails');
+
+  }
   loadMap() {
     const mapOptions = {
       zoom: 7,
@@ -35,13 +53,34 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
+    this.spinner.show();
     console.log("Fetching data");
-    const apiUrl = 'https://appdev.prismcement.com/pjlexpressqasapi/Users/getFOIS_List_Admin_Rack_Track';
+    const apiUrl =  this.baseurl + 'Users/getFOIS_List_Admin_Rack_Track';
 
-    this.http.post(apiUrl, { "input": 0 }).subscribe((data: any) => {
+    this.http.post(apiUrl, { "input": 0 ,"inputString": "string"}).subscribe((data: any) => {
+      this.spinner.hide();
       this.records = data;
       this.processData();
     });
+
+  }
+  fetchTransitCount()
+  {
+  this.spinner.show();
+    const apiUrl = this.baseurl + 'Users/getFOIS_Count';
+
+
+    this.http.post(apiUrl, { }).subscribe((data: any) => {
+      this.spinner.hide();
+      this.transitrecords=data;
+   console.log("BAse Data " + this.transitrecords);
+
+    });
+  }
+
+  setvaluetransit(data:any)
+  {
+
   }
 
   processData() {
@@ -234,4 +273,7 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
       window.location.reload();
     }, 600000);
   }
+
+
+
 }

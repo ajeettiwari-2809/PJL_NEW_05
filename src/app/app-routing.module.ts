@@ -12,6 +12,7 @@ import { PlayVediosComponent } from './NEWCODE/play-vedios/play-vedios.component
 import { AdminDashboardComponent } from './NEWCODE/ADMIN/admin-dashboard/admin-dashboard.component';
 import { GooglemapComponent } from './NEWCODE/googlemap/googlemap.component';
 import { GoogleMapWithColorsComponent } from './NEWCODE/google-map-with-colors/google-map-with-colors.component';
+import { FNRDETAILSComponent } from './NEWCODE/fnrdetails/fnrdetails.component';
 
 
 
@@ -40,6 +41,7 @@ const routes: Routes = [
       { path: 'admindashboard', component: AdminDashboardComponent },
       { path: 'googlemap', component: GooglemapComponent },
       { path: 'googlemapcolor', component: GoogleMapWithColorsComponent },
+      {path: 'fnrDetails/:id', component: FNRDETAILSComponent}
     ]
   }
 

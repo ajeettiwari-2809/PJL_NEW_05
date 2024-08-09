@@ -1,6 +1,7 @@
 // import { Component } from '@angular/core';
 import { Component, OnInit, ChangeDetectorRef, Renderer2,OnDestroy } from '@angular/core';
 import { ChartType, ChartData, ChartOptions } from 'chart.js';
+import { SidebarService } from 'src/app/services/sidebar.service';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -14,23 +15,23 @@ export class DashboardHomeComponent implements OnInit,OnDestroy{
    isrefresh:boolean=false;
   private scriptElements: HTMLScriptElement[] = [];
   ngOnInit() {
-    
+
 this.isrefresh=false;
-   
-    
+
+
 this.initializeChartData();
 
 
   }
   reloadWindow()
   {
-    
+
 
       window.location.reload();
-     
+
     this.isrefresh=true;
   }
- 
+
   ngOnDestroy(): void {
     console.log("CALL");
     this.scriptElements.forEach(script => this.renderer.removeChild(document.body, script));
@@ -64,10 +65,10 @@ this.initializeChartData();
     // this.cdr.detectChanges();
   }
 
-  
+
   updatechart()
   {
-    
+
   }
   public pieChartOptions: ChartOptions<'pie'> = {
     responsive: true,
@@ -85,7 +86,7 @@ this.initializeChartData();
     }
   };
 
- 
+
 
   public pieChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
   public pieChartData: ChartData<'pie', number[], string> = {
@@ -100,7 +101,7 @@ this.initializeChartData();
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
-  
+
   initializeChartData() {
     this.pieChartData = {
       labels: this.pieChartLabels,
@@ -109,6 +110,11 @@ this.initializeChartData();
       }]
     };
   }
+  isSidebarMinimized = false;
 
- 
+
+
+
+
+
 }

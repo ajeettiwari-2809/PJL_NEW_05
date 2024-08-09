@@ -1,43 +1,54 @@
 <!-- <router-outlet></router-outlet>
 <lib-ng-toast></lib-ng-toast> -->
 <!--   *ngIf="isUserAuthenticated()" -->
+<!-- <ngx-spinner name="default" [bdColor]="'rgba(0, 0, 0, 0.8)'" [size]="'medium'" [color]="'#fff'">
+</ngx-spinner> -->
 
 <mat-drawer-container >
-       
-       
+
+
     <mat-drawer class="d-print-none" mode="side" [opened]="sideBarOpen" *ngIf="isUserAuthenticated()"  >
-     
-       
+
+
      <app-sidenan> </app-sidenan>
 
     </mat-drawer>
 
     <mat-drawer-content>
-        
-     
+
+
          <app-headernav   (toggleSidebarForMe)="sideBarToggler()" ></app-headernav>
+         <ngx-spinner bdColor="rgba(51,51,51,0.8)"
+         size="medium"
+         color="#fff"
+         type="ball-spin-clockwise">
+<div class="spinner-content">
+<p class="loading-text">Loading...</p>
+<div class="circle-loader"></div>
+</div>
+</ngx-spinner>
+
         <router-outlet > </router-outlet>
-       
-   
+
+
     </mat-drawer-content>
 
   </mat-drawer-container>
 
-  
+
   <!-- <mat-drawer-container>
     <mat-drawer class="d-print-none" mode="side" [opened]="sideBarOpen" *ngIf="isUserAuthenticated()">
       <app-sidenav></app-sidenav>
     </mat-drawer>
-  
+
     <mat-drawer-content>
       <app-headernav (toggleSidebarForMe)="sideBarToggler()"></app-headernav>
       <router-outlet></router-outlet>
     </mat-drawer-content>
   </mat-drawer-container> -->
-  
 
 
-      
 
 
-      
+
+
