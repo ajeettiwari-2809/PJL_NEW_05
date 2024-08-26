@@ -94,6 +94,8 @@ import { GoogleMapWithColorsComponent } from './NEWCODE/google-map-with-colors/g
 import { GoogleMapsModule } from '@angular/google-maps';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FNRDETAILSComponent } from './NEWCODE/fnrdetails/fnrdetails.component';
+import { FNRDETAILSBYIDComponent } from './NEWCODE/fnrdetailsbyid/fnrdetailsbyid.component';
+// import { AgmCoreModule } from '@agm/core';
 
 
 // import { AgmCoreModule } from '@agm/core';
@@ -173,6 +175,7 @@ import { FNRDETAILSComponent } from './NEWCODE/fnrdetails/fnrdetails.component';
     GooglemapComponent,
     GoogleMapWithColorsComponent,
     FNRDETAILSComponent,
+    FNRDETAILSBYIDComponent,
 
 
 
@@ -202,7 +205,9 @@ import { FNRDETAILSComponent } from './NEWCODE/fnrdetails/fnrdetails.component';
     MatSidenavModule,
     MatMenuModule,
     GoogleMapsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+
+
 
 
 

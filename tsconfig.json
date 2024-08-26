@@ -1,4 +1,4 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
+// kkk
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -19,6 +19,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
+    "types": ["googlemaps"],
     "lib": [
       "ES2022",
       "dom"

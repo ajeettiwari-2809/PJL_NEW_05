@@ -13,6 +13,7 @@ import { AdminDashboardComponent } from './NEWCODE/ADMIN/admin-dashboard/admin-d
 import { GooglemapComponent } from './NEWCODE/googlemap/googlemap.component';
 import { GoogleMapWithColorsComponent } from './NEWCODE/google-map-with-colors/google-map-with-colors.component';
 import { FNRDETAILSComponent } from './NEWCODE/fnrdetails/fnrdetails.component';
+import { FNRDETAILSBYIDComponent } from './NEWCODE/fnrdetailsbyid/fnrdetailsbyid.component';
 
 
 
@@ -41,7 +42,8 @@ const routes: Routes = [
       { path: 'admindashboard', component: AdminDashboardComponent },
       { path: 'googlemap', component: GooglemapComponent },
       { path: 'googlemapcolor', component: GoogleMapWithColorsComponent },
-      {path: 'fnrDetails/:id', component: FNRDETAILSComponent}
+      {path: 'fnrDetails/:id', component: FNRDETAILSComponent},
+      {path: 'fnrDetailsById', component: FNRDETAILSBYIDComponent}
     ]
   }
 

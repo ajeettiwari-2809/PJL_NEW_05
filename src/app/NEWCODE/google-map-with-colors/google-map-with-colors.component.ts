@@ -38,7 +38,7 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
   {
 
 
-    this.router.navigateByUrl('/fnrDetails');
+    this.router.navigate(['/fnrDetails',zonecode]);
 
   }
   loadMap() {

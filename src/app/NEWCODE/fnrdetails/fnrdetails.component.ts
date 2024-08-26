@@ -17,8 +17,10 @@ VehicleType:any=[];
 
 zonecode?:String;
   ngOnInit(): void {
-    this.getRecord();
+
     this.zonecode= this.route.snapshot.params['id'];
+    console.log(this.zonecode);
+    this.getRecord();
   }
    baseUrl:String = this.authservice.baseUrl;
   filteredRecords:any=[];
@@ -30,7 +32,7 @@ zonecode?:String;
    const apiUrl=this.baseUrl+ 'Users/getFOIS_DetailByZone';
 
    this.http.post(apiUrl, { "input": 0,
-    "inputString": "EasternUP" }).subscribe((data: any) => {
+    "inputString":this.zonecode }).subscribe((data: any) => {
     this.spinner.hide();
 
     this.filteredRecords=data;
