@@ -1,5 +1,5 @@
 <!-- sidenav.component.html -->
-<nav class="sidebar sidebar-offcanvas" id="sidebar" [class.minimized]="isSidebarMinimized">
+<nav class="sidebar sidebar-offcanvas" id="sidebar" [class.minimized]="isSidebarMinimized" >
   <a class="navbar-brand brand-logo-mini" href="index.html" style=""><img src="assets/newcss/images/PRISM/prismlogo.png" alt="logo" height="100px" width="60%" center /></a>
 
   <ul class="nav">
@@ -9,7 +9,7 @@
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="false">
       <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
         <i class="ti-palette menu-icon"></i>
         <span class="menu-title">Sales Modules</span>
@@ -24,19 +24,19 @@
         </ul>
       </div>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="false">
       <a class="nav-link" [routerLink]="['/admindashboard']">
         <i class="ti-layout-list-post menu-icon"></i>
         <span class="menu-title">Admin Panel</span>
       </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="false">
       <a class="nav-link" routerLink="d">
         <i class="ti-layout-list-post menu-icon"></i>
         <span class="menu-title">Finance Modules</span>
       </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="false">
       <a class="nav-link" routerLink="c">
         <i class="ti-pie-chart menu-icon"></i>
         <span class="menu-title">Production Modules</span>
@@ -63,3 +63,9 @@
     </li>
   </ul>
 </nav>
+
+
+
+
+
+

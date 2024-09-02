@@ -15,16 +15,17 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
   map: any;
   directionsService: any;
   records: any[] = [];
-  infoWindow: any; // Info window for displaying details
-  mpzoneinstransit:any;
-  ceupzoneintransit:any;
-  eupzoneintransit:any;
-  biharzoneintransit:any;
-  transitrecords: any[] = [];
+  infoWindow: any;
+  transitRecords: any[] = [];
+  baseurl: string = this.authService.baseUrl;
+  isDropdownOpen: { [key: string]: boolean } = {};
 
-  baseurl:String=this.authService.baseUrl;
-
-  constructor(private http: HttpClient, private router: Router,private authService: AuthService, private spinner: NgxSpinnerService) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private authService: AuthService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit() {
     this.loadMap();
@@ -33,54 +34,84 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
     this.fetchTransitCount();
   }
 
-
-  ByZoneRecord(zonecode:String)
+  toggleDropdown(zoneCode: string) {
+    this.isDropdownOpen[zoneCode] = !this.isDropdownOpen[zoneCode];
+  }
+  ByZoneRecord(id:any)
   {
 
-
-    this.router.navigate(['/fnrDetails',zonecode]);
-
   }
+
   loadMap() {
     const mapOptions = {
       zoom: 7,
-      center: { lat: 24.579716, lng: 80.832176 } // Default center
+      center: { lat: 24.579716, lng: 80.832176 },
+      styles: [
+        {
+          featureType: "road.highway", // Hide highways (NH)
+          elementType: "geometry",
+          stylers: [{ visibility: "off" }]
+        },
+        {
+          featureType: "road.highway", // Hide NH names (labels)
+          elementType: "labels",
+          stylers: [{ visibility: "off" }]
+        },
+        {
+          featureType: "landscape.natural", // Hide green background (vegetation)
+          elementType: "geometry",
+          stylers: [{ visibility: "off" }]
+        },
+        {
+          featureType: "landscape.protected_land", // Hide national parks
+          elementType: "geometry",
+          stylers: [{ visibility: "off" }]
+        },
+        {
+          featureType: "poi.park", // Hide parks (points of interest)
+          elementType: "geometry",
+          stylers: [{ visibility: "off" }]
+        },
+        {
+          featureType: "water", // Hide rivers and water bodies
+          elementType: "geometry",
+          stylers: [{ visibility: "off" }]
+        },
+        {
+          featureType: "poi", // Hide all points of interest
+          elementType: "labels",
+          stylers: [{ visibility: "off" }]
+        },
+        {
+          featureType: "transit", // Hide transit features like bus stops and stations
+          elementType: "labels",
+          stylers: [{ visibility: "off" }]
+        }
+      ]
     };
 
     this.map = new google.maps.Map(document.getElementById('map')!, mapOptions);
     this.directionsService = new google.maps.DirectionsService();
-    this.infoWindow = new google.maps.InfoWindow(); // Initialize info window
+    this.infoWindow = new google.maps.InfoWindow();
   }
 
   fetchData() {
     this.spinner.show();
-    console.log("Fetching data");
-    const apiUrl =  this.baseurl + 'Users/getFOIS_List_Admin_Rack_Track';
-
-    this.http.post(apiUrl, { "input": 0 ,"inputString": "string"}).subscribe((data: any) => {
+    const apiUrl = this.baseurl + 'Users/getFOIS_List_Admin_Rack_Track';
+    this.http.post(apiUrl, { "input": 0, "inputString": "string" }).subscribe((data: any) => {
       this.spinner.hide();
       this.records = data;
       this.processData();
     });
-
   }
-  fetchTransitCount()
-  {
-  this.spinner.show();
+
+  fetchTransitCount() {
+    this.spinner.show();
     const apiUrl = this.baseurl + 'Users/getFOIS_Count';
-
-
-    this.http.post(apiUrl, { }).subscribe((data: any) => {
+    this.http.post(apiUrl, {}).subscribe((data: any) => {
       this.spinner.hide();
-      this.transitrecords=data;
-   console.log("BAse Data " + this.transitrecords);
-
+      this.transitRecords = data;
     });
-  }
-
-  setvaluetransit(data:any)
-  {
-
   }
 
   processData() {
@@ -107,10 +138,10 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
           destination: { lat: record.destinationLat, lng: record.destinationLong },
           current: { lat: record.currentLat, lng: record.currentLong },
           color: this.getColorForRecord(record),
-          stationFrom: record.stationFrom,
-          stationTo: record.stationTo,
+          customerName: record.customerName, // Add customer name
+          customerLogo: record.customerLogo, // Add customer logo
           lastRepLocn: record.lastRepLocn,
-          id: record.id // Include record ID for navigation
+          id: record.id
         };
 
         this.addMarkers(path);
@@ -120,23 +151,25 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
   }
 
   getColorForRecord(record: any): string {
-    return 'red'; // Default color or modify as needed
+    switch (record['zoneCode']) {
+      case 'CUP': return 'purple';
+      case 'MP': return 'blue';
+      case 'BH': return 'yellow';
+      case 'EUP': return 'red';
+      default: return 'red';
+    }
   }
 
   plotRoute(path: any) {
     const directionsRenderer = new google.maps.DirectionsRenderer({
       map: this.map,
-      polylineOptions: {
-        strokeColor: path.color
-      }
+      polylineOptions: { strokeColor: path.color }
     });
 
     const request = {
       origin: path.source,
       destination: path.destination,
-      waypoints: [
-        { location: path.current, stopover: true }
-      ],
+      waypoints: [{ location: path.current, stopover: true }],
       travelMode: google.maps.TravelMode.DRIVING
     };
 
@@ -150,62 +183,45 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
   }
 
   addMarkers(path: any) {
-    // Add the source marker with a transparent icon
+    // Source marker with customer logo
     const sourceMarker = new google.maps.Marker({
       position: path.source,
       map: this.map,
-      title: 'Source',
       icon: {
-        url:null,
-        // url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', // Transparent 1x1 pixel PNG
-        scaledSize: new google.maps.Size(32, 32), // Adjust size if needed
+
+        url: 'assets/pjlphotos/S.png',
+        scaledSize: new google.maps.Size(80, 40),
         origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(16, 32),
-        zIndex: 700 // Ensure this is below the home icon
+        anchor: new google.maps.Point(40, 40)
       },
-      zIndex: 700, // Ensure this is below the home icon
-      label: {
-        text: path.stationFrom,
-        color: 'blue',
-        fontSize: '16px'
-      }
+      zIndex: 700,
+      label: { text: path.customerName, color: 'blue', fontSize: '16px' } // Use customer name
     });
 
-    // Add the home icon marker on top of the source marker
-    const homeIconMarker = new google.maps.Marker({
-      position: path.source, // Place it at the same location
-      map: this.map,
-      icon: {
-        url: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', // URL to the home icon
-        scaledSize: new google.maps.Size(32, 32), // Resize icon if needed
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(16, 32)
-      },
-      zIndex: 1000 // Home icon has a higher zIndex
-    });
-
-    // Add destination marker with stationTo as label
+    // Destination marker
     const destinationMarker = new google.maps.Marker({
       position: path.destination,
       map: this.map,
-      title: 'Destination',
-      label: {
-        text: path.stationTo,
-        color: 'blue',
-        fontSize: '16px'
-      }
+      icon: {
+        url: 'assets/pjlphotos/mapdestinationicon.png',
+        scaledSize: new google.maps.Size(80, 40),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(40,40)
+      },
+
+      zIndex: 700,
+      // visible: false,
     });
 
-    // Add current marker with blinking effect and lastRepLocn as label
+    // Current location marker with blinking effect
     this.addBlinkingMarker(path.current, path.lastRepLocn);
 
     // Add click listeners to markers
     this.addMarkerClickListener(sourceMarker, path);
-    this.addMarkerClickListener(homeIconMarker, path);
     this.addMarkerClickListener(destinationMarker, path);
   }
 
-  addBlinkingMarker(position: google.maps.LatLngLiteral, lastRepLocn: string) {
+  addBlinkingMarker1(position: google.maps.LatLngLiteral, lastRepLocn: string) {
     const marker = new google.maps.Marker({
       position: position,
       map: this.map,
@@ -216,13 +232,10 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
         fillOpacity: 1,
         strokeColor: 'yellow',
         strokeWeight: 1,
-        animation: google.maps.Animation.BOUNCE
+        animation: google.maps.Animation.BOUNCE,
+
       },
-      label: {
-        text: lastRepLocn,
-        color: 'blue',
-        fontSize: '16px'
-      }
+      label: { text: lastRepLocn, color: 'blue', fontSize: '16px' }
     });
 
     setInterval(() => {
@@ -246,9 +259,69 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
     }, 500);
   }
 
+  addBlinkingMarker(position: google.maps.LatLngLiteral, lastRepLocn: string) {
+    // Define the initial marker options with a custom icon
+    const marker = new google.maps.Marker({
+      position: position,
+      map: this.map,
+      icon: {
+        url: 'assets/pjlphotos/currentlocation.png',  // Custom icon URL
+        scaledSize: new google.maps.Size(80,40),  // Custom size for the icon
+        anchor: new google.maps.Point(80, 40)      // Anchor point to position icon correctly
+      },
+      zIndex: 700,
+      label:null,
+      // label: {
+      //   text: lastRepLocn,
+      //   color: 'blue',
+      //   fontSize: '16px',
+      //   fontWeight: 'bold'  // Customize font properties
+      // },
+      animation: google.maps.Animation.BOUNCE  // Adds bounce animation
+    });
+
+    // Blinking effect by changing the icon's color or toggling visibility
+    setInterval(() => {
+      const currentIcon = marker.getIcon() as google.maps.Icon | google.maps.Symbol;
+
+      // Toggle between two icon styles (yellow and red colors)
+      if ('url' in currentIcon) {  // Check if the current icon has a URL (custom icon)
+        marker.setIcon(currentIcon.url === 'assets/pjlphotos/currentlocation.png'
+          ? {
+              url: 'assets/pjlphotos/currentlocation.png',
+              scaledSize: new google.maps.Size(80, 40),
+              anchor: new google.maps.Point(40, 40)
+            }
+          : {
+              url: 'assets/pjlphotos/currentlocation.png',  // Custom yellow icon
+              scaledSize: new google.maps.Size(80, 40),
+              anchor: new google.maps.Point(40, 40)
+            });
+      } else {  // Fallback to circle path if no custom icon is set
+        marker.setIcon(currentIcon.fillColor === 'yellow'
+          ? {
+              path: google.maps.SymbolPath.CIRCLE,
+              scale: 10,
+              fillColor: 'red',
+              fillOpacity: 1,
+              strokeColor: 'red',
+              strokeWeight: 1
+            }
+          : {
+              path: google.maps.SymbolPath.CIRCLE,
+              scale: 10,
+              fillColor: 'yellow',
+              fillOpacity: 1,
+              strokeColor: 'yellow',
+              strokeWeight: 1
+            });
+      }
+    }, 500);  // Blinking interval
+  }
+
+
   addMarkerClickListener(marker: any, path: any) {
     marker.addListener('click', () => {
-      console.log(`Clicked on marker with ID: ${path.id}`);
       this.infoWindow.setContent(`<div><strong>ID:</strong> ${path.id}</div>`);
       this.infoWindow.open(this.map, marker);
       this.navigateToDetail(path.id);
@@ -256,8 +329,8 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
   }
 
   navigateToDetail(routeId: number) {
-    console.log(`Navigating to detail for ID: ${routeId}`);
-    this.router.navigate(['/details', routeId]); // Adjust to your routing configuration
+    // Implement navigation to detail page
+    // this.router.navigate(['/details', routeId]);
   }
 
   private refreshInterval: any;
@@ -268,12 +341,8 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
   }
 
   private startAutoRefresh(): void {
-    // Set interval to refresh the component every 10 minutes (600000 milliseconds)
     this.refreshInterval = setInterval(() => {
       window.location.reload();
-    }, 600000);
+    }, 600000); // 10 minutes
   }
-
-
-
 }

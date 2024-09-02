@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { SidebarService } from 'src/app/services/sidebar.service';
 
@@ -8,7 +8,10 @@ import { SidebarService } from 'src/app/services/sidebar.service';
   styleUrls: ['./sidenan.component.css']
 })
 export class SidenanComponent {
-  isSidebarMinimized = false;
+  @Input() isSidebarMinimized = false;
+
+
+  // isSidebarMinimized = false;
 
   constructor(private sidebarService: SidebarService) {}
 

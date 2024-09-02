@@ -9,10 +9,10 @@
   }
 
   mat-drawer {
-    /* width: 220px; */
+
     background-color: transparent;
     height: 100%;
-    /* background: #e8173a; */
+
   }
 
   mat-drawer-container {

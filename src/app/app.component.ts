@@ -16,17 +16,17 @@ export class AppComponent {
   sideBarOpen = true;
 
   // sideBarToggler() {
-    
+
   //   this.sideBarOpen = !this.sideBarOpen;
   // }
   isUserAuthenticated()
   {
     return this.auth.isLoggedIn();
   }
-  
+
   @HostListener('window:beforeunload', ['$event'])
 
-  
+
   handleBeforeUnload(event: Event) {
     // this.auth.signOut(); // Clear authentication state
   }
@@ -41,7 +41,7 @@ export class AppComponent {
         this.isHandset = result.matches;
       });
   }
-  
+
   isSidebarMinimized = false;
   ngOnInit() {
     this.sidebarService.isSidebarMinimized$.subscribe(isMinimized => {
@@ -51,6 +51,13 @@ export class AppComponent {
 
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
+  }
+
+
+  isSidebarCollapsed = false;
+
+  toggleSidebar() {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
 
 
