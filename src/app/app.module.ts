@@ -95,6 +95,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FNRDETAILSComponent } from './NEWCODE/fnrdetails/fnrdetails.component';
 import { FNRDETAILSBYIDComponent } from './NEWCODE/fnrdetailsbyid/fnrdetailsbyid.component';
+import { TestmspComponent } from './NEWCODE/testmsp/testmsp.component';
 // import { AgmCoreModule } from '@agm/core';
 
 
@@ -176,6 +177,7 @@ import { FNRDETAILSBYIDComponent } from './NEWCODE/fnrdetailsbyid/fnrdetailsbyid
     GoogleMapWithColorsComponent,
     FNRDETAILSComponent,
     FNRDETAILSBYIDComponent,
+    TestmspComponent,
 
 
 

@@ -15,23 +15,28 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
   map: any;
   directionsService: any;
   records: any[] = [];
+  records1: any[] = [];
   infoWindow: any;
   transitRecords: any[] = [];
   baseurl: string = this.authService.baseUrl;
   isDropdownOpen: { [key: string]: boolean } = {};
-
+  arrivalData:any=[];
   constructor(
     private http: HttpClient,
     private router: Router,
     private authService: AuthService,
-    private spinner: NgxSpinnerService
-  ) {}
+    private spinner: NgxSpinnerService,
+
+  ) {
+
+  }
 
   ngOnInit() {
     this.loadMap();
     this.fetchData();
     this.startAutoRefresh();
     this.fetchTransitCount();
+
   }
 
   toggleDropdown(zoneCode: string) {
@@ -40,8 +45,19 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
   ByZoneRecord(id:any)
   {
 
+  //  this.router.navigateByUrl['/fnrDetails'];
+  //
+   this.router.navigateByUrl('/fnrDetails/'+id);
+
   }
 
+  getArrivalData()
+  {
+    this.arrivalData=[{
+      'title':'message1',
+      'description':'some Data'
+    }]
+  }
   loadMap() {
     const mapOptions = {
       zoom: 7,
@@ -101,6 +117,7 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
     this.http.post(apiUrl, { "input": 0, "inputString": "string" }).subscribe((data: any) => {
       this.spinner.hide();
       this.records = data;
+      this.records1=data;
       this.processData();
     });
   }
@@ -119,18 +136,49 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
 
     this.records.forEach(record => {
       const sourceKey = `${record.sourceLat},${record.sourcLong}`;
+
       if (!sourceMap[sourceKey]) {
         sourceMap[sourceKey] = [];
       }
       sourceMap[sourceKey].push(record);
     });
 
+// zone circle start
+    const zoneMap: { [key: string]: any[] } = {};
+
+    // Group locations by zone code
+    this.records1.forEach(record => {
+      if (!zoneMap[record.zoneCode]) {
+        zoneMap[record.zoneCode] = [];
+      }
+      zoneMap[record.zoneCode].push(record);
+    });
+
+    Object.keys(zoneMap).forEach(zoneCode => {
+      const locations = zoneMap[zoneCode];
+// console.log('my location is')
+console.log(locations)
+      // Calculate the center and radius for the zone circle
+      const { center, radius } = this.calculateZoneCircle(locations);
+
+      // Draw the circle on the map
+      this.drawZoneCircle(center, radius, this.getColorForZone(zoneCode));
+
+
+    });
+
+
+    // end
     Object.keys(sourceMap).forEach(sourceKey => {
       const records = sourceMap[sourceKey];
       const source = {
         lat: records[0].sourceLat,
         lng: records[0].sourcLong
       };
+
+      //  records.forEach(record => {
+      //   this.createZoneCircle(record);
+      // });
 
       records.forEach(record => {
         const path = {
@@ -141,13 +189,112 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
           customerName: record.customerName, // Add customer name
           customerLogo: record.customerLogo, // Add customer logo
           lastRepLocn: record.lastRepLocn,
-          id: record.id
+          id: record.id,
+          alldata:record
         };
 
         this.addMarkers(path);
         this.plotRoute(path);
       });
     });
+  }
+
+
+  calculateZoneCircle(locations: any[]): { center: google.maps.LatLngLiteral, radius: number } {
+    let latSum = 0, lngSum = 0;
+
+    // Calculate centroid (average latitude and longitude)
+    locations.forEach(location => {
+      latSum += location.destinationLat;
+      lngSum += location.destinationLong;
+    });
+    console.log(latSum);
+    const center = {
+      lat: latSum / locations.length,
+      lng: lngSum / locations.length
+    };
+console.log("Data");
+    console.log( center);
+
+
+    // Calculate the radius as the maximum distance from the center to any location
+    let maxDistance = 0;
+    locations.forEach(location => {
+      const distance = this.calculateDistance(center, { lat: location.destinationLat, lng: location.destinationLong });
+      console.log('distance' + distance)
+      if (distance > maxDistance) {
+        maxDistance = distance;
+      }
+    });
+    console.log("Zone cirlce" + center + maxDistance)
+
+    return { center, radius: maxDistance };
+  }
+
+  // Draw a circle on the map
+  drawZoneCircle(center: google.maps.LatLngLiteral, radius: number, color: string) {
+    console.log("Draw circle" + color),
+    new google.maps.Circle({
+      strokeColor: color,
+      strokeOpacity: 0.1,
+      strokeWeight: 5,
+      fillColor: color,
+      fillOpacity: .3,
+      map: this.map,
+      center: center,
+      radius: radius
+    });
+  }
+
+  // Utility function to calculate the distance between two points (in meters)
+  calculateDistance(point1: google.maps.LatLngLiteral, point2: google.maps.LatLngLiteral): number {
+
+    const R = 6371000; // Radius of the Earth in meters
+    const lat1 = this.toRadians(point1.lat);
+    const lat2 = this.toRadians(point2.lat);
+
+    console.log('delat long' + (lat2-lat1))
+
+    const deltaLat = this.toRadians(point2.lat - point1.lat);
+    const deltaLng = this.toRadians(point2.lng - point1.lng);
+
+// console.log('delat long' +deltaLng)
+    const a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+              Math.cos(lat1) * Math.cos(lat2) *
+              Math.sin(deltaLng / 2) * Math.sin(deltaLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    return R * c; // Distance in meters
+  }
+
+  toRadians(degrees: number): number {
+    return degrees * Math.PI / 180;
+  }
+  getColorForZone(zoneCode: string): string {
+    switch (zoneCode) {
+      case 'CUP': return 'purple';
+      case 'MP': return 'blue';
+      case 'BH': return 'yellow';
+      case 'EUP': return 'red';
+      default: return 'red';
+    }
+  }
+
+  createZoneCircle(record: any) {
+    // Define the circle options
+    const zoneCircleOptions = {
+      strokeColor: this.getColorForRecord(record),
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: this.getColorForRecord(record),
+      fillOpacity: 0.35,
+      map: this.map,
+      center: { lat: record.currentLat, lng: record.currentLong }, // Use the current location as the center
+      radius: 50000 // Adjust the radius as per your requirement
+    };
+
+    // Create the circle
+    new google.maps.Circle(zoneCircleOptions);
   }
 
   getColorForRecord(record: any): string {
@@ -189,7 +336,7 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
       map: this.map,
       icon: {
 
-        url: 'assets/pjlphotos/S.png',
+        url: 'assets/pjlphotos/D6.png',
         scaledSize: new google.maps.Size(80, 40),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(40, 40)
@@ -265,7 +412,7 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
       position: position,
       map: this.map,
       icon: {
-        url: 'assets/pjlphotos/currentlocation.png',  // Custom icon URL
+        // url: 'assets/pjlphotos/currentlocation.png',  // Custom icon URL
         scaledSize: new google.maps.Size(80,40),  // Custom size for the icon
         anchor: new google.maps.Point(80, 40)      // Anchor point to position icon correctly
       },
@@ -321,8 +468,24 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
 
 
   addMarkerClickListener(marker: any, path: any) {
+
+
     marker.addListener('click', () => {
-      this.infoWindow.setContent(`<div><strong>ID:</strong> ${path.id}</div>`);
+      console.log('info')
+      ,console.log(path.destination)
+
+      // this.infoWindow.setContent(`<div><strong>ID:</strong> ${path.id}</div>`);
+      this.infoWindow.setContent(`
+        <div>
+
+          <strong>Destination Latitude:</strong> ${path.destination['lat']}<br>
+          <strong>Destination Longitude:</strong> ${path.destination.lng}<br>
+          <strong>Station To:</strong> ${path.stationTo || 'N/A'}<br>
+          <strong>ETA Destination DateTime:</strong> ${path.alldata['etaDstinationDateTime'] || 'Not Available'}
+        </div>
+      `);
+
+
       this.infoWindow.open(this.map, marker);
       this.navigateToDetail(path.id);
     });

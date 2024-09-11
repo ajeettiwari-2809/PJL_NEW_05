@@ -9,10 +9,10 @@ export class GooglemapComponent implements OnInit {
   map!: google.maps.Map;
 
   locations = [
-    { lat: 24.5373, lng: 81.3043, label: 'Start' },
-    { lat: 24.6005, lng: 80.8322, label: 'Cross', description: 'Description of the crossing point.' },
-    { lat: 23.1815, lng: 79.9864, label: 'Current' },
-    { lat: 23.2599, lng: 77.4126, label: 'End' }
+    { lat: 24.5700754, lng: 80.998720, label: 'Start' },
+    { lat: 24.579716, lng: 80.832176, label: 'Cross', description: 'Description of the crossing point.' },
+    { lat: 25.063442, lng: 81.093607, label: 'Current' },
+    { lat: 25.445871, lng: 81.828446, label: 'End' }
   ];
 
   truckMarker!: google.maps.Marker;

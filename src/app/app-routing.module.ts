@@ -14,6 +14,7 @@ import { GooglemapComponent } from './NEWCODE/googlemap/googlemap.component';
 import { GoogleMapWithColorsComponent } from './NEWCODE/google-map-with-colors/google-map-with-colors.component';
 import { FNRDETAILSComponent } from './NEWCODE/fnrdetails/fnrdetails.component';
 import { FNRDETAILSBYIDComponent } from './NEWCODE/fnrdetailsbyid/fnrdetailsbyid.component';
+import { TestmspComponent } from './NEWCODE/testmsp/testmsp.component';
 
 
 
@@ -43,7 +44,8 @@ const routes: Routes = [
       { path: 'googlemap', component: GooglemapComponent },
       { path: 'googlemapcolor', component: GoogleMapWithColorsComponent },
       {path: 'fnrDetails/:id', component: FNRDETAILSComponent},
-      {path: 'fnrDetailsById', component: FNRDETAILSBYIDComponent}
+      {path: 'fnrDetailsById', component: FNRDETAILSBYIDComponent},
+      {path: 'testmap', component: TestmspComponent},
     ]
   }
 

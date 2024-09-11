@@ -64,43 +64,7 @@
   <div class="main-panel" style="width: 100%; position: relative; overflow: visible;">
     <div class="content-wrapper">
 
-      <div class="row" *ngIf="false">
-        <div class="col-md-3 grid-margin" *ngFor="let details of transitRecords">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-title text-md-center text-xl-left">{{ details.zoneCode }}</p>
-              <div
-                class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                <p class="mb-0 mt-2 text-primary">
-                  In-Transit
-                  <span class="text-black ms-1"><small>({{ details.inTransit }})</small></span>
-                </p>
-                <img src="assets/pjlphotos/MP_ZONE.png" alt="" width="50px" *ngIf="details.zoneCode == 'MP'">
-                <img src="assets/pjlphotos/CU_ZONE.png" alt="" width="50px" *ngIf="details.zoneCode == 'UPCenter'">
-                <img src="assets/pjlphotos/EU_ZONE.png" alt="" width="50px" *ngIf="details.zoneCode == 'EasternUP'">
-                <img src="assets/pjlphotos/BIHAR_ZONE.png" alt="" width="50px" *ngIf="details.zoneCode == 'BIHAR'">
-              </div>
 
-
-              <div class="row">
-                <div class="col-sm-6">
-
-
-
-
-                </div>
-
-                <div class="col-sm-6">
-                  <div class="more" (click)="ByZoneRecord(details.zoneCode)">
-                    <p class="mb-0 mt-2 text-primary" style="float: right;" id="more">more details..</p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div class="row">
         <div class="col-md-3 grid-margin" *ngFor="let details of transitRecords">
@@ -124,7 +88,7 @@
                     <div class="col-sm-6" style="z-index: 700;">
 
 
-                      <div class="navbar-menu-wrapper d-flex align-items-center">
+                      <div class="navbar-menu-wrapper d-flex align-items-center" *ngIf="false">
                         <ul class="navbar-nav">
                           <li class="nav-item dropdown" style="z-index: 700; position: relative;">
                             <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
@@ -169,6 +133,63 @@
                           </li>
                         </ul>
                       </div>
+                      <div class="navbar-menu-wrapper d-flex align-items-center">
+                        <ul class="navbar-nav">
+                          <li class="nav-item dropdown" style="z-index: 700; position: relative;">
+                            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+                              data-bs-toggle="dropdown" (click)="getArrivalData()">
+                              <b>Arrival</b>
+                              <span class="count"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                              aria-labelledby="notificationDropdown" style="z-index: 700; right: 0; left: auto;">
+                              <p class="mb-0 font-weight-normal float-left dropdown-header" *ngIf="details.zoneCode == 'MP'">Expected Arrival Rakes - <span style="color: blue;">Madhya Pradesh</span></p>
+
+                               <p class="mb-0 font-weight-normal float-left dropdown-header" *ngIf="details.zoneCode == 'CUP'">Expected Arrival Rakes - <span style="color: blue;">Central UP</span></p>
+
+                               <p class="mb-0 font-weight-normal float-left dropdown-header" *ngIf="details.zoneCode == 'EUP'">Expected Arrival Rakes - <span style="color: blue;">Eastern UP</span></p>
+                               <p class="mb-0 font-weight-normal float-left dropdown-header" *ngIf="details.zoneCode == 'BH'">Expected Arrival Rakes - <span style="color: blue;">Bihar</span></p>
+
+                              <!-- Use *ngFor to loop through arrivalData array and display the items -->
+                              <!-- <a *ngFor="let item of arrivalData" class="dropdown-item">
+                                <div class="item-thumbnail">
+                                  <div class="item-icon bg-info">
+                                    <i class="ti-train mx-0"></i>
+                                  </div>
+                                </div>
+                                <div class="item-content">
+                                  <h6 class="font-weight-normal">{{ item.title }}</h6>
+                                  <p class="font-weight-light small-text mb-0 text-muted">{{ item.description }}</p>
+                                </div>
+                              </a> -->
+
+                              <a class="dropdown-item">
+
+                                <div class="item-content">
+                                  <h6 class="font-weight-normal">Within 2 hours</h6>
+                                  <p class="font-weight-light small-text mb-0 text-muted">
+                                    <li>Rakes1</li>
+                                    <li>Rakes2</li>
+                                  </p>
+                                </div>
+                              </a>
+                              <a class="dropdown-item">
+
+                                <div class="item-content">
+                                  <h6 class="font-weight-normal">Within 4 hours</h6>
+                                  <p class="font-weight-light small-text mb-0 text-muted">
+                                    <li>Rakes3</li>
+                                    <li>Rakes4</li>
+                                  </p>
+                                </div>
+                              </a>
+                              <!-- Display a message if there's no data -->
+                              <p *ngIf="arrivalData.length === 0" class="text-muted small-text">No arrivals expected.</p>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+
 
 
                     </div>
@@ -211,32 +232,46 @@
 
 
 
-      <div class="container">
 
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-start">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Source Icon : <img src="assets/pjlphotos/S.png" alt="" width="50px" ></span>
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Destination Icon: <img src="assets/pjlphotos/D2.png" alt="" width="50px" ></span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Current Icon:<img src="assets/pjlphotos/D5.png" alt="" width="50px" ></span>
-          </div>
-        </footer>
+
+
+
+     <div class="row">
+      <div class="col-sm-11">
+        <div id="map" style="height: 500px; width:100%;"></div>
+
       </div>
+      <div class="col-sm-1">
+        <div class="container" style=""  >
 
 
 
-      <div id="map" style="height: 450px; width: 100%;"></div>
-      <br>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-3">
+            <div class="row">
+                <div class="col-12">
+                    <span class="text-muted text-center text-sm-left d-block">Source:
+                        <img src="assets/pjlphotos/D6.png" alt="" width="50px">
+                    </span>
+                </div>
+                <div class="col-12">
+                  <span class="text-center d-block mt-1 mt-sm-0">Current:
+                      <img src="assets/pjlphotos/D7.png" alt="" width="50px">
+                  </span>
+              </div>
+                <div class="col-12">
+                    <span class="text-muted text-center text-sm-left d-block">Destination:
+                        <img src="assets/pjlphotos/D2.png" alt="" width="50px">
+                    </span>
+                </div>
 
-          </div>
-          <div class="col-sm-3"></div>
-          <div class="col-sm-3"></div>
-          <div class="col-sm-3"></div>
+            </div>
+        <!-- </footer> -->
+
         </div>
       </div>
+     </div>
+
+
 
     </div>
 

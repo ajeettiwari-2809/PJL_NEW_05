@@ -6,49 +6,68 @@
   <!-- Search Box and Back Button -->
 <div class="header">
   <button class="btn btn-secondary"  (click)="getBack()">Back</button>
+  <b>BIHAR ZONE</b>
   <input type="text" class="form-control search-box" placeholder="Search..." />
 </div>
 
 <!-- Record Cards -->
-<div class="card-container">
+<div class="card-container" *ngIf="false">
 
 
 
-  <div class="card"   *ngFor="let record of filteredRecords">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-3">
-          <span><strong>FNR No:</strong> {{ record.fnrNo }}</span>
-        </div>
-        <div class="col-sm-3">
-          <span><strong>Unique No:</strong> {{ record.uniqNo }}</span>
-        </div>
-        <div class="col-sm-3">
-          <span><strong>Source DateTime:</strong> {{ record.sourceDateTime }}</span>
-        </div>
-        <div class="col-sm-3">
-          <span><strong>Source Latitude:</strong> {{ record.sourceLat }}</span>
-        </div>
-        <div class="col-sm-3">
-          <span><strong>Source Longitude:</strong> {{ record.sourcLong }}</span>
-        </div>
-        <div class="col-sm-3">
-          <span><strong>Destination Station:</strong> {{ record.stationTo }}</span>
-        </div>
-        <div class="col-sm-3">
-          <span><strong>Destination Latitude:</strong> {{ record.destinationLat }}</span>
-        </div>
-        <div class="col-sm-3">
-          <span><strong>Destination Longitude:</strong> {{ record.destinationLong }}</span>
-        </div>
-        <div class="col-sm-3">
-          <span><strong>Current Status:</strong> {{ record.currentStatus }}</span>
-        </div>
-        <div class="col-sm-3">
-          <span><strong>Remark:</strong> {{ record.remark || 'N/A' }}</span>
+  <div class=" col-lg-12 col-mg-12 col-sm-12 card"   *ngFor="let record of filteredRecords">
+
+    <div class="card-body" style="font-size: 13px;">
+
+     <div class="row">
+      <div class="col-sm-11">
+        <div class="row">
+
+          <div class="col-sm-3">
+            <span><strong>FNR No:</strong> {{ record.fnrNo }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Unique No:</strong> {{ record.uniqNo }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Source DateTime:</strong> {{ record.sourceDateTime }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Source Latitude:</strong> {{ record.sourceLat }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Source Longitude:</strong> {{ record.sourcLong }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Destination Station:</strong> {{ record.stationTo }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Destination Latitude:</strong> {{ record.destinationLat }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Destination Longitude:</strong> {{ record.destinationLong }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Current Status:</strong> {{ record.currentStatus }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Remark:</strong> {{ record.remark || 'N/A' }}</span>
+          </div>
+
         </div>
       </div>
-      <button class="btn btn-primary float-end" [routerLink]="['/fnrDetailsById']">View Map</button>
+      <div class="col-sm-1">
+        <!-- <button class="btn btn-primary float-end" [routerLink]="['/fnrDetailsById']">View Map</button> -->
+        <button mat-mini-fab class="float-right" style="float: right; background-color: blue;"
+        >
+
+        <mat-icon>map</mat-icon>
+      </button>
+      </div>
+     </div>
+
+
+
     </div>
   </div>
 
@@ -56,6 +75,233 @@
 
 </div>
 
+
+<div class="card-container">
+  <div class="d-flex justify-content-start mb-3">
+    <!-- Radio buttons to toggle between Map and Details -->
+    <label class="me-3">
+      <input type="radio" [(ngModel)]="viewMode" value="map" checked class="custom-radio"> Map
+    </label>
+    <label>
+      <input type="radio" [(ngModel)]="viewMode" value="details"  class="custom-radio"> Details
+    </label>
+  </div>
+
+<mat-divider></mat-divider>
+
+  <!-- Show map or details based on selected radio button -->
+  <div *ngIf="viewMode === 'details'">
+    <div class="col-lg-12 col-mg-12 col-sm-12 card" *ngFor="let record of filteredRecords">
+      <div class="card-body" style="font-size: 13px;">
+        <div class="row">
+          <div class="col-sm-11">
+            <div class="row">
+              <div class="col-sm-3">
+                <span><strong>FNR No:</strong> {{ record.fnrNo }}</span>
+              </div>
+              <div class="col-sm-3">
+                <span><strong>Unique No:</strong> {{ record.uniqNo }}</span>
+              </div>
+              <div class="col-sm-3">
+                <span><strong>Source DateTime:</strong> {{ record.sourceDateTime }}</span>
+              </div>
+              <div class="col-sm-3">
+                <span><strong>Source Latitude:</strong> {{ record.sourceLat }}</span>
+              </div>
+              <div class="col-sm-3">
+                <span><strong>Source Longitude:</strong> {{ record.sourcLong }}</span>
+              </div>
+              <div class="col-sm-3">
+                <span><strong>Destination Station:</strong> {{ record.stationTo }}</span>
+              </div>
+              <div class="col-sm-3">
+                <span><strong>Destination Latitude:</strong> {{ record.destinationLat }}</span>
+              </div>
+              <div class="col-sm-3">
+                <span><strong>Destination Longitude:</strong> {{ record.destinationLong }}</span>
+              </div>
+              <div class="col-sm-3">
+                <span><strong>Current Status:</strong> {{ record.currentStatus }}</span>
+              </div>
+              <div class="col-sm-3">
+                <span><strong>Remark:</strong> {{ record.remark || 'N/A' }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <button mat-mini-fab class="float-right" style="float: right; background-color: blue;">
+              <mat-icon>map</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Placeholder for map -->
+  <div   >
+     <!-- *ngIf="viewMode === 'map'" -->
+    <!-- Add your map component or map code here -->
+
+        <div id="map"  style="height: 450px; width:100%;" ></div>
+
+
+
+  </div>
+</div>
+
+
 </div>
 
 </div>
+
+<div class="container-fluid page-body-wrapper"  *ngIf="false">
+
+<div class="container">
+  <h5>
+    <header style="color: #e92b4c;
+    text-shadow: 2px 2px 10px #a0b3ff;">Vehicle Request Status</header>
+  </h5>
+
+
+<mat-card>
+
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <!-- [(ngModel)]="searchKeyWord" -->
+        <input type="text" class="form-control" placeholder="Search" >
+      </div>
+      <div class="col-6">
+        <button mat-raised-button color="warn" style="float: right;margin: auto;" class="col-lg-6 col-md-3 col-sm-1"
+          >
+
+          <span class=" m-2"> + Vehicle Request Form</span></button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <mat-radio-group style="padding: 20px;" class="col-lg-12 col-md-12 col-sm-12 " [(ngModel)]="radiobuttonActive" aria-label="Select an option">
+          <mat-radio-button style="padding-right: 30px;" value="0" checked  >Pending
+            </mat-radio-button>
+
+          <mat-radio-button #valueRadio value="1">Approved </mat-radio-button>
+
+        </mat-radio-group>
+
+
+      </div>
+      <div class="col-6">
+
+      </div>
+    </div>
+  </div></mat-card>
+  <mat-divider></mat-divider>
+  <br>
+
+  <!-- |filter : searchKeyWord; -->
+
+
+    <div class="col-lg-12 col-mg-12 col-sm-12" *ngFor="let list of filteredRecords  ">
+
+      <mat-card class="alldata">
+
+        <button mat-mini-fab class="float-right" style="float: right;"
+          [routerLink]='["/VehicleRequestDetailsById/" + list.id +"/"+radiobuttonActive,{HODApproval:false,AdminRequest:false}]'>
+          <!-- <mat-icon aria-label="" >view</mat-icon> VehicleEntrylistbyid -->
+          <mat-icon>visibility</mat-icon>
+        </button>
+
+        <div class="row" style="color: rgb(43, 37, 37);font-size: 14px;" *ngIf="false">
+
+
+          <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Vehicle Type:&nbsp; </b></span>{{ list.type
+            }} </div>
+
+<div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Vehicle Code:&nbsp;</b></span>{{
+  list.appCode }} </div>
+          <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>EmpName:&nbsp;</b></span>{{
+            list.empname }} </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Vehicle Request On:&nbsp; </b></span>{{
+            list.vehiclereqon | date:'dd/MM/yyyy'}} </div>
+            <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Vehicle Request At:&nbsp; </b></span>{{
+              list.vehiclereqat }} </div>
+
+
+          <!-- <div class="col-lg-4 col-md-4 col-sm-6"  *ngIf="getinoutstatus"><span class="small"><b>Vehicle getOut:&nbsp;</b></span>{{
+            list.gateOutAt |  date:'dd/MM/yyyy hh:mm a'}} </div> -->
+          <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Person:&nbsp;</b></span>{{
+            list.noofperson}} </div>
+          <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Visit Place
+                :&nbsp;</b></span>{{list.visitingplace }} </div>
+                <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Vehicle Request Where
+                  :&nbsp;</b></span>{{list.vehiclereqwhere }} </div>
+          <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Purpose:&nbsp;</b></span>{{
+            list.purpose}} </div>
+            <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Expected Return On:&nbsp;</b></span>{{
+              list.expectedreturnon| date:'dd/MM/yyyy'}} </div>
+          <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Expected Return At:&nbsp;</b></span>{{
+            list.expectedreturnat}} </div>
+          <!-- <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Driver Licence:&nbsp;</b></span>{{
+            list.driverLicence }} </div> -->
+
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <span><strong>FNR No:</strong> {{ list.fnrNo }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Unique No:</strong> {{ list.uniqNo }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Source DateTime:</strong> {{ list.sourceDateTime }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Source Latitude:</strong> {{ list.sourceLat }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Source Longitude:</strong> {{ list.sourcLong }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Destination Station:</strong> {{ list.stationTo }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Destination Latitude:</strong> {{ list.destinationLat }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Destination Longitude:</strong> {{ list.destinationLong }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Current Status:</strong> {{ list.currentStatus }}</span>
+          </div>
+          <div class="col-sm-3">
+            <span><strong>Remark:</strong> {{ list.remark || 'N/A' }}</span>
+          </div>
+
+        </div>
+
+      </mat-card>
+      <mat-divider></mat-divider>
+
+    </div>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
