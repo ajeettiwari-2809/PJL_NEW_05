@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -32,6 +32,17 @@ infoWindow: any;
     this.loadMap();
     this.getRecord();
     this.radiobuttonActive='0';
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+
+        this.refreshComponent();
+      }
+    });
+  }
+  refreshComponent()
+  {
+    window.location.reload();
   }
    baseUrl:String = this.authservice.baseUrl;
   filteredRecords:any[]=[];
@@ -75,11 +86,11 @@ infoWindow: any;
           elementType: "geometry",
           stylers: [{ visibility: "off" }]
         },
-        {
-          featureType: "landscape.protected_land", // Hide national parks
-          elementType: "geometry",
-          stylers: [{ visibility: "off" }]
-        },
+        // {
+        //   featureType: "landscape.protected_land", // Hide national parks
+        //   elementType: "geometry",
+        //   stylers: [{ visibility: "off" }]
+        // },
         {
           featureType: "poi.park", // Hide parks (points of interest)
           elementType: "geometry",
@@ -202,7 +213,7 @@ console.log("Source key "+ sourceKey);
         anchor: new google.maps.Point(40, 40)
       },
       zIndex: 700,
-      label: { text: path.customerName, color: 'blue', fontSize: '16px' } // Use customer name
+      // label: { text: path.customerName, color: 'blue', fontSize: '16px' } // Use customer name
     });
 
     // Destination marker
@@ -288,10 +299,10 @@ console.log("Source key "+ sourceKey);
 
     // Blinking effect by changing the icon's color or toggling visibility
     setInterval(() => {
-      const currentIcon = marker.getIcon() as google.maps.Icon | google.maps.Symbol;
+      const currentIcon = marker.getIcon() as google.maps.Icon | google.maps.Symbol | null;
 
       // Toggle between two icon styles (yellow and red colors)
-      if ('url' in currentIcon) {  // Check if the current icon has a URL (custom icon)
+      if ( currentIcon && 'url' in currentIcon) {  // Check if the current icon has a URL (custom icon)
         marker.setIcon(currentIcon.url === 'assets/pjlphotos/currentlocation.png'
           ? {
               url: 'assets/pjlphotos/currentlocation.png',
@@ -304,7 +315,7 @@ console.log("Source key "+ sourceKey);
               anchor: new google.maps.Point(40, 40)
             });
       } else {  // Fallback to circle path if no custom icon is set
-        marker.setIcon(currentIcon.fillColor === 'yellow'
+        marker.setIcon( currentIcon &&  currentIcon.fillColor === 'yellow'
           ? {
               path: google.maps.SymbolPath.CIRCLE,
               scale: 10,
@@ -324,6 +335,10 @@ console.log("Source key "+ sourceKey);
       }
     }, 500);  // Blinking interval
   }
+
+
+
+
 
 
   addMarkerClickListener(marker: any, path: any) {

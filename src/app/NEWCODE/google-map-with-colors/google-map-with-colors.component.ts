@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -37,6 +37,17 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
     this.startAutoRefresh();
     this.fetchTransitCount();
 
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Check if this is the component you want to refresh
+        this.refreshComponent();
+      }
+    });
+
+  }
+  refreshComponent()
+  {
+    window.location.reload();
   }
 
   toggleDropdown(zoneCode: string) {
@@ -78,11 +89,11 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
           elementType: "geometry",
           stylers: [{ visibility: "off" }]
         },
-        {
-          featureType: "landscape.protected_land", // Hide national parks
-          elementType: "geometry",
-          stylers: [{ visibility: "off" }]
-        },
+        // {
+        //   featureType: "landscape.protected_land", // Hide national parks
+        //   elementType: "geometry",
+        //   stylers: [{ visibility: "off" }]
+        // },
         {
           featureType: "poi.park", // Hide parks (points of interest)
           elementType: "geometry",
@@ -317,7 +328,10 @@ console.log("Data");
       origin: path.source,
       destination: path.destination,
       waypoints: [{ location: path.current, stopover: true }],
-      travelMode: google.maps.TravelMode.DRIVING
+      travelMode: google.maps.TravelMode.DRIVING,
+      // transitOptions: {
+      //   modes: [google.maps.TransitMode.TRAIN],  // Filter for train travel
+      // }
     };
 
     this.directionsService.route(request, (result: any, status: any) => {
@@ -342,8 +356,26 @@ console.log("Data");
         anchor: new google.maps.Point(40, 40)
       },
       zIndex: 700,
-      label: { text: path.customerName, color: 'blue', fontSize: '16px' } // Use customer name
+      // label: { text:' path.customerName', color: 'blue', fontSize: '16px' }
     });
+
+
+    // curent marker
+    const currenteMarker = new google.maps.Marker({
+      position: path.curent,
+      map: this.map,
+      icon: {
+
+        url: 'assets/pjlphotos/D6.png',
+        scaledSize: new google.maps.Size(80, 40),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(40, 40)
+      },
+      zIndex: 700,
+      label: { text:' path.customerName', color: 'blue', fontSize: '16px' }
+    });
+
+
 
     // Destination marker
     const destinationMarker = new google.maps.Marker({
@@ -412,8 +444,8 @@ console.log("Data");
       position: position,
       map: this.map,
       icon: {
-        // url: 'assets/pjlphotos/currentlocation.png',  // Custom icon URL
-        scaledSize: new google.maps.Size(80,40),  // Custom size for the icon
+        url: 'assets/pjlphotos/currentlocation.png',  // Custom icon URL
+        scaledSize: new google.maps.Size(40,40),  // Custom size for the icon
         anchor: new google.maps.Point(80, 40)      // Anchor point to position icon correctly
       },
       zIndex: 700,
@@ -429,15 +461,24 @@ console.log("Data");
 
     // Blinking effect by changing the icon's color or toggling visibility
     setInterval(() => {
-      const currentIcon = marker.getIcon() as google.maps.Icon | google.maps.Symbol;
+      const currentIcon = marker.getIcon() as google.maps.Icon | google.maps.Symbol | null;
 
       // Toggle between two icon styles (yellow and red colors)
-      if ('url' in currentIcon) {  // Check if the current icon has a URL (custom icon)
+      if ( currentIcon && 'url' in currentIcon) {  // Check if the current icon has a URL (custom icon)
         marker.setIcon(currentIcon.url === 'assets/pjlphotos/currentlocation.png'
           ? {
               url: 'assets/pjlphotos/currentlocation.png',
               scaledSize: new google.maps.Size(80, 40),
-              anchor: new google.maps.Point(40, 40)
+              anchor: new google.maps.Point(40, 40),
+
+
+              // path: google.maps.SymbolPath.CIRCLE,
+              // scale: 10,
+              // fillColor: 'yellow',
+              // fillOpacity: 1,
+              // strokeColor: 'yellow',
+              // strokeWeight: 1,
+
             }
           : {
               url: 'assets/pjlphotos/currentlocation.png',  // Custom yellow icon
@@ -445,7 +486,7 @@ console.log("Data");
               anchor: new google.maps.Point(40, 40)
             });
       } else {  // Fallback to circle path if no custom icon is set
-        marker.setIcon(currentIcon.fillColor === 'yellow'
+        marker.setIcon( currentIcon && currentIcon.fillColor === 'yellow'
           ? {
               path: google.maps.SymbolPath.CIRCLE,
               scale: 10,
@@ -460,10 +501,11 @@ console.log("Data");
               fillColor: 'yellow',
               fillOpacity: 1,
               strokeColor: 'yellow',
-              strokeWeight: 1
+              strokeWeight: 1,
+
             });
       }
-    }, 500);  // Blinking interval
+    }, 100);  // Blinking interval
   }
 
 
