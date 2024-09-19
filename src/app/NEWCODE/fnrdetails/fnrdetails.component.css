@@ -43,7 +43,7 @@
 }
 
 .btn {
-  margin-top: 15px;
+
   align-self: flex-end; /* Align the button to the right */
 }
 
@@ -51,4 +51,92 @@
   width: 20px;
   height: 20px;
   margin-right: 5px;
+}
+
+
+/* new css header */
+
+.container-details {
+  width: 98%;
+  margin: 20px auto;
+  padding: 5px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+
+}
+
+
+
+.tracking-title h2 {
+  font-size: 18px;
+  color: #555;
+}
+
+.details-section {
+  display: flex;
+  justify-content: space-between;
+  /* margin-top: 20px; */
+}
+
+.bl-info h3 {
+  /* margin: 5px 0; */
+  font-size: 14px;
+  color: #333;
+}
+
+
+
+.route-info {
+  display: flex;
+  align-items: center;
+}
+
+.location {
+  text-align: center;
+  font-size: 12px;
+}
+
+.route {
+  width: 150px;
+  position: relative;
+}
+
+.route-line {
+  height: 2px;
+  background-color: red;
+  width: 100%;
+  margin: 0 10px;
+}
+
+.weight-info {
+  text-align: right;
+  font-size: 12px;
+}
+
+
+
+
+
+.delivery-info {
+
+  font-size: 10px;
+  background-color: #f8d7da;
+  padding: 2px;
+  color: #721c24;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 4px;
 }

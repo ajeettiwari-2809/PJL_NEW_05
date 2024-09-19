@@ -334,6 +334,9 @@ console.log("Data");
       // }
     };
 
+    directionsRenderer.setOptions({
+      suppressMarkers: true
+    });
     this.directionsService.route(request, (result: any, status: any) => {
       if (status === 'OK') {
         directionsRenderer.setDirections(result);
@@ -444,7 +447,7 @@ console.log("Data");
       position: position,
       map: this.map,
       icon: {
-        url: 'assets/pjlphotos/currentlocation.png',  // Custom icon URL
+        // url: 'assets/pjlphotos/currentlocation.png',  // Custom icon URL
         scaledSize: new google.maps.Size(40,40),  // Custom size for the icon
         anchor: new google.maps.Point(80, 40)      // Anchor point to position icon correctly
       },
@@ -467,17 +470,17 @@ console.log("Data");
       if ( currentIcon && 'url' in currentIcon) {  // Check if the current icon has a URL (custom icon)
         marker.setIcon(currentIcon.url === 'assets/pjlphotos/currentlocation.png'
           ? {
-              url: 'assets/pjlphotos/currentlocation.png',
-              scaledSize: new google.maps.Size(80, 40),
-              anchor: new google.maps.Point(40, 40),
+              // url: 'assets/pjlphotos/currentlocation.png',
+              // scaledSize: new google.maps.Size(80, 40),
+              // anchor: new google.maps.Point(40, 40),
 
 
-              // path: google.maps.SymbolPath.CIRCLE,
-              // scale: 10,
-              // fillColor: 'yellow',
-              // fillOpacity: 1,
-              // strokeColor: 'yellow',
-              // strokeWeight: 1,
+              path: google.maps.SymbolPath.CIRCLE,
+              scale: 10,
+              fillColor: 'yellow',
+              fillOpacity: 1,
+              strokeColor: 'yellow',
+              strokeWeight: 1,
 
             }
           : {
@@ -505,7 +508,7 @@ console.log("Data");
 
             });
       }
-    }, 100);  // Blinking interval
+    }, 500);  // Blinking interval
   }
 
 

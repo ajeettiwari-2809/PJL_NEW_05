@@ -4,10 +4,73 @@
 
 <div class="container-fluid">
   <!-- Search Box and Back Button -->
-<div class="header">
+<!-- <div class="header">
   <button class="btn btn-secondary"  (click)="getBack()">Back</button>
-  <b>BIHAR ZONE</b>
+  <b>{{zoneName}}</b>
   <input type="text" class="form-control search-box" placeholder="Search..." />
+</div> -->
+
+
+<div class="container-details" >
+
+  <div class="row">
+    <div class="col-sm-2">   <div class="header"></div>
+
+    <button class="btn btn-secondary"  (click)="getBack()">Back</button>
+
+  </div>
+
+  <div class="col-sm-6" style="background: aliceblue;
+border-radius: 20px;">
+
+
+    <div class="details-section" >
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="bl-info">
+            <h3>TOTAL RAKES:  <span>{{filteredRecords.length}}</span></h3>
+
+        </div>
+        </div>
+        <div class="col-sm-6">
+
+          <div class="route-info">
+            <div class="location japan">
+                <p>SATNA</p>
+            </div>
+            <div class="route">
+                <div class="route-line"></div>
+            </div>
+            <div class="" style="width: 15px;"></div>
+            <div class="location india">
+                <p>{{zoneName}}</p>
+            </div>
+
+        </div>
+
+        </div>
+      </div>
+
+
+
+
+  </div>
+
+  </div>
+
+
+
+
+ <div class="col-sm-2">
+  <div class="delivery-info">
+    <p>{{'UPDATA'}}</p>
+  </div>
+ </div>
+
+  </div>
+
+
 </div>
 
 <!-- Record Cards -->
@@ -59,7 +122,7 @@
       <div class="col-sm-1">
         <!-- <button class="btn btn-primary float-end" [routerLink]="['/fnrDetailsById']">View Map</button> -->
         <button mat-mini-fab class="float-right" style="float: right; background-color: blue;"
-        >
+        (click)="gotoMapView(record.id)" >
 
         <mat-icon>map</mat-icon>
       </button>
@@ -91,51 +154,65 @@
 
   <!-- Show map or details based on selected radio button -->
   <div *ngIf="viewMode === 'details'">
-    <div class="col-lg-12 col-mg-12 col-sm-12 card" *ngFor="let record of filteredRecords">
-      <div class="card-body" style="font-size: 13px;">
-        <div class="row">
-          <div class="col-sm-11">
-            <div class="row">
-              <div class="col-sm-3">
-                <span><strong>FNR No:</strong> {{ record.fnrNo }}</span>
-              </div>
-              <div class="col-sm-3">
-                <span><strong>Unique No:</strong> {{ record.uniqNo }}</span>
-              </div>
-              <div class="col-sm-3">
-                <span><strong>Source DateTime:</strong> {{ record.sourceDateTime }}</span>
-              </div>
-              <div class="col-sm-3">
-                <span><strong>Source Latitude:</strong> {{ record.sourceLat }}</span>
-              </div>
-              <div class="col-sm-3">
-                <span><strong>Source Longitude:</strong> {{ record.sourcLong }}</span>
-              </div>
-              <div class="col-sm-3">
-                <span><strong>Destination Station:</strong> {{ record.stationTo }}</span>
-              </div>
-              <div class="col-sm-3">
-                <span><strong>Destination Latitude:</strong> {{ record.destinationLat }}</span>
-              </div>
-              <div class="col-sm-3">
-                <span><strong>Destination Longitude:</strong> {{ record.destinationLong }}</span>
-              </div>
-              <div class="col-sm-3">
-                <span><strong>Current Status:</strong> {{ record.currentStatus }}</span>
-              </div>
-              <div class="col-sm-3">
-                <span><strong>Remark:</strong> {{ record.remark || 'N/A' }}</span>
-              </div>
+
+
+    <!-- <div class="row">
+<div class="col-sm-6">
+  <div id="map"  style="height: 450px; width:100%;" ></div>
+</div> -->
+
+  <div class="col-lg-12 col-mg-12 col-sm-12 card" *ngFor="let record of filteredRecords">
+    <div class="card-body" style="font-size: 13px;">
+      <div class="row">
+        <div class="col-sm-11">
+          <div class="row">
+            <div class="col-sm-3">
+              <span><strong>FNR No:</strong> {{ record.fnrNo }}</span>
+            </div>
+            <div class="col-sm-3">
+              <span><strong>Unique No:</strong> {{ record.uniqNo }}</span>
+            </div>
+            <div class="col-sm-3">
+              <span><strong>Source DateTime:</strong> {{ record.sourceDateTime }}</span>
+            </div>
+            <div class="col-sm-3">
+              <span><strong>Source Latitude:</strong> {{ record.sourceLat }}</span>
+            </div>
+            <div class="col-sm-3">
+              <span><strong>Source Longitude:</strong> {{ record.sourcLong }}</span>
+            </div>
+            <div class="col-sm-3">
+              <span><strong>Destination Station:</strong> {{ record.stationTo }}</span>
+            </div>
+            <div class="col-sm-3">
+              <span><strong>Destination Latitude:</strong> {{ record.destinationLat }}</span>
+            </div>
+            <div class="col-sm-3">
+              <span><strong>Destination Longitude:</strong> {{ record.destinationLong }}</span>
+            </div>
+            <div class="col-sm-3">
+              <span><strong>Current Status:</strong> {{ record.currentStatus }}</span>
+            </div>
+            <div class="col-sm-3">
+              <span><strong>Remark:</strong> {{ record.remark || 'N/A' }}</span>
             </div>
           </div>
-          <div class="col-sm-1">
-            <button mat-mini-fab class="float-right" style="float: right; background-color: blue;">
-              <mat-icon>map</mat-icon>
-            </button>
-          </div>
+        </div>
+        <div class="col-sm-1">
+          <button mat-mini-fab class="float-right" style="float: right; background-color: blue;" (click)="gotoMapView(record.id)">
+            <mat-icon>map</mat-icon>
+          </button>
         </div>
       </div>
     </div>
+  </div>
+<!-- </div>
+
+    </div> -->
+
+
+
+
   </div>
 
 

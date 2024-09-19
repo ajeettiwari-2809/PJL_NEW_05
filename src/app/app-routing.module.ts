@@ -41,7 +41,9 @@ const routes: Routes = [
       // { path: 'salesmoduleScreens', component: SalesModuleComponent },
       { path: 'playvedios', component: PlayVediosComponent },
       { path: 'admindashboard', component: AdminDashboardComponent },
-      { path: 'googlemap', component: GooglemapComponent },
+
+      { path: 'googlemap/:id', component: GooglemapComponent },
+
       { path: 'googlemapcolor', component: GoogleMapWithColorsComponent },
       {path: 'fnrDetails/:id', component: FNRDETAILSComponent},
       {path: 'fnrDetailsById', component: FNRDETAILSBYIDComponent},

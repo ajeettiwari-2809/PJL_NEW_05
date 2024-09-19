@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth.service';
@@ -18,12 +18,14 @@ VehicleType:any=[];
 
 zonecode?:String;
 radiobuttonActive!:string;
-viewMode: string = 'details';
+viewMode: string = 'map';
+zoneName:string='';
 map: any;
 directionsService: any;
 records: any[] = [];
 records1: any[] = [];
 infoWindow: any;
+highlightedRoute: any;
 
   ngOnInit(): void {
 
@@ -33,6 +35,7 @@ infoWindow: any;
     this.getRecord();
     this.radiobuttonActive='0';
 
+this.setZoneDetails();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
 
@@ -40,6 +43,29 @@ infoWindow: any;
       }
     });
   }
+
+  setZoneDetails()
+  {
+    if(this.zonecode=='CUP')
+    {
+      this.zoneName='CENTRAL UP'
+    }
+   else if(this.zonecode=='MP')
+      {
+        this.zoneName='Madhya PRADESH'
+      }
+      else if(this.zonecode=='BH')
+        {
+          this.zoneName='BIHAR'
+        }
+        else
+        {
+          this.zoneName='EASTERN UP'
+        }
+
+
+  }
+
   refreshComponent()
   {
     window.location.reload();
@@ -48,9 +74,20 @@ infoWindow: any;
   filteredRecords:any[]=[];
 
 
+  @ViewChild('map') mapContainer!: ElementRef;
+
+
+  ngAfterViewInit() {
+    // Initialize map only after the view has been initialized and the element is available
+    if (this.viewMode === 'details') {
+      this.loadMap();
+    }
+  }
+
 
   getRecord()
   {
+
     this.spinner.show();
    const apiUrl=this.baseUrl+ 'Users/getFOIS_DetailByZone';
 
@@ -190,10 +227,17 @@ console.log("Source key "+ sourceKey);
       waypoints: [{ location: path.current, stopover: true }],
       travelMode: google.maps.TravelMode.DRIVING
     };
+    directionsRenderer.setOptions({
+      suppressMarkers: true
+    });
 
     this.directionsService.route(request, (result: any, status: any) => {
       if (status === 'OK') {
         directionsRenderer.setDirections(result);
+
+
+        this.highlightedRoute = directionsRenderer;
+
       } else {
         console.error('Directions request failed due to ' + status);
       }
@@ -362,8 +406,43 @@ console.log("Source key "+ sourceKey);
 
       this.infoWindow.open(this.map, marker);
       // this.navigateToDetail(path.id);
+
+      this.highlightPath(path);
     });
   }
+
+  highlightPath(path: any) {
+    // Clear existing highlighted routes if any
+    if (this.highlightedRoute) {
+      this.highlightedRoute.setMap(null);
+    }
+
+    // Define a new DirectionsRenderer for the highlighted path
+    const directionsRenderer = new google.maps.DirectionsRenderer({
+      map: this.map,
+      polylineOptions: {
+        strokeColor: '#FF0000',  // Red color for highlighting
+        strokeWeight: 6,         // Thicker line for highlighting
+      },
+    });
+
+    const request = {
+      origin: path.destination,      // Set the origin as the destination
+      destination: path.source,     // Set the destination as the current location
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+
+    // Use DirectionsService to plot the highlighted path
+    this.directionsService.route(request, (result: any, status: any) => {
+      if (status === 'OK') {
+        directionsRenderer.setDirections(result);
+        this.highlightedRoute = directionsRenderer;  // Store the highlighted route for future use
+      } else {
+        console.error('Directions request failed due to ' + status);
+      }
+    });
+  }
+
   private refreshInterval: any;
   ngOnDestroy(): void {
     if (this.refreshInterval) {
@@ -380,5 +459,13 @@ console.log("Source key "+ sourceKey);
   getBack()
   {
     window.history.back();
+  }
+
+
+  gotoMapView(id:any)
+  {
+    console.log("ID")
+
+    this.router.navigateByUrl('/googlemap/' + id);
   }
 }
