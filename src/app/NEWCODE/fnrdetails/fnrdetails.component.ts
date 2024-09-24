@@ -26,6 +26,7 @@ records: any[] = [];
 records1: any[] = [];
 infoWindow: any;
 highlightedRoute: any;
+radioButton:string='map';
 
   ngOnInit(): void {
 
@@ -42,6 +43,14 @@ this.setZoneDetails();
         this.refreshComponent();
       }
     });
+  }
+
+  getViewStatus(viewdata:any)
+  {
+this.radioButton=viewdata;
+
+console.log(this.radioButton)
+
   }
 
   setZoneDetails()

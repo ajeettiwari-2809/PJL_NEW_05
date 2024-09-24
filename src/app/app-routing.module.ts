@@ -24,7 +24,7 @@ const routes: Routes = [
 
   { path: '', component: SigninComponent },
 
-  { path: 'homepage/signin', component: SigninComponent },
+  { path: 'homepage/signin', component: SigninComponent},
   { path: 'signup', component: SignupComponent },
 
 
@@ -32,6 +32,7 @@ const routes: Routes = [
   //For Active Authguard
   {
     path: '',
+
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],

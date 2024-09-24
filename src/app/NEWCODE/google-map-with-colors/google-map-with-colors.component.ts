@@ -553,4 +553,17 @@ console.log("Data");
       window.location.reload();
     }, 600000); // 10 minutes
   }
+
+
+  getCardColor(zoneCode: string): string {
+    if (zoneCode === 'MP') {
+      return 'blue';
+    } else if (zoneCode === 'BH') {
+      return 'yellow';
+    }
+    else if (zoneCode === 'CUP') {
+      return 'purple';
+    }
+    return 'red'; // Default color
+  }
 }

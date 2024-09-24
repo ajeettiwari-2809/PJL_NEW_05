@@ -11,7 +11,7 @@
 </div> -->
 
 
-<div class="container-details" >
+<div class="container-details"  *ngIf="false">
 
   <div class="row">
     <div class="col-sm-2">   <div class="header"></div>
@@ -21,12 +21,12 @@
   </div>
 
   <div class="col-sm-6" style="background: aliceblue;
-border-radius: 20px;">
+border-radius: 20px;align-items: center;text-align: center;justify-content: center;">
 
 
-    <div class="details-section" >
 
-      <div class="row">
+
+      <div class="row" style="width: 100%; justify-content: space-evenly;align-items: center;">
         <div class="col-sm-6">
           <div class="bl-info">
             <h3>TOTAL RAKES:  <span>{{filteredRecords.length}}</span></h3>
@@ -34,28 +34,15 @@ border-radius: 20px;">
         </div>
         </div>
         <div class="col-sm-6">
-
-          <div class="route-info">
-            <div class="location japan">
-                <p>SATNA</p>
-            </div>
-            <div class="route">
-                <div class="route-line"></div>
-            </div>
-            <div class="" style="width: 15px;"></div>
-            <div class="location india">
-                <p>{{zoneName}}</p>
-            </div>
-
+<b>{{zoneName}}</b>
         </div>
 
-        </div>
       </div>
 
 
 
 
-  </div>
+
 
   </div>
 
@@ -64,9 +51,67 @@ border-radius: 20px;">
 
  <div class="col-sm-2">
   <div class="delivery-info">
-    <p>{{'UPDATA'}}</p>
+    <p>{{'Current Arrival'}}  <span>FNR:24091800790</span></p>
   </div>
  </div>
+
+  </div>
+
+
+</div>
+
+
+
+<div class="container-details" >
+
+  <div class="row">
+    <div class="col-sm-1">   <div class="header"></div>
+
+    <button class="btn btn-secondary"  (click)="getBack()">Back</button>
+
+  </div>
+
+  <div class="col-sm-2">
+    <div class="dates-section">
+      <div class="dates">
+          <b>Reached/Departure:</b>
+
+          <p style="font-size: 11px;">Last Update: </p>
+         <!-- <p style="padding: 1px;background-color: aliceblue;">Updated {{ timeAgo }} </p> -->
+      </div>
+  </div>
+   </div>
+
+
+  <div class="col-sm-3">
+    <div class="dates-section">
+      <b style="color: blue;">2 Hourse</b>
+      <div class="dates">
+
+      </div>
+  </div>
+   </div>
+
+
+   <div class="col-sm-3">
+    <div class="dates-section">
+      <b style="color: blue;">4 Hourse</b>
+      <div class="dates">
+
+      </div>
+  </div>
+   </div>
+
+   <div class="col-sm-3">
+    <div class="dates-section">
+      <b style="color: blue;">6 Hourse & Above</b>
+      <div class="dates">
+
+      </div>
+  </div>
+   </div>
+
+
 
   </div>
 
@@ -140,65 +185,74 @@ border-radius: 20px;">
 
 
 <div class="card-container">
-  <div class="d-flex justify-content-start mb-3">
-    <!-- Radio buttons to toggle between Map and Details -->
+  <!-- <div class="d-flex justify-content-start mb-3">
+
     <label class="me-3">
-      <input type="radio" [(ngModel)]="viewMode" value="map" checked class="custom-radio"> Map
+      <input type="radio" [(ngModel)]="viewMode" value="map" checked class="custom-radio" (click)="getViewStatus('map')"> Map
     </label>
     <label>
-      <input type="radio" [(ngModel)]="viewMode" value="details"  class="custom-radio"> Details
+      <input type="radio" [(ngModel)]="viewMode" value="details"  class="custom-radio" (click)="getViewStatus('details')"> Details
     </label>
-  </div>
+  </div> -->
 
 <mat-divider></mat-divider>
 
   <!-- Show map or details based on selected radio button -->
-  <div *ngIf="viewMode === 'details'">
+  <div>
 
 
-    <!-- <div class="row">
-<div class="col-sm-6">
-  <div id="map"  style="height: 450px; width:100%;" ></div>
-</div> -->
+    <div class="row">
+<div class="col-sm-8">
+  <div id="map"  style="height: 520px; width:100%;" ></div>
+</div>
 
+
+
+<div class="col-sm-4">
+
+  <div class="header">
+    <h5 class="typing-text"><b style="color: blue;">{{zoneName}}</b>: Rakes Transit Details: <span>{{filteredRecords.length}}</span></h5>
+
+  </div>
+  <div class="scroll" style="height: 500px; overflow-y: scroll;cursor: pointer;">
   <div class="col-lg-12 col-mg-12 col-sm-12 card" *ngFor="let record of filteredRecords">
-    <div class="card-body" style="font-size: 13px;">
-      <div class="row">
-        <div class="col-sm-11">
-          <div class="row">
-            <div class="col-sm-3">
-              <span><strong>FNR No:</strong> {{ record.fnrNo }}</span>
-            </div>
-            <div class="col-sm-3">
-              <span><strong>Unique No:</strong> {{ record.uniqNo }}</span>
-            </div>
-            <div class="col-sm-3">
-              <span><strong>Source DateTime:</strong> {{ record.sourceDateTime }}</span>
-            </div>
-            <div class="col-sm-3">
-              <span><strong>Source Latitude:</strong> {{ record.sourceLat }}</span>
-            </div>
-            <div class="col-sm-3">
-              <span><strong>Source Longitude:</strong> {{ record.sourcLong }}</span>
-            </div>
-            <div class="col-sm-3">
-              <span><strong>Destination Station:</strong> {{ record.stationTo }}</span>
-            </div>
-            <div class="col-sm-3">
-              <span><strong>Destination Latitude:</strong> {{ record.destinationLat }}</span>
-            </div>
-            <div class="col-sm-3">
-              <span><strong>Destination Longitude:</strong> {{ record.destinationLong }}</span>
-            </div>
-            <div class="col-sm-3">
-              <span><strong>Current Status:</strong> {{ record.currentStatus }}</span>
-            </div>
-            <div class="col-sm-3">
-              <span><strong>Remark:</strong> {{ record.remark || 'N/A' }}</span>
-            </div>
+    <div class="card-body" style="font-size: 13px;margin-top: 2px;" >
+      <div class="row"    [ngStyle]="{'background-color': record.expected_Hours == 0 ? '#f5c6cb' : ''}" >
+        <!-- (click)="gotoMapView(record.id)"  -->
+        <div class="col-sm-10">
+
+          <div class="col-sm-12">
+            <span><strong>FNR No:</strong> {{ record.fnrNo }}</span>
           </div>
+          <div class="col-sm-12" >
+            <span><strong>Expected Hourse:   </strong > <b style="color: red;">{{ record.expected_Hours }}</b></span>
+          </div>
+          <div class="col-sm-12">
+            <span><strong>Source DateTime:</strong> {{ record.sourceDateTime | date:'dd MMM yyyy , hh:mm a'  }}</span>
+          </div>
+          <div class="col-sm-12">
+            <span><strong>Eastimated DateTime:</strong> {{ record.etaDstinationDateTime }}</span>
+          </div>
+
+          <div class="col-sm-12">
+            <span><strong> Railway Destination :</strong> {{ record.stationTo }}</span>
+          </div>
+
+          <div class="col-sm-12">
+            <span><strong>PRISM Destination:</strong> {{ record.depotName }}</span>
+          </div>
+
+
+
+          <div class="col-sm-12">
+            <span><strong>Current Status:</strong> {{ record.currentStatus }}</span>
+          </div>
+
+
         </div>
-        <div class="col-sm-1">
+
+
+        <div class="col-sm-2">
           <button mat-mini-fab class="float-right" style="float: right; background-color: blue;" (click)="gotoMapView(record.id)">
             <mat-icon>map</mat-icon>
           </button>
@@ -206,9 +260,15 @@ border-radius: 20px;">
       </div>
     </div>
   </div>
-<!-- </div>
+</div>
+</div>
 
-    </div> -->
+
+
+
+ </div>
+
+
 
 
 
@@ -217,11 +277,11 @@ border-radius: 20px;">
 
 
   <!-- Placeholder for map -->
-  <div   >
+  <div  >
      <!-- *ngIf="viewMode === 'map'" -->
     <!-- Add your map component or map code here -->
 
-        <div id="map"  style="height: 450px; width:100%;" ></div>
+        <!-- <div id="map"  style="height: 450px; width:100%;" ></div> -->
 
 
 
@@ -231,7 +291,7 @@ border-radius: 20px;">
 
 </div>
 
-</div>
+
 
 <div class="container-fluid page-body-wrapper"  *ngIf="false">
 

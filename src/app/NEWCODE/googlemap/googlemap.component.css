@@ -204,7 +204,7 @@ body {
   overflow: hidden;
   white-space: nowrap;
   border-right: 2px solid;
-  animation: typing 5s steps(22) infinite, blink 0.75s step-end infinite;
+  animation: typing 9s steps(25) infinite, blink 0.75s step-end infinite;
 }
 @keyframes typing {
   0% { width: 0; }

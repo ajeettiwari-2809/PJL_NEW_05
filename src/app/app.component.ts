@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { SidebarService } from './services/sidebar.service';
+import { NetworkService } from './services/network.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,6 +15,8 @@ export class AppComponent {
   title = 'cyber2';
 
   sideBarOpen = true;
+  isOnline: boolean = true;
+
 
   // sideBarToggler() {
 
@@ -35,7 +38,7 @@ export class AppComponent {
   isHandset: boolean = false;
 
   constructor(private breakpointObserver: BreakpointObserver,private auth: AuthService,
-       private router: Router,private sidebarService: SidebarService) {
+       private router: Router,private sidebarService: SidebarService,private networkService: NetworkService) {
     this.breakpointObserver.observe([Breakpoints.Handset])
       .subscribe(result => {
         this.isHandset = result.matches;
@@ -43,7 +46,12 @@ export class AppComponent {
   }
 
   isSidebarMinimized = false;
-  ngOnInit() {
+  async ngOnInit() {
+  await  this.networkService.onlineStatus$.subscribe(status => {
+      console.log(status)
+      this.isOnline = status;
+    });
+
     this.sidebarService.isSidebarMinimized$.subscribe(isMinimized => {
       this.isSidebarMinimized = isMinimized;
     });

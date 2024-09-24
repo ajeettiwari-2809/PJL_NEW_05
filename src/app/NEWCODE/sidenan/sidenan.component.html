@@ -1,10 +1,11 @@
 <!-- sidenav.component.html -->
-<nav class="sidebar sidebar-offcanvas" id="sidebar" [class.minimized]="isSidebarMinimized" >
+<nav class="sidebar sidebar-offcanvas" id="sidebar" [class.minimized]="isSidebarMinimized"  style="height: 100%;">
   <a class="navbar-brand brand-logo-mini" href="index.html" style=""><img src="assets/newcss/images/PRISM/prismlogo.png" alt="logo" height="100px" width="60%" center /></a>
-
+<br>
+  <!-- <b style="margin: 0 auto;">Transit Rakes Details</b> -->
   <ul class="nav">
     <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/dashboardhome']">
+      <a class="nav-link" [routerLink]="['/googlemapcolor']">
         <i class="ti-shield menu-icon"></i>
         <span class="menu-title">Dashboard</span>
       </a>
@@ -42,14 +43,14 @@
         <span class="menu-title">Production Modules</span>
       </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item"  *ngIf="false">
       <a class="nav-link" [routerLink]="['/googlemapcolor']" >
         <i class="ti-view-list-alt menu-icon"></i>
         <span class="menu-title">Rakes Track</span>
       </a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item"  *ngIf="false">
       <a class="nav-link" [routerLink]="['/googlemap']">
         <i class="ti-star menu-icon"></i>
         <span class="menu-title">MAP</span>

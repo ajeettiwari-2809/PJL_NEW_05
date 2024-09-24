@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastModule, NgToastService, Position } from 'ng-angular-popup';
@@ -13,7 +13,7 @@ import { UserstoreService } from 'src/app/services/userstore.service';
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
-export class SigninComponent {
+export class SigninComponent implements OnInit {
 
   loginForm!: FormGroup;
   loginFormotp!:FormGroup;
@@ -43,6 +43,10 @@ export class SigninComponent {
     //   password: ['', Validators.required]
     // });
   }
+
+ngOnInit(): void {
+  this.router.navigate(['/googlemapcolor']);
+}
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -195,8 +199,8 @@ this.refreshDashboard();
 
   refreshDashboard() {
 console.log("inside login")
-    this.router.navigateByUrl('/dashboardhome', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/dashboardhome']);
+    this.router.navigateByUrl('/googlemapcolor', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/googlemapcolor']);
     });
   }
 

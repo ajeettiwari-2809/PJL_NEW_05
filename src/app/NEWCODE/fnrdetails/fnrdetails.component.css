@@ -100,6 +100,7 @@
 .route-info {
   display: flex;
   align-items: center;
+
 }
 
 .location {
@@ -119,10 +120,6 @@
   margin: 0 10px;
 }
 
-.weight-info {
-  text-align: right;
-  font-size: 12px;
-}
 
 
 
@@ -139,4 +136,9 @@
   align-items: center;
 
   border-radius: 4px;
+}
+
+.card-body:hover{
+box-shadow: 2px 2px 12px grey;
+border: 1px solid red;
 }

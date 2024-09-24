@@ -32,66 +32,49 @@
     <div class="container-details" >
 
       <div class="row">
-        <div class="col-sm-2">   <div class="header"></div>
+        <div class="col-sm-1">   <div class="header"></div>
 
         <button class="btn btn-secondary"  (click)="getBack()">Back</button>
-        <p style="padding: 1px;background-color: aliceblue;">Updated {{ timeAgo }} </p>
-      </div>
-
-      <div class="col-sm-6" style="    background: aliceblue;
-    border-radius: 20px;">
-
-
-        <div class="details-section" style="width: 100%;">
-
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="bl-info">
-                <h3>FNR No: <span>{{fnrNumber}}</span></h3>
-                <h3>Booking No.: <span>SMZDG09006005</span></h3>
-                <h3>Container No.: <span>TGBU5105714</span></h3>
-            </div>
-            </div>
-            <div class="col-sm-6">
-
-              <div class="route-info">
-                <div class="location japan">
-                    <p>{{stationFrom}}</p>
-                </div>
-                <div class="route">
-                    <div class="route-line"></div>
-                </div>
-                <div class="container" style="width: 2px;"></div>
-                <div class="location india">
-                    <p>{{stationTo}}</p>
-                </div>
-
-            </div>
-
-            </div>
-          </div>
-
-
-
-
-      </div>
 
       </div>
 
 
-     <div class="col-sm-2">
+      <div class="col-sm-3">
+        <div class="dates-section" style="background-color: aliceblue; font-size: 12px;">
+          <p>Prism Destination :  {{allTransitDetails[allTransitDetails.length-1]['erP_Destination_Name'] }}   </p>
+
+          <p>Destination :  {{allTransitDetails[allTransitDetails.length-1]['stationTo'] }}   </p>
+
+          <!-- <p>Expected Hourse :  {{allTransitDetails[allTransitDetails.length-1]['expected_Hours'] }}   </p> -->
+        </div>
+       </div>
+
+
+     <div class="col-sm-3">
       <div class="dates-section">
         <div class="dates">
-            <p>Start: 14th Sep 2024</p>
-            <p>E-END: 20th Sep 2024</p>
+            <p>Start Date:  {{allTransitDetails[allTransitDetails.length-1]['creationdate'] | date:'dd MMM yyyy , hh:mm a' }}</p>
+            <p>Eastimated Date: {{allTransitDetails[allTransitDetails.length-1]['etaDstinationDateTime'] }}</p>
         </div>
     </div>
      </div>
 
-     <div class="col-sm-2">
+     <div class="col-sm-3">
       <div class="delivery-info">
-        <p>{{currentLocation}}</p>
+        <p>Current:  {{currentLocation}}</p>
+
       </div>
+      <!-- <p style="padding: 1px;background-color: aliceblue;">Updated {{ timeAgo }} </p> -->
+     </div>
+     <div class="col-sm-2">
+      <div class="dates-section">
+        <div class="dates">
+            <p>FNR:  {{allTransitDetails[allTransitDetails.length-1]['fnrNo']}}</p>
+
+            <p style="font-size: 11px;">Last Update:  {{allTransitDetails[allTransitDetails.length-1]['currentUpdateDateByUlip'] |  date:'dd MMM yyyy , hh:mm a'}}</p>
+           <!-- <p style="padding: 1px;background-color: aliceblue;">Updated {{ timeAgo }} </p> -->
+        </div>
+    </div>
      </div>
 
       </div>
@@ -103,15 +86,15 @@
 
 
     <div class="card-container">
-      <div class="d-flex justify-content-start mb-3">
-        <!-- Radio buttons to toggle between Map and Details -->
+      <!-- <div class="d-flex justify-content-start mb-3">
+
         <label class="me-3">
           <input type="radio" [(ngModel)]="viewMode" value="map" checked class="custom-radio"> Map
         </label>
         <label>
           <input type="radio" [(ngModel)]="viewMode" value="details"  class="custom-radio"> Details
         </label>
-      </div>
+      </div> -->
 
     <mat-divider></mat-divider>
 
@@ -122,11 +105,12 @@
     <div class="col-sm-9">
       <div id="map"  style="height: 450px; width:100%;" ></div>
     </div>
+
     <div class="col-sm-3"  >
 
      <div class="rail-tracking">
           <div class="header">
-            <h5 class="typing-text">FNR Transit Status</h5>
+            <h5 class="typing-text"><p>Expected Hourse :  {{allTransitDetails[allTransitDetails.length-1]['expected_Hours'] }}   </p></h5>
 
           </div>
 

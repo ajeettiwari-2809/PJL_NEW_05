@@ -440,13 +440,31 @@ getFNRTransitDetails()
 
   applyBlinkingEffect(marker: google.maps.Marker) {
     const markerElement = marker.getIcon() as google.maps.Symbol;
-    if (markerElement) {
-      markerElement.fillOpacity = 0.5;
-      marker.setIcon(markerElement);
+
+    const customIcon1: google.maps.Symbol = {
+      path: google.maps.SymbolPath.CIRCLE,
+      scale: 8, // Adjust the size of the circle
+      fillColor: 'red',
+      fillOpacity: 1,
+      strokeColor: 'red',
+      strokeWeight: 1
+    };
+
+    if (customIcon1) {
+      customIcon1.fillOpacity = 0.5;
+      marker.setIcon(customIcon1);
     }
 
     const blinkInterval = setInterval(() => {
       const currentIcon = marker.getIcon() as google.maps.Symbol;
+      const customIcon12: google.maps.Symbol = {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 8, // Adjust the size of the circle
+        fillColor: 'red',
+        fillOpacity: 1,
+        strokeColor: 'red',
+        strokeWeight: 1
+      };
       if (currentIcon.fillOpacity === 0.5) {
         currentIcon.fillOpacity = 1;
       } else {
