@@ -21,15 +21,17 @@ html, body, app-root, #map {
 
 #more
 {
-  float: right;
+
     padding: 5px;
-    background: #f2f2ff;
+    margin-right: 2px;
+    background: aliceblue;
     border-radius: 5px;
     justify-items: center;
     align-items: center;
     text-align: center;
     cursor: pointer;
     z-index: 700;
+    font-size: 11px;
 }
 
 

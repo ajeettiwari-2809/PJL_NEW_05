@@ -124,21 +124,29 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
 
   fetchData() {
     this.spinner.show();
-    const apiUrl = this.baseurl + 'Users/getFOIS_List_Admin_Rack_Track';
+    const apiUrl = this.baseurl + 'Trans/getFOIS_List_Admin_Rack_Track';
     this.http.post(apiUrl, { "input": 0, "inputString": "string" }).subscribe((data: any) => {
       this.spinner.hide();
-      this.records = data;
-      this.records1=data;
+      this.records =  data;
+      this.records1= data;
+
+
+      // this.records =  data.filter((item: { zoneCode: string; }) => item.zoneCode === 'BH');;
+      // this.records1= data.filter((item: { zoneCode: string; }) => item.zoneCode === 'BH');;
       this.processData();
     });
   }
 
   fetchTransitCount() {
     this.spinner.show();
-    const apiUrl = this.baseurl + 'Users/getFOIS_Count';
+    const apiUrl = this.baseurl + 'Trans/getFOIS_Count';
     this.http.post(apiUrl, {}).subscribe((data: any) => {
       this.spinner.hide();
       this.transitRecords = data;
+      console.log(data)
+
+
+
     });
   }
 

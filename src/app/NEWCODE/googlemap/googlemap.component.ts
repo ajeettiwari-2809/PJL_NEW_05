@@ -104,7 +104,7 @@ getFNRTransitDetails()
 
  this.spinner.show();
 
-   const apiUrl=this.baseUrl+ 'Users/getFOIS_List_Admin_Rack_Track_ById';
+   const apiUrl=this.baseUrl+ 'Trans/getFOIS_List_Admin_Rack_Track_ById';
 
    this.http.post(apiUrl, { "input": this.fnrid,
     "inputString":'' }).subscribe((data: any) => {

@@ -67,14 +67,19 @@
 
  <div class="row">
         <div class="col-md-3 grid-margin" *ngFor="let details of transitRecords">
-          <div class="card" style="overflow: visible;color: white;" [ngStyle]="{'background-color': getCardColor(details.zoneCode)}">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-5">
-                  <p class="card-title text-md-center text-xl-left" style="color: white;">{{ details.zoneCode }}</p>
+          <div class="card"   style="padding: 0;margin: 0;">
+            <!-- [ngStyle]="{'background-color': getCardColor(details.zoneCode)}" -->
+            <div class="card-body"  style="padding-bottom: 0px;">
+              <div class="row" >
+                <div class="col-md-3" >
+                  <p class="card-title text-md-center text-xl-left" [ngStyle]="{'color': getCardColor(details.zoneCode)}">{{ details.zoneCode }}</p>
                 </div>
 
-                <div class="col-sm-7">
+                <div class="col-md-5" >
+                  <p class=" text-primary">
+                    In-Transit
+                    <span class="text-black ms-1"><small style="font-weight: bold;">({{ details.inTransit }})</small></span>
+                  </p>
 
                   <div class="row col-md-12" style="width: 100%;" *ngIf="false">
                     <div class="col-sm-6">
@@ -151,25 +156,43 @@
                   </div>
 
 
+
+                </div>
+                <div class="col-md-4" style="padding: 0;margin: 0;">
+                  <div class="more" (click)="ByZoneRecord(details.zoneCode)">
+                    <p class=" text-primary" id="more">more details..</p>
+                  </div>
                 </div>
 
 
               </div>
 
 
-
+<i style="font-size: 10px;">Expected Arrival:</i>
               <div class="row">
-                <div class="col-sm-6">
-                  <p class="mb-0 mt-2 text-primary">
-                    In-Transit
-                    <span class="text-black ms-1"><small>({{ details.inTransit }})</small></span>
-                  </p>
-                </div>
-                <div class="col-sm-6">
-                  <div class="more" (click)="ByZoneRecord(details.zoneCode)">
-                    <p class="mb-0 mt-2 text-primary" style="float: right;" id="more">more details..</p>
+                <div class="col-sm-3" style="padding: 0;margin: 0;">
+                  <div class="more" >
+                    <p class=" text-primary"  id="more">Reached:</p>
                   </div>
                 </div>
+                <div class="col-sm-3" style="padding: 0;margin: 0;">
+                  <div class="more" >
+                    <p class=" text-primary" id="more">4hours</p>
+                  </div>
+                </div>
+
+                <div class="col-sm-3" style="padding: 0;margin: 0;">
+                  <div class="more" >
+                    <p class=" text-primary"  id="more">8hours</p>
+                  </div>
+                </div>
+                <div class="col-sm-3" style="padding: 0;margin: 0;">
+                  <div class="more">
+                    <p class=" text-primary" id="more">12hours</p>
+                  </div>
+                </div>
+
+
               </div>
 
             </div>

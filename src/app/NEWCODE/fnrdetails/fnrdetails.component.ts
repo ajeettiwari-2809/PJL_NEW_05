@@ -98,7 +98,7 @@ console.log(this.radioButton)
   {
 
     this.spinner.show();
-   const apiUrl=this.baseUrl+ 'Users/getFOIS_DetailByZone';
+   const apiUrl=this.baseUrl+ 'Trans/getFOIS_DetailByZone';
 
    this.http.post(apiUrl, { "input": 0,
     "inputString":this.zonecode }).subscribe((data: any) => {
