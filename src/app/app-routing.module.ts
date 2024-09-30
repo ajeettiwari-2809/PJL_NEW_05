@@ -15,6 +15,8 @@ import { GoogleMapWithColorsComponent } from './NEWCODE/google-map-with-colors/g
 import { FNRDETAILSComponent } from './NEWCODE/fnrdetails/fnrdetails.component';
 import { FNRDETAILSBYIDComponent } from './NEWCODE/fnrdetailsbyid/fnrdetailsbyid.component';
 import { TestmspComponent } from './NEWCODE/testmsp/testmsp.component';
+import { ZoneFOISDetailsComponent } from './NEWCODE/ZONEFOIS/zone-foisdetails/zone-foisdetails.component';
+import { UserProfilePageComponent } from './NEWCODE/user-profile-page/user-profile-page.component';
 
 
 
@@ -38,7 +40,7 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
     children: [
       { path: 'dashboardhome', component: DashboardHomeComponent },
-      { path: 'salesmoduleScreens', component: SalesModulesComponent },
+      { path: 'report', component: SalesModulesComponent },
       // { path: 'salesmoduleScreens', component: SalesModuleComponent },
       { path: 'playvedios', component: PlayVediosComponent },
       { path: 'admindashboard', component: AdminDashboardComponent },
@@ -49,6 +51,8 @@ const routes: Routes = [
       {path: 'fnrDetails/:id', component: FNRDETAILSComponent},
       {path: 'fnrDetailsById', component: FNRDETAILSBYIDComponent},
       {path: 'testmap', component: TestmspComponent},
+      {path: 'ZoneFois', component: ZoneFOISDetailsComponent},
+      {path: 'userProfile', component: UserProfilePageComponent},
     ]
   }
 

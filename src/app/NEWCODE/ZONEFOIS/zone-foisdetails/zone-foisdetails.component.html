@@ -1,0 +1,150 @@
+<div class="container-fluid page-body-wrapper">
+
+
+
+
+
+
+
+  <div class="main-panel" style="width: 100%; position: relative; overflow: visible;">
+
+    <div class="content-wrapper">
+
+
+
+
+<div class="row">
+
+  <div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card-body">
+
+
+            <div class="row">
+              <div class="col-sm-7" style="background-color: aliceblue;">
+                <h4 class="card-title" >
+
+                  <span  *ngIf="records[0]['zoneCode']=='BH'" style="color: black;">BIHAR</span>
+                  <span  *ngIf="records[0]['zoneCode']=='CUP'" style="color: black;">CENTRAL UP</span>
+                  <span  *ngIf="records[0]['zoneCode']=='EUP'" style="color: black;">EAST UP</span>
+                  <span  *ngIf="records[0]['zoneCode']=='MP'" style="color: black;">Madhya Pradesh</span>
+
+
+                <span style="color: grey;font-size: 12px;background-color: aliceblue;padding: 2px;margin: 2px;color: red;"> IN-TRANSIT: {{records.length}}</span>
+                </h4>
+              </div>
+              <div class="col-sm-5">
+                <div class="more" (click)="ByZoneRecord(records[0]['zoneCode'])">
+                  <p class=" text-primary" id="more">more details..</p>
+                </div>
+              </div>
+            </div>
+
+
+
+
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+
+            <div class="template-demo">
+              <button type="button" class="btn btn-outline-success btn-fw"
+                (click)="getzoneFoisCount('0')">Reached:  ({{reached.length}})</button>
+              <button type="button" class="btn btn-outline-primary btn-fw"
+                (click)="getzoneFoisCount('2')">2hours:  ({{twohours.length}})</button>
+              <button type="button" class="btn btn-outline-secondary btn-fw"
+                (click)="getzoneFoisCount('4')">4hours:  ({{fourhours.length}})</button>
+
+              <button type="button" class="btn btn-outline-danger btn-fw"
+                (click)="getzoneFoisCount('8')">8hours:  ({{eghthours.length}})</button>
+              <button type="button" class="btn btn-outline-warning btn-fw"
+                (click)="getzoneFoisCount('12')">12&above:  ({{twlhours.length}})</button>
+
+                <button type="button" class="btn btn-outline-warning btn-fw"
+                (click)="getzoneFoisCount('all')">All Records</button>
+
+            </div>
+
+            <div class="row" *ngIf="false">
+
+              <!-- <div class="col-sm-4"  *ngFor="let details of ZoneFoisData">
+          <div class="more"   >
+            <p class=" text-primary" id="more">{{details.fnrNo}}</p>
+          </div>
+        </div> -->
+            </div>
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="row">
+      <div class="col-sm-9">
+        <div id="map" style="height: 500px; width:100%;"></div>
+
+      </div>
+      <div class="col-sm-3">
+
+
+
+
+
+            <div class="row">
+              <b *ngIf="expectedtime == '0'" style="color: blue;">Expected Time:  Reached</b>
+              <b *ngIf="expectedtime != '0'" style="color: blue;">Expected Time:  {{expectedtime}}</b>
+
+              <div class="stationstimeline">
+
+                <div *ngFor="let station of ZoneFoisData; let i = index" class="station" >
+
+
+
+
+                  <div class="station-info" [ngStyle]="{'background-color': station.expected_Hours == 0 ? '#f5c6cb' : ''}"
+                  (click)="ByZoneRecord(records[0]['zoneCode'])"
+                  >
+
+
+                    <span>FNR: {{ station.fnrNo }}</span><br>
+                    <span>Depo: {{station.depotName}}</span><br>
+                    <span style="font-size: 12px;font-weight: normal;background-color: rgb(231, 231, 255);padding: 3px;">Current Status: {{ station.currentStatus }}</span><br>
+                    <span style="font-size: 12px;font-weight: normal;color: red;">expected Hours:  {{station.expected_Hours}}</span><br>
+                  </div>
+                  <div class="times">
+
+
+                  </div>
+                </div>
+                <div class="container" *ngIf="ZoneFoisData.length == 0" style="justify-content: center;align-items: center;margin: 40px auto;background-color: aliceblue;padding: 20px;border-radius: 12px;">
+                  <p>
+                    No Rakes Arrived In This Time
+                   </p>
+                </div>
+
+
+
+              </div>
+
+
+
+            </div>
+        <!-- </footer> -->
+
+
+     </div>
+
+
+
+    </div>
+
+  </div>
+
+</div>

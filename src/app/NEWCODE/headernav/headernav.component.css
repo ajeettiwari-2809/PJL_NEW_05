@@ -1,0 +1,21 @@
+/* a{
+  color: white;
+} */
+
+
+@media (max-width: 768px) {
+  .notification-dropdown {
+    width: 100%; /* Make the dropdown full width on smaller screens */
+    left: 0 !important; /* Align to the left to fit on screen */
+    right: 0 !important; /* Ensure the dropdown doesn't overflow */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+  }
+
+  .dropdown-item {
+    white-space: normal; /* Allow wrapping of text to prevent content overflow */
+  }
+
+  .item-content h6, .item-content p {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+}

@@ -1,432 +1,178 @@
 <div class="container-fluid page-body-wrapper">
 
 
+  <div class="main-panel" style="width: 100%; position: relative; overflow: visible;">
 
-<div class="container-fluid">
-  <!-- Search Box and Back Button -->
-<!-- <div class="header">
-  <button class="btn btn-secondary"  (click)="getBack()">Back</button>
-  <b>{{zoneName}}</b>
-  <input type="text" class="form-control search-box" placeholder="Search..." />
-</div> -->
-
-
-<div class="container-details"  *ngIf="false">
-
-  <div class="row">
-    <div class="col-sm-2">   <div class="header"></div>
-
-    <button class="btn btn-secondary"  (click)="getBack()">Back</button>
-
-  </div>
-
-  <div class="col-sm-6" style="background: aliceblue;
-border-radius: 20px;align-items: center;text-align: center;justify-content: center;">
+    <div class="content-wrapper">
 
 
 
 
-      <div class="row" style="width: 100%; justify-content: space-evenly;align-items: center;">
-        <div class="col-sm-6">
-          <div class="bl-info">
-            <h3>TOTAL RAKES:  <span>{{filteredRecords.length}}</span></h3>
+      <div class="row">
 
-        </div>
-        </div>
-        <div class="col-sm-6">
-<b>{{zoneName}}</b>
-        </div>
-
-      </div>
+        <div class="col-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card-body">
 
 
+                  <div class="row" >
+                    <div class="col-sm-12" >
+                     <div class="view" style="color: black; background-color: aliceblue;padding: 4px;">
+                      <h4 class="card-title"><span  >{{zoneName}}</span>
+                        <span
+                          style="color: grey;font-size: 12px;padding: 2px;margin: 2px;color: red;">
+                          IN-TRANSIT: {{filteredRecords.length}}</span>
+                      </h4>
+                     </div>
 
+                      <button class="btn btn-secondary" (click)="getBack()">Back</button>
+                    </div>
 
-
-
-  </div>
-
-
-
-
- <div class="col-sm-2">
-  <div class="delivery-info">
-    <p>{{'Current Arrival'}}  <span>FNR:24091800790</span></p>
-  </div>
- </div>
-
-  </div>
-
-
-</div>
+                  </div>
 
 
 
-<div class="container-details" >
 
-  <div class="row">
-    <div class="col-sm-1">   <div class="header"></div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
 
-    <button class="btn btn-secondary"  (click)="getBack()">Back</button>
+                  <div class="template-demo">
+                    <button type="button" class="btn btn-outline-success btn-fw"
+                      (click)="getzoneFoisCount('0')">Reached:  ({{reached.length}})</button>
+                    <button type="button" class="btn btn-outline-primary btn-fw"
+                      (click)="getzoneFoisCount('2')">2hours:  ({{twohours.length}})</button>
+                    <button type="button" class="btn btn-outline-secondary btn-fw"
+                      (click)="getzoneFoisCount('4')">4hours:  ({{fourhours.length}})</button>
 
-  </div>
+                    <button type="button" class="btn btn-outline-danger btn-fw"
+                      (click)="getzoneFoisCount('8')">8hours:  ({{eghthours.length}})</button>
+                    <button type="button" class="btn btn-outline-warning btn-fw"
+                      (click)="getzoneFoisCount('12')">12&above:  ({{twlhours.length}})</button>
 
-  <div class="col-sm-2">
-    <div class="dates-section">
-      <div class="dates">
-          <b>Reached/Departure:</b>
+                      <button type="button" class="btn btn-outline-warning btn-fw"
+                      (click)="getzoneFoisCount('all')">All Records</button>
 
-          <p style="font-size: 11px;">Last Update: </p>
-         <!-- <p style="padding: 1px;background-color: aliceblue;">Updated {{ timeAgo }} </p> -->
-      </div>
-  </div>
-   </div>
+                  </div>
 
+                  <div class="row" *ngIf="false">
 
-  <div class="col-sm-3">
-    <div class="dates-section">
-      <b style="color: blue;">2 Hourse</b>
-      <div class="dates">
-
-      </div>
-  </div>
-   </div>
-
-
-   <div class="col-sm-3">
-    <div class="dates-section">
-      <b style="color: blue;">4 Hourse</b>
-      <div class="dates">
-
-      </div>
-  </div>
-   </div>
-
-   <div class="col-sm-3">
-    <div class="dates-section">
-      <b style="color: blue;">6 Hourse & Above</b>
-      <div class="dates">
-
-      </div>
-  </div>
-   </div>
+                    <!-- <div class="col-sm-4"  *ngFor="let details of ZoneFoisData">
+                <div class="more"   >
+                  <p class=" text-primary" id="more">{{details.fnrNo}}</p>
+                </div>
+              </div> -->
+                  </div>
 
 
 
-  </div>
 
-
-</div>
-
-<!-- Record Cards -->
-<div class="card-container" *ngIf="false">
-
-
-
-  <div class=" col-lg-12 col-mg-12 col-sm-12 card"   *ngFor="let record of filteredRecords">
-
-    <div class="card-body" style="font-size: 13px;">
-
-     <div class="row">
-      <div class="col-sm-11">
-        <div class="row">
-
-          <div class="col-sm-3">
-            <span><strong>FNR No:</strong> {{ record.fnrNo }}</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-sm-3">
-            <span><strong>Unique No:</strong> {{ record.uniqNo }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Source DateTime:</strong> {{ record.sourceDateTime }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Source Latitude:</strong> {{ record.sourceLat }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Source Longitude:</strong> {{ record.sourcLong }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Destination Station:</strong> {{ record.stationTo }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Destination Latitude:</strong> {{ record.destinationLat }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Destination Longitude:</strong> {{ record.destinationLong }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Current Status:</strong> {{ record.currentStatus }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Remark:</strong> {{ record.remark || 'N/A' }}</span>
-          </div>
-
         </div>
       </div>
-      <div class="col-sm-1">
-        <!-- <button class="btn btn-primary float-end" [routerLink]="['/fnrDetailsById']">View Map</button> -->
-        <button mat-mini-fab class="float-right" style="float: right; background-color: blue;"
-        (click)="gotoMapView(record.id)" >
 
-        <mat-icon>map</mat-icon>
-      </button>
-      </div>
-     </div>
+      <div class="card-container">
 
 
-
-    </div>
-  </div>
+        <mat-divider></mat-divider>
 
 
-
-</div>
-
-
-<div class="card-container">
-  <!-- <div class="d-flex justify-content-start mb-3">
-
-    <label class="me-3">
-      <input type="radio" [(ngModel)]="viewMode" value="map" checked class="custom-radio" (click)="getViewStatus('map')"> Map
-    </label>
-    <label>
-      <input type="radio" [(ngModel)]="viewMode" value="details"  class="custom-radio" (click)="getViewStatus('details')"> Details
-    </label>
-  </div> -->
-
-<mat-divider></mat-divider>
-
-  <!-- Show map or details based on selected radio button -->
-  <div>
+        <div>
 
 
-    <div class="row">
-<div class="col-sm-8">
-  <div id="map"  style="height: 520px; width:100%;" ></div>
-</div>
+          <div class="row">
+            <div class="col-sm-8">
+              <div id="map" style="height: 520px; width:100%;"></div>
+            </div>
 
 
 
-<div class="col-sm-4">
+            <div class="col-sm-4">
 
-  <div class="header">
-    <h5 class="typing-text"><b style="color: blue;">{{zoneName}}</b>: Rakes Transit Details: <span>{{filteredRecords.length}}</span></h5>
+              <div class="header">
+                <h5 class="typing-text"><b style="color: blue;">{{zoneName}}</b>: Rakes Transit Details:
+                  <span>{{filteredRecords.length}}</span></h5>
 
-  </div>
-  <div class="scroll" style="height: 500px; overflow-y: scroll;cursor: pointer;">
-  <div class="col-lg-12 col-mg-12 col-sm-12 card" *ngFor="let record of filteredRecords">
-    <div class="card-body" style="font-size: 13px;margin-top: 2px;" >
-      <div class="row"    [ngStyle]="{'background-color': record.expected_Hours == 0 ? '#f5c6cb' : ''}" >
-        <!-- (click)="gotoMapView(record.id)"  -->
-        <div class="col-sm-10">
+              </div>
+              <div class="scroll" style="height: 500px; overflow-y: scroll;cursor: pointer;">
+                <div class="col-lg-12 col-mg-12 col-sm-12 card" *ngFor="let record of filteredRecordsbyHours">
+                  <div class="card-body" style="font-size: 13px;margin-top: 2px;" id="card-body">
+                    <div class="row" [ngStyle]="{'background-color': record.expected_Hours == 0 ? '#f5c6cb' : ''}">
+                      <!-- (click)="gotoMapView(record.id)"  -->
+                      <div class="col-sm-10">
 
-          <div class="col-sm-12">
-            <span><strong>FNR No:</strong> {{ record.fnrNo }}</span>
+                        <div class="col-sm-12">
+                          <span><strong>FNR No:</strong> {{ record.fnrNo }}</span>
+                        </div>
+                        <div class="col-sm-12">
+                          <span><strong>Expected Hourse: </strong> <b style="color: red;">{{ record.expected_Hours
+                              }}</b></span>
+                        </div>
+                        <div class="col-sm-12">
+                          <span><strong>Source DateTime:</strong> {{ record.sourceDateTime | date:'dd MMM yyyy ,
+                           hh:mm a' }}</span>
+                        </div>
+                        <div class="col-sm-12">
+                          <span><strong>Eastimated DateTime:</strong> {{ record.etaDstinationDateTime }}</span>
+                        </div>
+
+                        <div class="col-sm-12">
+                          <span><strong> Railway Destination :</strong> {{ record.stationTo }}</span>
+                        </div>
+
+                        <div class="col-sm-12">
+                          <span><strong>PRISM Destination:</strong> {{ record.depotName }}</span>
+                        </div>
+
+
+
+                        <div class="col-sm-12">
+                          <span><strong>Current Status:</strong> {{ record.currentStatus }}</span>
+                        </div>
+
+
+                      </div>
+
+
+                      <div class="col-sm-2">
+                        <button mat-mini-fab class="float-right" style="float: right; background-color: blue;"
+                          (click)="gotoMapView(record.id)">
+                          <mat-icon>map</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
           </div>
-          <div class="col-sm-12" >
-            <span><strong>Expected Hourse:   </strong > <b style="color: red;">{{ record.expected_Hours }}</b></span>
-          </div>
-          <div class="col-sm-12">
-            <span><strong>Source DateTime:</strong> {{ record.sourceDateTime | date:'dd MMM yyyy , hh:mm a'  }}</span>
-          </div>
-          <div class="col-sm-12">
-            <span><strong>Eastimated DateTime:</strong> {{ record.etaDstinationDateTime }}</span>
-          </div>
-
-          <div class="col-sm-12">
-            <span><strong> Railway Destination :</strong> {{ record.stationTo }}</span>
-          </div>
-
-          <div class="col-sm-12">
-            <span><strong>PRISM Destination:</strong> {{ record.depotName }}</span>
-          </div>
 
 
 
-          <div class="col-sm-12">
-            <span><strong>Current Status:</strong> {{ record.currentStatus }}</span>
-          </div>
+
 
 
         </div>
 
 
-        <div class="col-sm-2">
-          <button mat-mini-fab class="float-right" style="float: right; background-color: blue;" (click)="gotoMapView(record.id)">
-            <mat-icon>map</mat-icon>
-          </button>
+
+        <div>
+
+
+
         </div>
       </div>
-    </div>
-  </div>
-</div>
-</div>
 
-
-
-
- </div>
-
-
-
-
-
-
-  </div>
-
-
-  <!-- Placeholder for map -->
-  <div  >
-     <!-- *ngIf="viewMode === 'map'" -->
-    <!-- Add your map component or map code here -->
-
-        <!-- <div id="map"  style="height: 450px; width:100%;" ></div> -->
-
-
-
-  </div>
-</div>
-
-
-</div>
-
-
-
-<div class="container-fluid page-body-wrapper"  *ngIf="false">
-
-<div class="container">
-  <h5>
-    <header style="color: #e92b4c;
-    text-shadow: 2px 2px 10px #a0b3ff;">Vehicle Request Status</header>
-  </h5>
-
-
-<mat-card>
-
-
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-6">
-        <!-- [(ngModel)]="searchKeyWord" -->
-        <input type="text" class="form-control" placeholder="Search" >
-      </div>
-      <div class="col-6">
-        <button mat-raised-button color="warn" style="float: right;margin: auto;" class="col-lg-6 col-md-3 col-sm-1"
-          >
-
-          <span class=" m-2"> + Vehicle Request Form</span></button>
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-6">
-        <mat-radio-group style="padding: 20px;" class="col-lg-12 col-md-12 col-sm-12 " [(ngModel)]="radiobuttonActive" aria-label="Select an option">
-          <mat-radio-button style="padding-right: 30px;" value="0" checked  >Pending
-            </mat-radio-button>
-
-          <mat-radio-button #valueRadio value="1">Approved </mat-radio-button>
-
-        </mat-radio-group>
-
-
-      </div>
-      <div class="col-6">
-
-      </div>
-    </div>
-  </div></mat-card>
-  <mat-divider></mat-divider>
-  <br>
-
-  <!-- |filter : searchKeyWord; -->
-
-
-    <div class="col-lg-12 col-mg-12 col-sm-12" *ngFor="let list of filteredRecords  ">
-
-      <mat-card class="alldata">
-
-        <button mat-mini-fab class="float-right" style="float: right;"
-          [routerLink]='["/VehicleRequestDetailsById/" + list.id +"/"+radiobuttonActive,{HODApproval:false,AdminRequest:false}]'>
-          <!-- <mat-icon aria-label="" >view</mat-icon> VehicleEntrylistbyid -->
-          <mat-icon>visibility</mat-icon>
-        </button>
-
-        <div class="row" style="color: rgb(43, 37, 37);font-size: 14px;" *ngIf="false">
-
-
-          <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Vehicle Type:&nbsp; </b></span>{{ list.type
-            }} </div>
-
-<div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Vehicle Code:&nbsp;</b></span>{{
-  list.appCode }} </div>
-          <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>EmpName:&nbsp;</b></span>{{
-            list.empname }} </div>
-
-          <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Vehicle Request On:&nbsp; </b></span>{{
-            list.vehiclereqon | date:'dd/MM/yyyy'}} </div>
-            <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Vehicle Request At:&nbsp; </b></span>{{
-              list.vehiclereqat }} </div>
-
-
-          <!-- <div class="col-lg-4 col-md-4 col-sm-6"  *ngIf="getinoutstatus"><span class="small"><b>Vehicle getOut:&nbsp;</b></span>{{
-            list.gateOutAt |  date:'dd/MM/yyyy hh:mm a'}} </div> -->
-          <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Person:&nbsp;</b></span>{{
-            list.noofperson}} </div>
-          <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Visit Place
-                :&nbsp;</b></span>{{list.visitingplace }} </div>
-                <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Vehicle Request Where
-                  :&nbsp;</b></span>{{list.vehiclereqwhere }} </div>
-          <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Purpose:&nbsp;</b></span>{{
-            list.purpose}} </div>
-            <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Expected Return On:&nbsp;</b></span>{{
-              list.expectedreturnon| date:'dd/MM/yyyy'}} </div>
-          <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Expected Return At:&nbsp;</b></span>{{
-            list.expectedreturnat}} </div>
-          <!-- <div class="col-lg-4 col-md-4 col-sm-6"><span class="small"><b>Driver Licence:&nbsp;</b></span>{{
-            list.driverLicence }} </div> -->
-
-        </div>
-        <div class="row">
-          <div class="col-sm-3">
-            <span><strong>FNR No:</strong> {{ list.fnrNo }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Unique No:</strong> {{ list.uniqNo }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Source DateTime:</strong> {{ list.sourceDateTime }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Source Latitude:</strong> {{ list.sourceLat }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Source Longitude:</strong> {{ list.sourcLong }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Destination Station:</strong> {{ list.stationTo }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Destination Latitude:</strong> {{ list.destinationLat }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Destination Longitude:</strong> {{ list.destinationLong }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Current Status:</strong> {{ list.currentStatus }}</span>
-          </div>
-          <div class="col-sm-3">
-            <span><strong>Remark:</strong> {{ list.remark || 'N/A' }}</span>
-          </div>
-
-        </div>
-
-      </mat-card>
-      <mat-divider></mat-divider>
 
     </div>
 
@@ -434,11 +180,4 @@ border-radius: 20px;align-items: center;text-align: center;justify-content: cent
 
 
 
-</div>
-
-
-</div>
-
-
-
-
+  </div>

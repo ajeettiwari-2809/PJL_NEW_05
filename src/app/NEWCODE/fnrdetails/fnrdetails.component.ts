@@ -28,6 +28,16 @@ infoWindow: any;
 highlightedRoute: any;
 radioButton:string='map';
 
+sourceMarkers: google.maps.Marker[] = []; // Array to store source markers
+destinationMarkers: google.maps.Marker[] = []; // Array to store destination markers
+// directionsRenderers: google.maps.DirectionsRenderer[] = [];
+
+// directionsRenderer = new google.maps.DirectionsRenderer({});
+
+directionsRenderer: google.maps.DirectionsRenderer[] = [];
+
+blinkingMarker?: google.maps.Marker;
+
   ngOnInit(): void {
 
     this.zonecode= this.route.snapshot.params['id'];
@@ -82,6 +92,7 @@ console.log(this.radioButton)
    baseUrl:String = this.authservice.baseUrl;
   filteredRecords:any[]=[];
 
+  filteredRecordsbyHours:any[]=[];
 
   @ViewChild('map') mapContainer!: ElementRef;
 
@@ -105,13 +116,37 @@ console.log(this.radioButton)
     this.spinner.hide();
 
     this.filteredRecords=data;
+    this.filteredRecordsbyHours=this.filteredRecords;
 
     this.processData();
 
+    this.countDataLength();
+
   });
+
+}
+
+reached:any=[];
+twohours:any=[];
+fourhours:any=[];
+eghthours:any=[];
+twlhours:any=[];
+
+  countDataLength()
+  {
+this.reached=this.filteredRecords.filter((item: { expected_Hours: string; }) => item.expected_Hours === '0');
+
+this.twohours=this.filteredRecords.filter((item: { expected_Hours: any; }) =>  +item.expected_Hours > 0 && +item.expected_Hours <= 2);
+
+this.fourhours= this.filteredRecords.filter((item: { expected_Hours: string; }) =>  +item.expected_Hours > 2 && +item.expected_Hours <= 4);
+
+this.eghthours=   this.filteredRecords.filter((item: { expected_Hours: string; }) =>  +item.expected_Hours > 4 && +item.expected_Hours <= 8);
+
+this.twlhours= this.filteredRecords.filter((item: { expected_Hours: string; }) =>  +item.expected_Hours >8 );
 
 
   }
+
   loadMap() {
     const mapOptions = {
       zoom: 7,
@@ -165,11 +200,41 @@ console.log(this.radioButton)
     this.infoWindow = new google.maps.InfoWindow();
   }
 
+  clearMap() {
+    // Clear all markers
+    this.sourceMarkers.forEach(marker => marker.setMap(null));
+    this.sourceMarkers = []; // Reset the array
+
+    // Clear all destination markers
+    this.destinationMarkers.forEach(marker => marker.setMap(null));
+    this.destinationMarkers = [];
+
+    // Clear all directions renderers
+//     this.directionsRenderer.forEach((renderer: google.maps.DirectionsRenderer) => renderer.setMap(null));
+// this.directionsRenderer = [];
+
+this.directionsRenderer.forEach((renderer: google.maps.DirectionsRenderer) => {
+  renderer.setMap(null);
+});
+
+// Clear the array after removing the renderers from the map
+this.directionsRenderer= [];
+
+
+
+
+  }
 
   processData() {
+    console.log("MY LENGTH")
+    console.log(this.filteredRecordsbyHours.length);
+
+
+
     const sourceMap: { [key: string]: any[] } = {};
 
-    this.filteredRecords.forEach(record => {
+    this.filteredRecordsbyHours.forEach(record => {
+
       const sourceKey = `${record.sourceLat},${record.sourcLong}`;
 console.log("Source key "+ sourceKey);
 
@@ -225,10 +290,12 @@ console.log("Source key "+ sourceKey);
   }
 
   plotRoute(path: any) {
+
     const directionsRenderer = new google.maps.DirectionsRenderer({
       map: this.map,
       polylineOptions: { strokeColor: path.color }
     });
+
 
     const request = {
       origin: path.source,
@@ -240,12 +307,15 @@ console.log("Source key "+ sourceKey);
       suppressMarkers: true
     });
 
+    this.directionsRenderer.push(directionsRenderer);
+
     this.directionsService.route(request, (result: any, status: any) => {
       if (status === 'OK') {
         directionsRenderer.setDirections(result);
 
 
-        this.highlightedRoute = directionsRenderer;
+        // this.highlightedRoute = directionsRenderer;
+        this.directionsRenderer.push(directionsRenderer);
 
       } else {
         console.error('Directions request failed due to ' + status);
@@ -255,6 +325,8 @@ console.log("Source key "+ sourceKey);
 
   addMarkers(path: any) {
     // Source marker with customer logo
+
+
     const sourceMarker = new google.maps.Marker({
       position: path.source,
       map: this.map,
@@ -268,6 +340,7 @@ console.log("Source key "+ sourceKey);
       zIndex: 700,
       // label: { text: path.customerName, color: 'blue', fontSize: '16px' } // Use customer name
     });
+    this.sourceMarkers.push(sourceMarker);
 
     // Destination marker
     const destinationMarker = new google.maps.Marker({
@@ -284,8 +357,9 @@ console.log("Source key "+ sourceKey);
       // visible: false,
     });
 
+    this.destinationMarkers.push(destinationMarker);
     // Current location marker with blinking effect
-    this.addBlinkingMarker(path.current, path.lastRepLocn);
+      this.addBlinkingMarker(path.current, path.lastRepLocn,path);
 
     // Add click listeners to markers
     this.addMarkerClickListener(sourceMarker, path);
@@ -329,7 +403,9 @@ console.log("Source key "+ sourceKey);
     }, 500);
   }
 
-  addBlinkingMarker(position: google.maps.LatLngLiteral, lastRepLocn: string) {
+  addBlinkingMarker(position: google.maps.LatLngLiteral, lastRepLocn: string,path:any) {
+
+
     // Define the initial marker options with a custom icon
     const marker = new google.maps.Marker({
       position: position,
@@ -349,6 +425,11 @@ console.log("Source key "+ sourceKey);
       // },
       animation: google.maps.Animation.BOUNCE  // Adds bounce animation
     });
+
+    console.log('Blinking marker added:', this.blinkingMarker);
+
+
+    this.addMarkerClickListenerCurrent(path ,marker);
 
     // Blinking effect by changing the icon's color or toggling visibility
     setInterval(() => {
@@ -405,10 +486,10 @@ console.log("Source key "+ sourceKey);
       this.infoWindow.setContent(`
         <div>
 
-          <strong>Destination Latitude:</strong> ${path.destination['lat']}<br>
-          <strong>Destination Longitude:</strong> ${path.destination.lng}<br>
-          <strong>Station To:</strong> ${path.stationTo || 'N/A'}<br>
-          <strong>ETA Destination DateTime:</strong> ${path.alldata['etaDstinationDateTime'] || 'Not Available'}
+             <strong>Station To:</strong> ${path.alldata['stationTo'] || 'Not Available'}<br>
+          <strong>Est  Destination DateTime:</strong> ${path.alldata['etaDstinationDateTime'] || 'Not Available'}<br>
+           <strong>Current Status:</strong> ${path.alldata['currentStatus'] || 'Not Available'}<br>
+            <strong>Depo Name:</strong> ${path.alldata['depotName'] || 'Not Available'}<br>
         </div>
       `);
 
@@ -417,6 +498,33 @@ console.log("Source key "+ sourceKey);
       // this.navigateToDetail(path.id);
 
       this.highlightPath(path);
+    });
+  }
+
+
+
+  addMarkerClickListenerCurrent( path: any,marker: any) {
+
+
+    marker.addListener('click', () => {
+
+      this.infoWindow.setContent(`
+        <div>
+
+
+
+           <strong>Current Status:</strong> ${path.alldata['currentStatus'] || 'Not Available'}<br>
+            <strong>Station To:</strong> ${path.alldata['stationTo'] || 'Not Available'}<br>
+          <strong>Est  Destination DateTime:</strong> ${path.alldata['etaDstinationDateTime'] || 'Not Available'}<br>
+            <strong>Depo Name:</strong> ${path.alldata['depotName'] || 'Not Available'}<br>
+
+
+        </div>
+      `);
+
+
+      this.infoWindow.open(this.map, marker);
+
     });
   }
 
@@ -434,6 +542,7 @@ console.log("Source key "+ sourceKey);
         strokeWeight: 6,         // Thicker line for highlighting
       },
     });
+
 
     const request = {
       origin: path.destination,      // Set the origin as the destination
@@ -476,5 +585,69 @@ console.log("Source key "+ sourceKey);
     console.log("ID")
 
     this.router.navigateByUrl('/googlemap/' + id);
+  }
+
+  getzoneFoisCount(hours:any)
+  {
+    if(hours ==0)
+    {
+      this.filteredRecordsbyHours=this.filteredRecords.filter((item: { expected_Hours: string; }) => item.expected_Hours === hours);
+      this.clearMap();
+
+
+      if (this.blinkingMarker) {
+
+        console.log('Removing blinking marker:', this.blinkingMarker);
+        this.blinkingMarker.setMap(null);  // Remove the marker from the map
+        // this.blinkingMarker? = null;  // Clear the reference
+    } else {
+        console.log('No blinking marker to remove');
+    }
+      this.processData();
+
+    }
+    else if(hours ==2)
+    {
+
+      this.filteredRecordsbyHours=this.filteredRecords.filter((item: { expected_Hours: string; }) =>  +item.expected_Hours > 0 && item.expected_Hours <= hours);
+      this.clearMap();
+
+      this.processData();
+    }
+
+    else if(hours ==4)
+      {
+
+        this.filteredRecordsbyHours=this.filteredRecords.filter((item: { expected_Hours: string; }) =>  +item.expected_Hours > 2 && +item.expected_Hours <= hours);
+        this.clearMap();
+
+        this.processData();
+      }
+      else if(hours ==8)
+        {
+
+          this.filteredRecordsbyHours=this.filteredRecords.filter((item: { expected_Hours: string; }) =>  +item.expected_Hours > 4 && +item.expected_Hours <= hours);
+          this.clearMap();
+          this.processData();
+        }
+        else if(hours ==12)
+          {
+
+            this.filteredRecordsbyHours=this.filteredRecords.filter((item: { expected_Hours: string; }) =>  +item.expected_Hours >8 );
+            this.clearMap();
+            this.processData();
+          }
+
+          else if(hours =='all')
+            {
+
+              this.filteredRecordsbyHours=this.filteredRecords;
+              this.processData();
+            }
+
+
+
+
+
   }
 }

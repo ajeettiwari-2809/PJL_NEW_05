@@ -45,8 +45,38 @@ export class SigninComponent implements OnInit {
   }
 
 ngOnInit(): void {
-  this.router.navigate(['/googlemapcolor']);
+
+  // this.router.navigate(['/ZoneFois']);
+
+  this.getUserDetails();
+
 }
+
+
+userDetails:any;
+getUserDetails()
+{
+
+  const userDetailsString = localStorage.getItem('user');
+
+  if (userDetailsString) {
+    // Parse the string back into a JavaScript object
+    this.userDetails = JSON.parse(userDetailsString);
+
+    // Log the user details to the console
+    console.log("User Details: ", this.userDetails);
+
+
+
+    this.refreshDashboard(this.userDetails['appuser'])
+
+
+  } else {
+    console.log("No user details found in localStorage");
+  }
+}
+
+
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -139,6 +169,7 @@ ngOnInit(): void {
 
   onLogin() {
 
+   const appversion= this.auth.appversion;
     console.log("Method callinfs");
     if (this.loginForm.valid) {
 
@@ -147,7 +178,8 @@ ngOnInit(): void {
         userName:'',
 
         userOTP: this.loginForm.value.password,
-        password:''
+        password:'',
+
       };
 
      this.auth.login(userDetails)
@@ -160,6 +192,7 @@ if(res.status==200)
           // this.loginForm.reset();
          console.log(res),
          this.auth.storeToken(res.token);
+
           localStorage.setItem('user', JSON.stringify(res));
 
           const tokenPayload = this.auth.decodeToken();
@@ -168,8 +201,9 @@ if(res.status==200)
 
           this.toastr.success(res.message);
 console.log("Navigate"),
-this.refreshDashboard();
-          // this.router.navigate(['/dashboardhome']);
+
+this.refreshDashboard(res.appuser);
+          // this.router.navigate(['/ZoneFois']);
           console.log("Navigate after");
 
           // window.location.reload();
@@ -197,11 +231,32 @@ this.refreshDashboard();
     }
   }
 
-  refreshDashboard() {
-console.log("inside login")
-    this.router.navigateByUrl('/googlemapcolor', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/googlemapcolor']);
+  refreshDashboard(userDetails:any) {
+    if(userDetails.roleCode=='ZLM')
+
+    {
+      console.log("your role is  ZLM")
+      this.router.navigateByUrl('/ZoneFois', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/ZoneFois']);
     });
+
+    }
+   else if(userDetails.roleCode=='LOGADMIN')
+
+      {  this.router.navigateByUrl('/googlemapcolor', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/googlemapcolor']);
+      });
+
+      }
+      else{
+
+        this.toastr.error("Your Login  Credential is changed, Kindly Contact with 'IT TEAM'. ")
+      }
+
+    //    console.log("inside login")
+    // this.router.navigateByUrl('/googlemapcolor', { skipLocationChange: true }).then(() => {
+    //   this.router.navigate(['/googlemapcolor']);
+    // });
   }
 
   Start(){
@@ -226,6 +281,7 @@ console.log("inside login")
   otpstatus:boolean=false;
   getOTPVerify()
   {
+    const appversion=this.auth.appversion
     this.spinner.show();
 
     console.log(this.loginForm.value.userCode)
@@ -235,6 +291,7 @@ console.log("inside login")
 
         const userCode = {
           userCode: this.loginForm.value.userCode,
+          appVersion: appversion
 
         };
 

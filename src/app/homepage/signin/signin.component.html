@@ -2,10 +2,10 @@
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
         <div class="row flex-grow">
-          <div class="col-lg-6 d-flex align-items-center justify-content-center">
+          <div class="col-lg-4 d-flex align-items-center justify-content-center">
             <div class="auth-form-transparent text-left p-3">
               <div class="brand-logo">
-                <img src="assets/newcss/images/PRISM/prismlogo.png" alt="logo">
+                <img src="assets/pjlphotos/PJLEXPRESS_LOGO.png" alt="logo" style="width: 200px;">
               </div>
               <h4>Welcome back!</h4>
               <h6 class="font-weight-light">Login</h6>
@@ -52,20 +52,30 @@
                   <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" (click)="onLogin()">LOGIN</a>
                 </div>
               </div>
-                <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a [routerLink]="['/signup']" class="text-primary">Create</a>
+                <div class="text-center mt-4 font-weight-light" style="font-weight: bold;">
+                  AppVersion:  V001
                 </div>
               </form>
             </div>
           </div>
 
-          <div class="col-lg-6 login-half-bg d-flex flex-row">
+          <div class="col-lg-8 login-half-bg d-flex flex-row">
             <p class="text-white font-weight-medium text-center flex-grow align-self-end"></p>
           </div>
 
-        </div>      </div>
+        </div>
+
+      </div>
+
+
       <!-- content-wrapper ends -->
     </div>
+    <footer class="footer">
+      <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024 All Rights Reserved<a href="https://www.prismcement.com/" target="_blank">prismcement.com</a></span>
+        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Privacy Policy <a href="https://www.prismcement.com/privacy-policy" target="_blank"> .. </a> </span>
+      </div>
+    </footer>
     <!-- page-body-wrapper ends -->
   </div>
 

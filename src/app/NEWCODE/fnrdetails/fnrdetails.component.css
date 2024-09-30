@@ -138,7 +138,7 @@
   border-radius: 4px;
 }
 
-.card-body:hover{
+#card-body:hover{
 box-shadow: 2px 2px 12px grey;
 border: 1px solid red;
 }

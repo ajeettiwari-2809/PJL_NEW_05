@@ -96,6 +96,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { FNRDETAILSComponent } from './NEWCODE/fnrdetails/fnrdetails.component';
 import { FNRDETAILSBYIDComponent } from './NEWCODE/fnrdetailsbyid/fnrdetailsbyid.component';
 import { TestmspComponent } from './NEWCODE/testmsp/testmsp.component';
+import { ZoneFOISDetailsComponent } from './NEWCODE/ZONEFOIS/zone-foisdetails/zone-foisdetails.component';
+import { UserProfilePageComponent } from './NEWCODE/user-profile-page/user-profile-page.component';
 // import { AgmCoreModule } from '@agm/core';
 
 
@@ -178,6 +180,8 @@ import { TestmspComponent } from './NEWCODE/testmsp/testmsp.component';
     FNRDETAILSComponent,
     FNRDETAILSBYIDComponent,
     TestmspComponent,
+    ZoneFOISDetailsComponent,
+    UserProfilePageComponent,
 
 
 

@@ -2,6 +2,33 @@
 
 
 
+<nav class="navbar navbar-expand-lg navbar-light" *ngIf="!isUserAuthenticated()" style="background-color: red;">
+  <div class="container-fluid">
+    <img src="https://asms.prismcement.com/assets/logo.png" style="width: 50px;">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-2 mb-lg-0" style="color: white;">
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.prismcement.com/" style="color: white;">PRIS MCEMENT</a>
+        </li>
+        <li class="nav-item" style="color: white;">
+          <a class="nav-link active" aria-current="page" href="https://saksham.prismjohnson.in/rvw/hub/" style="color: white;">SAKSHAM</a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="https://nayidisha.prismcement.com/rvw/hub/index.html?_dc=1712672229505" tabindex="-1" aria-disabled="true" style="color: white;">NAYI DISHA</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
 
 
 
@@ -9,14 +36,16 @@
 
  <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" *ngIf="isUserAuthenticated()" >
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-      <a class="navbar-brand brand-logo me-5" href="index.html"><img src="assets/newcss/images/PRISM/prismlogo.png" class="me-2" alt="logo"/></a>
-      <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/newcss/images/PRISM/prismlogo.png" alt="logo"/></a>
+      <!-- <a class="navbar-brand brand-logo me-5" href="index.html"><img src="assets/newcss/images/PRISM/prismlogo.png" class="me-2" alt="logo"/></a>
+      <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/newcss/images/PRISM/prismlogo.png" alt="logo"/></a> -->
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
       <!--   data-toggle="minimize"-->
         <button class="navbar-toggler navbar-toggler align-self-center" type="button"  (click)="toggleSidebar()"  >
           <span class="ti-view-list"></span>
         </button>
+        <!-- <button (click)="toggleFullscreen()">Toggle Full Screen</button> -->
+
       <ul class="navbar-nav mr-lg-2">
         <li class="nav-item nav-search d-none d-lg-block">
           <div class="input-group" *ngIf="false">
@@ -45,11 +74,11 @@
                 <h6 class="ellipsis font-weight-normal">PJL
                 </h6>
                 <p class="font-weight-light small-text text-muted mb-0">
-                  Adding new help Pannel : Progress
+                  Adding new Report Pannel : Progress
                 </p>
               </div>
             </a>
-            <a class="dropdown-item">
+            <a class="dropdown-item" *ngIf="false">
               <div class="item-thumbnail">
                   <img src="assets/newcss/images/PRISM/prismlogo.png" alt="image" class="profile-pic">
               </div>
@@ -80,7 +109,7 @@
               <div class="item-content">
                 <h6 class="font-weight-normal">Application Error</h6>
                 <p class="font-weight-light small-text mb-0 text-muted">
-                  If Your Web Pannel Not working Properly or <span style="color: red;"> not showing GRAPH</span>, Refresh The Page
+                  If Your Web Pannel Not working Properly or <span style="color: red;"> not showing DATA</span>, Refresh The Page
                 </p>
               </div>
             </a>
@@ -98,7 +127,7 @@
               </div>
             </a>
 
-            <a class="dropdown-item">
+            <a class="dropdown-item" *ngIf="false">
               <div class="item-thumbnail">
                 <div class="item-icon bg-info">
                   <i class="ti-user mx-0"></i>
@@ -118,10 +147,11 @@
             <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="profile"/>
           </a>
           <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-            <!-- <a class="dropdown-item">
-              <i class="ti-settings text-primary"></i>
-              Settings
-            </a> -->
+            <a class="dropdown-item" (click)="nabigateToProfile()">
+              <i class="ti-user text-primary"></i>
+              <span style="display: block;">{{userRole['name']}}</span>
+              <!-- <span style="display: block;">{{userRole['email']}}</span> -->
+            </a>
             <a class="dropdown-item" (click)="logout()">
               <i class="ti-power-off text-primary"></i>
               Logout
@@ -129,7 +159,9 @@
           </div>
         </li>
       </ul>
-      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas"
+
+      >
         <span class="ti-view-list"></span>
       </button>
     </div>

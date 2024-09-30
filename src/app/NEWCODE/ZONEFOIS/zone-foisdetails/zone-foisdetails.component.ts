@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -7,25 +7,35 @@ import { NgxSpinnerService } from 'ngx-spinner';
 declare const google: any;
 
 @Component({
-  selector: 'app-google-map-with-colors',
-  templateUrl: './google-map-with-colors.component.html',
-  styleUrls: ['./google-map-with-colors.component.css']
+  selector: 'app-zone-foisdetails',
+  templateUrl: './zone-foisdetails.component.html',
+  styleUrls: ['./zone-foisdetails.component.css']
 })
-export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
+export class ZoneFOISDetailsComponent implements OnInit, OnDestroy {
   map: any;
   directionsService: any;
   records: any[] = [];
   records1: any[] = [];
+  ZoneFoisData:any[]=[];
   infoWindow: any;
   transitRecords: any[] = [];
   baseurl: string = this.authService.baseUrl;
   isDropdownOpen: { [key: string]: boolean } = {};
   arrivalData:any=[];
+
+  reached:any=[];
+twohours:any=[];
+fourhours:any=[];
+eghthours:any=[];
+twlhours:any=[];
+
+
   constructor(
     private http: HttpClient,
     private router: Router,
     private authService: AuthService,
     private spinner: NgxSpinnerService,
+
 
   ) {
 
@@ -36,8 +46,6 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
     this.fetchData();
     this.startAutoRefresh();
     this.fetchTransitCount();
-  this.getVersionCheck();
-
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -46,8 +54,12 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
       }
     });
 
+
+    this.getVersionCheck();
+
   }
-  getVersionCheck()
+
+getVersionCheck()
   {
     const appver=this.authService.appversion;
 
@@ -55,7 +67,8 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
 
    const apiUrl=this.baseurl+ 'Trans/getUserVersion_Checking?versionCode=';
    const finalurl=apiUrl+ appver;
-
+console.log("Calling meeeeeeeeeeeeeeeeee")
+console.log(appver)
     this.http.post(finalurl, {
     }).subscribe((data: any) => {
 
@@ -73,9 +86,6 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
 
   })
 }
-
-
-
   refreshComponent()
   {
     window.location.reload();
@@ -153,20 +163,122 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
     this.infoWindow = new google.maps.InfoWindow();
   }
 
+  fetchData1() {
+    this.spinner.show();
+    const apiUrl = this.baseurl + 'Trans/getFOIS_List_Admin_Rack_Track';
+    console.log("my dsta")
+    try{
+
+      this.http.post(apiUrl, { "input": 0, "inputString": "string" }).subscribe((data: any) => {
+        this.spinner.hide();
+        // this.records =  data;
+        // this.records1= data;
+
+  console.log(data.stausCode);
+
+        this.records =  data.filter((item: { zoneCode: string; }) => item.zoneCode === 'BH');;
+        this.records1= data.filter((item: { zoneCode: string; }) => item.zoneCode === 'BH');;
+        this.processData();
+        this.getzoneFoisCount('0');
+      });
+    }
+
+    catch(e)
+    {
+      console.log("INSIDE CATCH")
+
+      window.alert("Your Login Is Expired")
+    }
+
+
+
+
+  }
+
+  fetchData2() {
+    this.spinner.show();
+    const apiUrl = this.baseurl + 'Trans/getFOIS_List_Admin_Rack_Track';
+
+    // Make HTTP POST request
+    this.http.post(apiUrl, { "input": 0, "inputString": "string" }).subscribe(
+      (data: any) => {
+        // Success response handling
+        this.spinner.hide();
+        console.log(data.statusCode);
+
+        this.records = data.filter((item: { zoneCode: string; }) => item.zoneCode === 'BH');
+        this.records1 = data.filter((item: { zoneCode: string; }) => item.zoneCode === 'BH');
+
+        this.processData();
+        this.getzoneFoisCount('0');
+      },
+      (error) => {
+        // Error response handling
+        this.spinner.hide(); // Hide the spinner if there's an error
+        console.log("Error occurred:" );
+        console.log("Error occurred:" + error.status);
+
+        // If the error status is 401, show alert and log the user out
+        if (error.status === 401) {
+
+          window.alert("Your Login Is Expired. Please log in again.");
+
+          this.authService.signOut();
+          this.router.navigate(['']);
+
+        } else {
+          // Handle other types of errors
+          window.alert("An error occurred. Please try again.");
+        }
+      }
+    );
+  }
   fetchData() {
     this.spinner.show();
     const apiUrl = this.baseurl + 'Trans/getFOIS_List_Admin_Rack_Track';
-    this.http.post(apiUrl, { "input": 0, "inputString": "string" }).subscribe((data: any) => {
-      this.spinner.hide();
-      this.records =  data;
-      this.records1= data;
+
+    // Make HTTP POST request
+    this.http.post(apiUrl, { "input": 0, "inputString": "string" }).subscribe(
+      (data: any) => {
+        // Success response handling
+        this.spinner.hide();
+        console.log(data.statusCode);
+
+        this.records =  data;
+        this.records1= data;
 
 
-      // this.records =  data.filter((item: { zoneCode: string; }) => item.zoneCode === 'BH');;
-      // this.records1= data.filter((item: { zoneCode: string; }) => item.zoneCode === 'BH');;
-      this.processData();
-    });
+        this.processData();
+        this.getzoneFoisCount('0');
+        this.countDataLength();
+      },
+      (error) => {
+
+        this.spinner.hide(); // Hide the spinner if there's an error
+        this.authService.signOut(); // Use your logout method here
+        this.router.navigate(['']); // Redirect to login page
+
+        if (error instanceof HttpErrorResponse) {
+          console.log("Full error:", error.status);
+          // Handle HTTP errors (server errors, client errors)
+          if (error.status === 401) {
+            // Token expired or unauthorized, log out the user
+            window.alert("Your Login Is Expired. Please log in again.");
+            this.authService.signOut(); // Use your logout method here
+            this.router.navigate(['']); // Redirect to login page
+
+          } else {
+            window.alert(`An error occurred: ${error.status} - ${error.message}`);
+          }
+        } else {
+          // Handle network or unknown errors (non-HTTP errors)
+          window.alert("A network error occurred, or Your Login Credential Is Expired ? Logout.. ");
+        }
+      }
+    );
   }
+
+
 
   fetchTransitCount() {
     this.spinner.show();
@@ -440,8 +552,6 @@ console.log("Data");
     // Add click listeners to markers
     this.addMarkerClickListener(sourceMarker, path);
     this.addMarkerClickListener(destinationMarker, path);
-    // this.addMarkerClickListenerCurrent(currenteMarker, path);
-
   }
 
   addBlinkingMarker1(position: google.maps.LatLngLiteral, lastRepLocn: string) {
@@ -504,7 +614,7 @@ console.log("Data");
     });
 
 
-     this.addMarkerClickListenerCurrent(path ,marker);
+    this.addMarkerClickListenerCurrent(path ,marker);
     // Blinking effect by changing the icon's color or toggling visibility
     setInterval(() => {
       const currentIcon = marker.getIcon() as google.maps.Icon | google.maps.Symbol | null;
@@ -559,9 +669,13 @@ console.log("Data");
 
 
     marker.addListener('click', () => {
+      console.log('info')
+      ,console.log(path.destination)
 
+      // this.infoWindow.setContent(`<div><strong>ID:</strong> ${path.id}</div>`);
       this.infoWindow.setContent(`
         <div>
+
 
 
           <strong>Station To:</strong> ${path.alldata['stationTo'] || 'Not Available'}<br>
@@ -605,13 +719,6 @@ console.log("Data");
     });
   }
 
-
-
-
-
-
-
-
   navigateToDetail(routeId: number) {
     // Implement navigation to detail page
     // this.router.navigate(['/details', routeId]);
@@ -642,4 +749,74 @@ console.log("Data");
     }
     return 'red'; // Default color
   }
+
+
+
+  expectedtime:string='0';
+  getzoneFoisCount(hours:any)
+  {
+
+
+
+if(hours ==0)
+    {
+      this.ZoneFoisData=this.records.filter((item: { expected_Hours: string; }) => item.expected_Hours === hours);
+
+
+    }
+    else if(hours ==2)
+    {
+
+      this.ZoneFoisData=this.reached.filter((item: { expected_Hours: string; }) =>  +item.expected_Hours > 0 && item.expected_Hours <= hours);
+
+    }
+
+    else if(hours ==4)
+      {
+
+        this.ZoneFoisData=this.records.filter((item: { expected_Hours: string; }) =>  +item.expected_Hours > 2 && +item.expected_Hours <= hours);
+
+      }
+      else if(hours ==8)
+        {
+
+          this.ZoneFoisData=this.records.filter((item: { expected_Hours: string; }) =>  +item.expected_Hours > 4 && +item.expected_Hours <= hours);
+
+        }
+        else if(hours ==12)
+          {
+
+            this.ZoneFoisData=this.records.filter((item: { expected_Hours: string; }) =>  +item.expected_Hours >8 );
+
+          }
+
+          else if(hours =='all')
+            {
+
+              this.ZoneFoisData=this.records;
+
+            }
+
+
+
+
+
+
+  }
+
+  countDataLength()
+  {
+this.reached=this.records.filter((item: { expected_Hours: string; }) => item.expected_Hours === '0');
+
+this.twohours=this.records.filter((item: { expected_Hours: any; }) =>  +item.expected_Hours > 0 && +item.expected_Hours <= 2);
+
+this.fourhours= this.records.filter((item: { expected_Hours: string; }) =>  +item.expected_Hours > 2 && +item.expected_Hours <= 4);
+
+this.eghthours=   this.records.filter((item: { expected_Hours: string; }) =>  +item.expected_Hours > 4 && +item.expected_Hours <= 8);
+
+this.twlhours= this.records.filter((item: { expected_Hours: string; }) =>  +item.expected_Hours >8 );
+
+
+  }
+
 }

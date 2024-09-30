@@ -1,4 +1,4 @@
-  
+
         <div class="main-panel" style="width: 100%;" *ngIf="false">
             <div class="content-wrapper pb-0">
               <div class="page-header flex-wrap" style="background: transparent;">
@@ -25,37 +25,37 @@
                             <div class="color-card">
                               <p class="mb-0 color-card-head" >Customer </p>
 
-                              
+
                             </div>
                             <!-- <i class="card-icon-indicator mdi mdi-account bg-inverse-icon-warning"></i> -->
 
                           </div>
-                         
+
                           <h6 class="text-white"> Vedios  : 3</h6>
                           <h6 class="text-white"> Documents : 3</h6>
-                         
+
 
 
                         </div>
                       </div>
                     </div>
-                    
+
                     <div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3"  (click)="selectList(1)" >
                       <div class="card bg-danger">
                         <div class="card-body px-3 py-4">
                           <div class="d-flex justify-content-between align-items-start">
                             <div class="color-card">
                                 <p class="mb-0 color-card-head" >Error & Solution </p>
-  
-                                
+
+
                               </div>
                               <!-- <i class="card-icon-indicator mdi mdi-cube-outline bg-inverse-icon-danger"></i> -->
-  
+
                             </div>
-                           
+
                             <h6 class="text-white"> Vedios  : 2</h6>
                             <h6 class="text-white"> Documents : 2</h6>
-                           
+
                         </div>
                       </div>
                     </div>
@@ -92,7 +92,7 @@
                 </div>
 <!-- for all values details list -->
                 <div class="col-xl-10 stretch-card grid-margin" >
-                 
+
                   <div class="card" >
                     <div class="card-body">
                       <div class="row">
@@ -115,33 +115,33 @@
                                   </div>
                                 </div>
                               </li>
-                              
+
                               <!-- <div class="col-6">
                                 <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchKeyWord">
                               </div> -->
-                      
+
                         </div>
                       </div>
 
                       <!-- For multiple card related to Customers  1-->
 
 
-                      <div class="row"   > 
+                      <div class="row"   >
                         <div class="col-sm-3" *ngFor="let listvalues of samelistforall;" style="padding: 5px;">
 
                             <div class="card mb-3 mb-sm-0">
                               <div class="card-body py-3 px-4" style="">
                                 <p class="m-0 survey-head" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);color: blue;font-size: 15px;">{{listvalues['name']}}</p>
-                               
-                                <div class="d-flex justify-content-between align-items-end flot-bar-wrapper">
-                                
 
-                                 
+                                <div class="d-flex justify-content-between align-items-end flot-bar-wrapper">
+
+
+
 
                                   <!-- Google Drive Icon -->
                            <!-- <i class="card-icon-indicator mdi mdi-google-drive bg-inverse-icon-success" (click)="openDocumentDrive()"></i> -->
 
-                                 
+
                                   <i class="card-icon-indicator mdi mdi-youtube bg-inverse-icon-success" (click)="playVedio()"></i>
 
                                 </div>
@@ -151,21 +151,21 @@
                           </div>
 
 
-                      
 
 
-                     
-                      
+
+
+
                     </div>
                   </div>
                 </div>
 
 
               </div>
-             
-   
-              
-             
+
+
+
+
             </div>
             <footer class="footer">
               <div class="d-sm-flex justify-content-center justify-content-sm-between">
@@ -175,14 +175,14 @@
             </footer>
           </div>
 
-          <div class="container-fluid page-body-wrapper" style="width: 100%;height: 100vh;">
+          <div class="container-fluid page-body-wrapper" style="width: 100%;height: 100vh;" *ngIf="false">
 
           <div class="main-panel" style="width: 100%;">
             <div class="content-wrapper pb-0">
-                
+
                 <div class="page-header flex-wrap" >
                     <h3 class="mb-0">
-                        Sale Modules 
+                        Sale Modules
                         <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block">
                             Our Sales Modules are meticulously designed to equip sales professionals
                         </span>
@@ -191,7 +191,7 @@
                         <button (click)="goBack()" class="back-button">Back</button>
                     </div>
                 </div>
-               
+
                 <div class="row">
                     <div class="col-xl-2 col-lg-12 stretch-card grid-margin">
                         <!-- Sales video design -->
@@ -253,7 +253,7 @@
                                             <div class="card-body py-3 px-4" style="">
                                                 <p class="m-0 survey-head">{{listvalues['name']}}</p>
                                                 <div class="d-flex justify-content-between align-items-end flot-bar-wrapper">
-                                                   
+
                                                     <i class="fas fa-file-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0" (click)="openDocument()"></i>
 
                                                     <i class="fas fa-play-circle icon-md text-muted mb-0 mb-md-3 mb-xl-0" (click)="playVedio()"></i>
@@ -316,4 +316,25 @@
 
 
           </div>
-        
+
+
+
+
+          <div class="container-fluid page-body-wrapper">
+
+
+
+
+
+
+
+            <div class="main-panel" style="width: 100%; position: relative; overflow: visible;">
+
+              <div class="content-wrapper">
+                <div class="container-fluid">
+                  <b>
+                    This Module  is Currently  Working..
+                  </b>
+                </div>
+
+              </div></div></div>

@@ -66,17 +66,18 @@
     <div class="content-wrapper">
 
  <div class="row">
-        <div class="col-md-3 grid-margin" *ngFor="let details of transitRecords">
-          <div class="card"   style="padding: 0;margin: 0;">
+        <div class="col-sm-3 grid-margin" *ngFor="let details of transitRecords" style="padding: 0;">
+          <div class="card"   style="padding: 0;margin-right: 2px;">
             <!-- [ngStyle]="{'background-color': getCardColor(details.zoneCode)}" -->
-            <div class="card-body"  style="padding-bottom: 0px;">
+            <div class="card-body"  style="padding-bottom: 0px;margin: 0;">
               <div class="row" >
-                <div class="col-md-3" >
-                  <p class="card-title text-md-center text-xl-left" [ngStyle]="{'color': getCardColor(details.zoneCode)}">{{ details.zoneCode }}</p>
+
+                <div class="col-sm-4" >
+                  <p class="card-title text-md-center text-xl-left"  style="font-size: 12px;" [ngStyle]="{'color': getCardColor(details.zoneCode)}">{{ details.zoneName }}</p>
                 </div>
 
-                <div class="col-md-5" >
-                  <p class=" text-primary">
+                <div class="col-6 col-sm-4" >
+                  <p class=" text-primary" style="font-size: 12px;">
                     In-Transit
                     <span class="text-black ms-1"><small style="font-weight: bold;">({{ details.inTransit }})</small></span>
                   </p>
@@ -158,7 +159,7 @@
 
 
                 </div>
-                <div class="col-md-4" style="padding: 0;margin: 0;">
+                <div class="col-6 col-sm-3" style="padding: 0;margin: 0;">
                   <div class="more" (click)="ByZoneRecord(details.zoneCode)">
                     <p class=" text-primary" id="more">more details..</p>
                   </div>
@@ -168,27 +169,44 @@
               </div>
 
 
-<i style="font-size: 10px;">Expected Arrival:</i>
               <div class="row">
-                <div class="col-sm-3" style="padding: 0;margin: 0;">
-                  <div class="more" >
-                    <p class=" text-primary"  id="more">Reached:</p>
+                <div class="col-4 col-sm-4" style="padding: 0; margin: 0;">
+                  <i style="font-size: 10px;">Expected Arrival:</i>
+                </div>
+                <div class="col-4 col-sm-4" style="padding: 0; margin: 0;">
+                  <div class="more" (click)="ByZoneRecord(details.zoneCode)">
+                    <p class="text-primary" id="more">Reached: ({{details.reached}})</p>
                   </div>
                 </div>
-                <div class="col-sm-3" style="padding: 0;margin: 0;">
-                  <div class="more" >
-                    <p class=" text-primary" id="more">4hours</p>
+                <div class="col-4 col-sm-3" style="padding: 0; margin: 0;">
+                  <div class="more" (click)="ByZoneRecord(details.zoneCode)">
+                    <p class="text-primary" id="more">Awaiting: ({{details.awating}})</p>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+
+                <div class=" col-6  col-sm-3" style="padding: 0;margin: 0;">
+                  <div class="more" (click)="ByZoneRecord(details.zoneCode)">
+                    <p class=" text-primary" id="more">2hours: ({{details.twoHours}})</p>
                   </div>
                 </div>
 
-                <div class="col-sm-3" style="padding: 0;margin: 0;">
-                  <div class="more" >
-                    <p class=" text-primary"  id="more">8hours</p>
+                <div class=" col-6  col-sm-3" style="padding: 0;margin: 0;">
+                  <div class="more" (click)="ByZoneRecord(details.zoneCode)">
+                    <p class=" text-primary" id="more">4hours: ({{details.fourHours}})</p>
                   </div>
                 </div>
-                <div class="col-sm-3" style="padding: 0;margin: 0;">
-                  <div class="more">
-                    <p class=" text-primary" id="more">12hours</p>
+                <div class="col-6  col-sm-3" style="padding: 0;margin: 0;">
+                  <div class="more" (click)="ByZoneRecord(details.zoneCode)">
+                    <p class=" text-primary" id="more">8hours: ({{details.eightHours}})</p>
+                  </div>
+                </div>
+                <div class="col-6  col-sm-3" style="padding: 0;margin: 0;">
+                  <div class="more" (click)="ByZoneRecord(details.zoneCode)">
+                    <p class=" text-primary"  id="more">12& above ({{details.twelveHours}})</p>
                   </div>
                 </div>
 

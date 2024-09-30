@@ -563,7 +563,7 @@ console.log("opdnjksnn")
         strokeWeight: 2,
         scale: 8
       }:{
-        url: 'assets/pjlphotos/D6.png',
+        url: 'https://www.shutterstock.com/shutterstock/photos/1116213560/display_1500/stock-vector-warehouse-icon-isometric-of-warehouse-vector-icon-for-web-design-isolated-on-white-background-1116213560.jpg',
       scaledSize: new google.maps.Size(80, 40),
       origin: new google.maps.Point(0, 0),
       anchor: new google.maps.Point(40, 40)

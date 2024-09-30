@@ -12,6 +12,8 @@ export class AuthService {
 
    baseUrl:string = "https://appdev.prismcement.com/pjlexpressqasapi/";
 
+   appversion:string='V001';
+
   // private baseUrl:string = "https://appdev.prismcement.com/pjlexpress"
 
   private ansapiurl: string = "https://localhost:7243/api/TestAnswers01";
@@ -41,12 +43,14 @@ export class AuthService {
   }
 
   login(loginObj: any){
+
     console.log("My loginob");
     console.log(loginObj);
 
     const loginObjJson = JSON.stringify(loginObj);
 
     return this.http.post<any>(`${this.baseUrl}Auth/loginWithOTP`,loginObj);
+
   }
 
   getOTP(otpobj: any){
