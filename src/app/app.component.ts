@@ -31,7 +31,7 @@ export class AppComponent {
 
 
   handleBeforeUnload(event: Event) {
-    // this.auth.signOut(); // Clear authentication state
+    this.auth.signOut(); // Clear authentication state
   }
 
 

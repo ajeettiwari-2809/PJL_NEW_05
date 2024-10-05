@@ -91,6 +91,8 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
   //
    this.router.navigateByUrl('/fnrDetails/'+id);
 
+
+
   }
 
   getArrivalData()
@@ -212,7 +214,7 @@ console.log(locations)
       const { center, radius } = this.calculateZoneCircle(locations);
 
       // Draw the circle on the map
-      this.drawZoneCircle(center, radius, this.getColorForZone(zoneCode));
+      // this.drawZoneCircle(center, radius, this.getColorForZone(zoneCode));
 
 
     });
@@ -420,19 +422,100 @@ console.log("Data");
 
 
     // Destination marker
-    const destinationMarker = new google.maps.Marker({
+    const destinationMarker1 = new google.maps.Marker({
       position: path.destination,
       map: this.map,
       icon: {
-        url: 'assets/pjlphotos/mapdestinationicon.png',
-        scaledSize: new google.maps.Size(80, 40),
+        url: 'assets/pjlphotos/ware1.png',
+        scaledSize: new google.maps.Size(40, 20),
         origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(40,40)
+        anchor: new google.maps.Point(20,20)
       },
 
       zIndex: 700,
       // visible: false,
     });
+  // Destination marker with semi-transparent circular background
+
+
+  let destinationMarker = new google.maps.Marker();
+
+  if(path.alldata['zoneCode']=='CUP')
+  {
+    destinationMarker = new google.maps.Marker({
+      position: path.destination,
+      map: this.map,
+      icon: {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+            <circle cx="20" cy="20" r="20" fill="purple" fill-opacity="0.4" />
+            <image href="assets/pjlphotos/ware1.png" x="5" y="5" height="30" width="30"/>
+          </svg>
+        `),
+        scaledSize: new google.maps.Size(40, 40),
+        anchor: new google.maps.Point(20, 20),
+      },
+      zIndex: 700,
+    });
+  }
+
+  else if(path.alldata['zoneCode']=='BH')
+  {
+    destinationMarker = new google.maps.Marker({
+      position: path.destination,
+      map: this.map,
+      icon: {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+            <circle cx="20" cy="20" r="20" fill="yellow" fill-opacity="0.4" />
+            <image href="assets/pjlphotos/ware1.png" x="5" y="5" height="30" width="30"/>
+          </svg>
+        `),
+        scaledSize: new google.maps.Size(40, 40),
+        anchor: new google.maps.Point(20, 20),
+      },
+      zIndex: 700,
+    });
+  }
+  else if(path.alldata['zoneCode']=='EUP')
+    {
+      destinationMarker = new google.maps.Marker({
+        position: path.destination,
+        map: this.map,
+        icon: {
+          url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+              <circle cx="20" cy="20" r="20" fill="#F08080" fill-opacity="0.4" />
+              <image href="assets/pjlphotos/ware1.png" x="5" y="5" height="30" width="30"/>
+            </svg>
+          `),
+          scaledSize: new google.maps.Size(40, 40),
+          anchor: new google.maps.Point(20, 20),
+        },
+        zIndex: 700,
+      });
+    }
+
+
+    else{
+
+      destinationMarker = new google.maps.Marker({
+        position: path.destination,
+        map: this.map,
+        icon: {
+          url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+              <circle cx="20" cy="20" r="20" fill="blue" fill-opacity="0.4" />
+              <image href="assets/pjlphotos/ware1.png" x="5" y="5" height="30" width="30"/>
+            </svg>
+          `),
+          scaledSize: new google.maps.Size(40, 40),
+          anchor: new google.maps.Point(20, 20),
+        },
+        zIndex: 700,
+      });
+    }
+
 
     // Current location marker with blinking effect
     this.addBlinkingMarker(path.current, path.lastRepLocn,path);
@@ -633,13 +716,13 @@ console.log("Data");
 
   getCardColor(zoneCode: string): string {
     if (zoneCode === 'MP') {
-      return 'blue';
+      return '#ADD8E6'; // light blue
     } else if (zoneCode === 'BH') {
-      return 'yellow';
+      return '#e7eb9d'; // light yellow
+    } else if (zoneCode === 'CUP') {
+      return '#D8BFD8'; // light purple (thistle)
     }
-    else if (zoneCode === 'CUP') {
-      return 'purple';
-    }
-    return 'red'; // Default color
+    return '#F08080'; // light coral (default color)
   }
+
 }

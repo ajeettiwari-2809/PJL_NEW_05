@@ -10,8 +10,8 @@
 
       <div class="row">
 
-        <div class="col-12 grid-margin stretch-card">
-          <div class="card">
+        <div class="col-12 grid-margin stretch-card" >
+          <div class="card"  [ngStyle]="{'background-color': getCardColor(zoneName)}">
             <div class="row">
               <div class="col-md-4">
                 <div class="card-body">
@@ -19,7 +19,9 @@
 
                   <div class="row" >
                     <div class="col-sm-12" >
-                     <div class="view" style="color: black; background-color: aliceblue;padding: 4px;">
+                     <div class="view" style="color: black; background-color: aliceblue;padding: 4px;"
+
+                     >
                       <h4 class="card-title"><span  >{{zoneName}}</span>
                         <span
                           style="color: grey;font-size: 12px;padding: 2px;margin: 2px;color: red;">
@@ -40,7 +42,7 @@
               <div class="col-md-8">
                 <div class="card-body">
 
-                  <div class="template-demo">
+                  <div class="template-demo" *ngIf="false">
                     <button type="button" class="btn btn-outline-success btn-fw"
                       (click)="getzoneFoisCount('0')">Reached:  ({{reached.length}})</button>
                     <button type="button" class="btn btn-outline-primary btn-fw"
@@ -57,6 +59,60 @@
                       (click)="getzoneFoisCount('all')">All Records</button>
 
                   </div>
+
+                  <div class="template-demo">
+                    <button type="button"
+                            [ngClass]="{
+                              'btn-success': activeButton === '0',
+                              'btn-outline-success': activeButton !== '0'
+                            }"
+                            class="btn btn-fw"
+                            (click)="getzoneFoisCount('0')">Reached:  ({{reached.length}})
+                    </button>
+                    <button type="button"
+                            [ngClass]="{
+                              'btn-primary': activeButton === '2',
+                              'btn-outline-primary': activeButton !== '2'
+                            }"
+                            class="btn btn-fw"
+                            (click)="getzoneFoisCount('2')">2hours:  ({{twohours.length}})
+                    </button>
+                    <button type="button"
+                            [ngClass]="{
+                              'btn-secondary': activeButton === '4',
+                              'btn-outline-secondary': activeButton !== '4'
+                            }"
+                            class="btn btn-fw"
+                            (click)="getzoneFoisCount('4')">4hours:  ({{fourhours.length}})
+                    </button>
+
+                    <button type="button"
+                            [ngClass]="{
+                              'btn-danger': activeButton === '8',
+                              'btn-outline-danger': activeButton !== '8'
+                            }"
+                            class="btn btn-fw"
+                            (click)="getzoneFoisCount('8')">8hours:  ({{eghthours.length}})
+                    </button>
+                    <button type="button"
+                            [ngClass]="{
+                              'btn-warning': activeButton === '12',
+                              'btn-outline-warning': activeButton !== '12'
+                            }"
+                            class="btn btn-fw"
+                            (click)="getzoneFoisCount('12')">12&above:  ({{twlhours.length}})
+                    </button>
+
+                    <button type="button"
+                            [ngClass]="{
+                              'btn-warning': activeButton === 'all',
+                              'btn-outline-warning': activeButton !== 'all'
+                            }"
+                            class="btn btn-fw"
+                            (click)="getzoneFoisCount('all')">All Records
+                    </button>
+                  </div>
+
 
                   <div class="row" *ngIf="false">
 
@@ -156,6 +212,61 @@
 
 
           </div>
+
+
+          <div class="row" *ngIf="false">
+  <div class="col-sm-8 ">
+    <div id="map" style="height: 520px; width:100%;"></div>
+  </div>
+
+  <div class="col-sm-4 ">
+    <div class="header">
+      <h5 class="typing-text"><b style="color: blue;">{{zoneName}}</b>: Rakes Transit Details:
+        <span>{{filteredRecords.length}}</span></h5>
+    </div>
+
+    <div class="scroll" style="height: 500px; overflow-y: scroll;cursor: pointer;">
+      <div class="col-lg-12 col-mg-12 col-sm-12 card" *ngFor="let record of filteredRecordsbyHours">
+        <div class="card-body" style="font-size: 13px;margin-top: 2px;" id="card-body">
+          <div class="row" [ngStyle]="{'background-color': record.expected_Hours == 0 ? '#f5c6cb' : ''}">
+            <div class="col-sm-10">
+              <div class="col-sm-12">
+                <span><strong>FNR No:</strong> {{ record.fnrNo }}</span>
+              </div>
+              <div class="col-sm-12">
+                <span><strong>Expected Hourse: </strong> <b style="color: red;">{{ record.expected_Hours
+                    }}</b></span>
+              </div>
+              <div class="col-sm-12">
+                <span><strong>Source DateTime:</strong> {{ record.sourceDateTime | date:'dd MMM yyyy , hh:mm a' }}</span>
+              </div>
+              <div class="col-sm-12">
+                <span><strong>Eastimated DateTime:</strong> {{ record.etaDstinationDateTime }}</span>
+              </div>
+              <div class="col-sm-12">
+                <span><strong> Railway Destination :</strong> {{ record.stationTo }}</span>
+              </div>
+              <div class="col-sm-12">
+                <span><strong>PRISM Destination:</strong> {{ record.depotName }}</span>
+              </div>
+              <div class="col-sm-12">
+                <span><strong>Current Status:</strong> {{ record.currentStatus }}</span>
+              </div>
+            </div>
+
+            <div class="col-sm-2">
+              <button mat-mini-fab class="float-right" style="float: right; background-color: blue;"
+                (click)="gotoMapView(record.id)">
+                <mat-icon>map</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 

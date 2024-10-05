@@ -16,7 +16,7 @@ constructor(private authservice:AuthService,private http: HttpClient,private spi
 {}
 VehicleType:any=[];
 
-zonecode?:String;
+zonecode?:string;
 radiobuttonActive!:string;
 viewMode: string = 'map';
 zoneName:string='';
@@ -38,7 +38,12 @@ directionsRenderer: google.maps.DirectionsRenderer[] = [];
 
 blinkingMarker?: google.maps.Marker;
 
+
+
   ngOnInit(): void {
+
+
+
 
     this.zonecode= this.route.snapshot.params['id'];
     console.log(this.zonecode);
@@ -347,10 +352,10 @@ console.log("Source key "+ sourceKey);
       position: path.destination,
       map: this.map,
       icon: {
-        url: 'assets/pjlphotos/mapdestinationicon.png',
-        scaledSize: new google.maps.Size(80, 40),
+        url: 'assets/pjlphotos/ware1.png',
+        scaledSize: new google.maps.Size(40, 20),
         origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(40,40)
+        anchor: new google.maps.Point(20,20)
       },
 
       zIndex: 700,
@@ -587,8 +592,10 @@ console.log("Source key "+ sourceKey);
     this.router.navigateByUrl('/googlemap/' + id);
   }
 
+  activeButton: string = 'all';
   getzoneFoisCount(hours:any)
   {
+    this.activeButton = hours; //
     if(hours ==0)
     {
       this.filteredRecordsbyHours=this.filteredRecords.filter((item: { expected_Hours: string; }) => item.expected_Hours === hours);
@@ -649,5 +656,17 @@ console.log("Source key "+ sourceKey);
 
 
 
+  }
+
+
+  getCardColor(zoneCode: string): string {
+    // if (zoneCode === 'Madhya PRADESH') {
+    //   return '#ADD8E6'; // light blue
+    // } else if (zoneCode === 'BIHAR') {
+    //   return '#e7eb9d'; // light yellow
+    // } else if (zoneCode === 'CENTRAL UP') {
+    //   return '#D8BFD8'; // light purple (thistle)
+    // }
+    return '#ADD8E6'; // F08080 // light coral (default color)
   }
 }

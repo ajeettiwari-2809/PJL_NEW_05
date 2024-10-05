@@ -1,9 +1,9 @@
 <!-- sidenav.component.html -->
-<nav class="sidebar sidebar-offcanvas" id="sidebar" [class.minimized]="isSidebarMinimized"  style="height: 100%;">
+<nav class="sidebar sidebar-offcanvas" id="sidebar" [class.minimized]="isSidebarMinimized"  style="height: 100%;" >
   <a class="navbar-brand brand-logo-mini" href="index.html" style=""><img src="assets/newcss/images/PRISM/prismlogo.png" alt="logo" height="100px" width="60%" center /></a>
 <br>
   <!-- <b style="margin: 0 auto;">Transit Rakes Details</b> -->
-  <ul class="nav">
+  <ul class="nav flex-grow-1">
     <li class="nav-item" *ngIf="userRole=='LOGADMIN'">
       <a class="nav-link" [routerLink]="['/googlemapcolor']">
         <i class="ti-shield menu-icon"></i>
@@ -71,7 +71,30 @@
       </a>
     </li>
   </ul>
+
+
+  <ul class="nav flex-grow-1" >
+    <li class="nav-item"  style="bottom: 10px;z-index: 700;">
+      <img src="assets/pjlphotos/All_weatherCement.png" alt="" width="100px" height="150px">
+    </li>
+    <li class="nav-item"  style="bottom: 10px;z-index: 700;">
+      <img src="assets/pjlphotos/Champion_New.png" alt="" width="100px" height="150px">
+    </li>
+    <li class="nav-item"  style="bottom: 10px;z-index: 700;">
+      <img src="assets/pjlphotos/ChampionPlus.png" alt="" width="100px" height="150px">
+    </li>
+    </ul>
+
+
+  <div class="row mt-auto" style="position: fixed;bottom: 10px;z-index: 700;width:170px;">
+<p>Developed & Maintain By : <b style="color: black;">PRISM IT TEAM </b></p>
+
+  </div>
+
 </nav>
+
+
+
 
 
 

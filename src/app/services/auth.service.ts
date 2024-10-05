@@ -10,9 +10,10 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-   baseUrl:string = "https://appdev.prismcement.com/pjlexpressqasapi/";
+   baseUrl:string = "https://pjlexpress.prismcement.com/";
+  // baseUrl:string = "/";
 
-   appversion:string='V001';
+   appversion:string='V002';
 
   // private baseUrl:string = "https://appdev.prismcement.com/pjlexpress"
 

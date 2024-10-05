@@ -44,29 +44,19 @@ html, body, app-root, #map {
   background-color: white;
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 100%;
-  background-color: blue;
-  transition: all 1s linear ; /* Transition for width change */
-}
-
-.card:hover::before {
-  width: 100%;
-  background-color: rgb(225, 225, 249);
-  color: black;
-  opacity: .2;
-  z-index: 100;
-  pointer-events: none;
-
-}
-/* new cssss */
 .card {
   position: relative;
+  overflow: hidden;
+  background-color: white;
+  border-left: 1px solid blue;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.card:hover {
+  box-shadow: 2px 2px 12px grey;
+  transform: translateY(-10px); /* Moves the card slightly upwards */
+  opacity: 0.9; /* Creates a slight fading effect */
+  cursor: pointer;
 }
 
 .dropdown-indicator {

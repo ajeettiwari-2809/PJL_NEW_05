@@ -49,6 +49,7 @@ const routes: Routes = [
 
       { path: 'googlemapcolor', component: GoogleMapWithColorsComponent },
       {path: 'fnrDetails/:id', component: FNRDETAILSComponent},
+      // {path: 'fnrDetails', component: FNRDETAILSComponent},
       {path: 'fnrDetailsById', component: FNRDETAILSBYIDComponent},
       {path: 'testmap', component: TestmspComponent},
       {path: 'ZoneFois', component: ZoneFOISDetailsComponent},

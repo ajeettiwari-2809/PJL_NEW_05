@@ -16,7 +16,7 @@
 <div class="row">
 
   <div class="col-12 grid-margin stretch-card">
-    <div class="card">
+    <div class="card" style="background-color: #ADD8E6;">
       <div class="row">
         <div class="col-md-4">
           <div class="card-body">
@@ -32,7 +32,7 @@
                   <span  *ngIf="records[0]['zoneCode']=='MP'" style="color: black;">Madhya Pradesh</span>
 
 
-                <span style="color: grey;font-size: 12px;background-color: aliceblue;padding: 2px;margin: 2px;color: red;"> IN-TRANSIT: {{records.length}}</span>
+                <span style="color: grey;font-size: 12px;padding: 2px;margin: 2px;color: red;"> IN-TRANSIT: {{records.length}}</span>
                 </h4>
               </div>
               <div class="col-sm-5">
@@ -50,7 +50,7 @@
         <div class="col-md-8">
           <div class="card-body">
 
-            <div class="template-demo">
+            <div class="template-demo" *ngIf="false">
               <button type="button" class="btn btn-outline-success btn-fw"
                 (click)="getzoneFoisCount('0')">Reached:  ({{reached.length}})</button>
               <button type="button" class="btn btn-outline-primary btn-fw"
@@ -66,6 +66,59 @@
                 <button type="button" class="btn btn-outline-warning btn-fw"
                 (click)="getzoneFoisCount('all')">All Records</button>
 
+            </div>
+
+            <div class="template-demo">
+              <button type="button"
+                      [ngClass]="{
+                        'btn-success': activeButton === '0',
+                        'btn-outline-success': activeButton !== '0'
+                      }"
+                      class="btn btn-fw"
+                      (click)="getzoneFoisCount('0')">Reached:  ({{reached.length}})
+              </button>
+              <button type="button"
+                      [ngClass]="{
+                        'btn-primary': activeButton === '2',
+                        'btn-outline-primary': activeButton !== '2'
+                      }"
+                      class="btn btn-fw"
+                      (click)="getzoneFoisCount('2')">2hours:  ({{twohours.length}})
+              </button>
+              <button type="button"
+                      [ngClass]="{
+                        'btn-secondary': activeButton === '4',
+                        'btn-outline-secondary': activeButton !== '4'
+                      }"
+                      class="btn btn-fw"
+                      (click)="getzoneFoisCount('4')">4hours:  ({{fourhours.length}})
+              </button>
+
+              <button type="button"
+                      [ngClass]="{
+                        'btn-danger': activeButton === '8',
+                        'btn-outline-danger': activeButton !== '8'
+                      }"
+                      class="btn btn-fw"
+                      (click)="getzoneFoisCount('8')">8hours:  ({{eghthours.length}})
+              </button>
+              <button type="button"
+                      [ngClass]="{
+                        'btn-warning': activeButton === '12',
+                        'btn-outline-warning': activeButton !== '12'
+                      }"
+                      class="btn btn-fw"
+                      (click)="getzoneFoisCount('12')">12&above:  ({{twlhours.length}})
+              </button>
+
+              <button type="button"
+                      [ngClass]="{
+                        'btn-warning': activeButton === 'all',
+                        'btn-outline-warning': activeButton !== 'all'
+                      }"
+                      class="btn btn-fw"
+                      (click)="getzoneFoisCount('all')">All Records
+              </button>
             </div>
 
             <div class="row" *ngIf="false">

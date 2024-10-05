@@ -203,6 +203,7 @@ import { UserProfilePageComponent } from './NEWCODE/user-profile-page/user-profi
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
+      positionClass: 'toast-bottom-right', // Custom position class
     }),
     MatIconModule,
     MatButtonModule,

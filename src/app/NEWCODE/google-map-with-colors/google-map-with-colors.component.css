@@ -23,7 +23,7 @@ html, body, app-root, #map {
 {
 
     padding: 2px;
-margin-right: 1px;
+margin-right: 5px;
     background: aliceblue;
     border-radius: 5px;
     justify-items: center;
@@ -32,18 +32,46 @@ margin-right: 1px;
     cursor: pointer;
     z-index: 700;
     font-size: 11px;
+
 }
+
+#more1
+{
+
+    padding: 2px;
+margin-right: 1px;
+    background: black;
+    border-radius: 5px;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    z-index: 700;
+    font-size: 11px;
+    color: white;
+}
+
 
 
 
 
 .card {
   position: relative;
-  overflow: hidden; /* Ensure that the pseudo-element does not overflow the card */
+  overflow: hidden;
   background-color: white;
+  border-left: 1px solid blue;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-.card::before {
+.card:hover {
+  box-shadow: 2px 2px 12px grey;
+  transform: translateY(-10px); /* Moves the card slightly upwards */
+  opacity: 0.9; /* Creates a slight fading effect */
+  cursor: pointer;
+}
+
+
+/* .card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -51,10 +79,10 @@ margin-right: 1px;
   width: 1px;
   height: 100%;
   background-color: blue;
-  transition: all 1s linear ; /* Transition for width change */
-}
+  transition: all 1s linear ;
+} */
 
-.card:hover::before {
+/* .card:hover::before {
   width: 100%;
   background-color: rgb(225, 225, 249);
   color: black;
@@ -62,11 +90,9 @@ margin-right: 1px;
   z-index: 100;
   pointer-events: none;
 
-}
-/* new cssss */
-.card {
-  position: relative;
-}
+
+} */
+
 
 .dropdown-indicator {
   position: absolute;

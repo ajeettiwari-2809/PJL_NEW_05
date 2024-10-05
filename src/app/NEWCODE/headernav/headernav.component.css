@@ -19,3 +19,29 @@
     font-size: 14px; /* Adjust font size for smaller screens */
   }
 }
+
+
+
+
+.marquee-container {
+  width: 100%; /* Set the container width */
+  overflow: hidden;
+  position: relative;
+  height: 50px; /* Set a fixed height for the container */
+}
+
+.scrolling-gif {
+  width: 200px;
+  /* position: absolute; */
+  /* animation: scroll-right 10s linear infinite; Animation with infinite loop */
+  height: 100%; /* Adjust the height according to the container */
+}
+
+@keyframes scroll-right {
+  0% {
+    right: 100%; /* Start from the right side */
+  }
+  100% {
+    right: -200%; /* Move to the left side */
+  }
+}

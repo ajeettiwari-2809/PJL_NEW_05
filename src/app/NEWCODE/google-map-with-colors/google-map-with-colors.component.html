@@ -67,13 +67,16 @@
 
  <div class="row">
         <div class="col-sm-3 grid-margin" *ngFor="let details of transitRecords" style="padding: 0;">
-          <div class="card"   style="padding: 0;margin-right: 2px;">
+          <div class="card"   style="padding: 0;margin-right: 2px;"  [ngStyle]="{'background-color': getCardColor(details.zoneCode)}">
             <!-- [ngStyle]="{'background-color': getCardColor(details.zoneCode)}" -->
             <div class="card-body"  style="padding-bottom: 0px;margin: 0;">
               <div class="row" >
 
                 <div class="col-sm-4" >
-                  <p class="card-title text-md-center text-xl-left"  style="font-size: 12px;" [ngStyle]="{'color': getCardColor(details.zoneCode)}">{{ details.zoneName }}</p>
+                  <!--  [ngStyle]="{'color': getCardColor(details.zoneCode)}" -->
+                  <p class="card-title text-md-center text-xl-left"  style="font-size: 13px;font-weight: bold;color: black;text-shadow: 1px 1px 4px white;"
+
+                  >{{ details.zoneName }}</p>
                 </div>
 
                 <div class="col-6 col-sm-4" >
@@ -161,7 +164,7 @@
                 </div>
                 <div class="col-6 col-sm-3" style="padding: 0;margin: 0;">
                   <div class="more" (click)="ByZoneRecord(details.zoneCode)">
-                    <p class=" text-primary" id="more">more details..</p>
+                    <p class="" id="more1"  style="color: white;">more details..</p>
                   </div>
                 </div>
 
@@ -171,7 +174,7 @@
 
               <div class="row">
                 <div class="col-4 col-sm-4" style="padding: 0; margin: 0;">
-                  <i style="font-size: 10px;">Expected Arrival:</i>
+                  <i style="font-size: 10px;font-weight: bold;">Expected Arrival:</i>
                 </div>
                 <div class="col-4 col-sm-4" style="padding: 0; margin: 0;">
                   <div class="more" (click)="ByZoneRecord(details.zoneCode)">
@@ -180,7 +183,7 @@
                 </div>
                 <div class="col-4 col-sm-3" style="padding: 0; margin: 0;">
                   <div class="more" (click)="ByZoneRecord(details.zoneCode)">
-                    <p class="text-primary" id="more">Awaiting: ({{details.awating}})</p>
+                    <p class="text-primary" id="more">At Source: ({{details.awating}})</p>
                   </div>
                 </div>
               </div>
@@ -188,23 +191,23 @@
 
               <div class="row">
 
-                <div class=" col-6  col-sm-3" style="padding: 0;margin: 0;">
+                <!-- <div class=" col-6  col-sm-3" style="padding: 0;margin: 0;">
                   <div class="more" (click)="ByZoneRecord(details.zoneCode)">
                     <p class=" text-primary" id="more">2hours: ({{details.twoHours}})</p>
                   </div>
-                </div>
+                </div> -->
 
-                <div class=" col-6  col-sm-3" style="padding: 0;margin: 0;">
+                <div class=" col-6  col-sm-4" style="padding: 0;margin: 0;">
                   <div class="more" (click)="ByZoneRecord(details.zoneCode)">
-                    <p class=" text-primary" id="more">4hours: ({{details.fourHours}})</p>
+                    <p class=" text-primary" id="more">4hrs: ({{details.fourHours}})</p>
                   </div>
                 </div>
-                <div class="col-6  col-sm-3" style="padding: 0;margin: 0;">
+                <div class="col-6  col-sm-4" style="padding: 0;margin: 0;">
                   <div class="more" (click)="ByZoneRecord(details.zoneCode)">
-                    <p class=" text-primary" id="more">8hours: ({{details.eightHours}})</p>
+                    <p class=" text-primary" id="more">8hrs: ({{details.eightHours}})</p>
                   </div>
                 </div>
-                <div class="col-6  col-sm-3" style="padding: 0;margin: 0;">
+                <div class="col-6  col-sm-4" style="padding: 0;margin: 0;">
                   <div class="more" (click)="ByZoneRecord(details.zoneCode)">
                     <p class=" text-primary"  id="more">12& above ({{details.twelveHours}})</p>
                   </div>
@@ -256,7 +259,7 @@
               </div>
                 <div class="col-12">
                     <span class="text-muted text-center text-sm-left d-block">Destination:
-                        <img src="assets/pjlphotos/D2.png" alt="" width="50px">
+                        <img src="assets/pjlphotos/ware1.png" alt="" width="50px">
                     </span>
                 </div>
 
