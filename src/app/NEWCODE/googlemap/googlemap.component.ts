@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -120,7 +120,32 @@ getFNRTransitDetails()
     console.log(this.allTransitDetails);
     this.initializeMap();
 
-  });
+  },
+
+  (error) => {
+
+    this.spinner.hide(); // Hide the spinner if there's an error
+    this.authservice.signOut(); // Use your logout method here
+    this.router.navigate(['']); // Redirect to login page
+
+    if (error instanceof HttpErrorResponse) {
+      console.log("Full error:", error.status);
+      // Handle HTTP errors (server errors, client errors)
+      if (error.status === 401) {
+        // Token expired or unauthorized, log out the user
+        window.alert("Your Login Is Expired. Please log in again.");
+        this.authservice.signOut(); // Use your logout method here
+        this.router.navigate(['']); // Redirect to login page
+
+      } else {
+        window.alert(`An error occurred: ${error.status} - ${error.message}`);
+      }
+    } else {
+      // Handle network or unknown errors (non-HTTP errors)
+      window.alert("A network error occurred, or Your Login Credential Is Expired ? Logout.. ");
+    }
+  }
+);
 }
 
 

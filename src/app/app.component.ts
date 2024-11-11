@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -9,10 +9,10 @@ import { NetworkService } from './services/network.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
   // constructor(private auth: AuthService,
   //   private router: Router ){}
-  title = 'cyber2';
+  title = 'PjlExpress';
 
   sideBarOpen = true;
   isOnline: boolean = true;
@@ -31,9 +31,21 @@ export class AppComponent {
 
 
   handleBeforeUnload(event: Event) {
-    this.auth.signOut(); // Clear authentication state
+    // this.auth.signOut(); // Clear authentication state
   }
 
+
+    // HostListener for window beforeunload (when tab or browser is closed)
+    // @HostListener('window:beforeunload', ['$event'])
+    // unloadNotification($event: any): void {
+
+    //   if (!sessionStorage.getItem('refresh')) {
+
+    //     this.auth.signOut();
+    //   }
+    //   sessionStorage.removeItem('refresh');
+
+    // }
 
   isHandset: boolean = false;
 
@@ -47,14 +59,20 @@ export class AppComponent {
 
   isSidebarMinimized = false;
   async ngOnInit() {
-  await  this.networkService.onlineStatus$.subscribe(status => {
-      console.log(status)
-      this.isOnline = status;
-    });
+
+  // await  this.networkService.onlineStatus$.subscribe(status => {
+  //     console.log(status)
+  //     this.isOnline = status;
+  //   });
+
 
     this.sidebarService.isSidebarMinimized$.subscribe(isMinimized => {
       this.isSidebarMinimized = isMinimized;
     });
+
+
+    sessionStorage.setItem('refresh', 'true');
+
   }
 
   sideBarToggler() {

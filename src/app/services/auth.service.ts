@@ -13,7 +13,7 @@ export class AuthService {
    baseUrl:string = "https://pjlexpress.prismcement.com/";
   // baseUrl:string = "/";
 
-   appversion:string='V002';
+   appversion:string='V003';
 
   // private baseUrl:string = "https://appdev.prismcement.com/pjlexpress"
 

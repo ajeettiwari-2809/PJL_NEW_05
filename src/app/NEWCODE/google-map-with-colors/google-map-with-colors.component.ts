@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -167,7 +167,37 @@ export class GoogleMapWithColorsComponent implements OnInit, OnDestroy {
       // this.records =  data.filter((item: { zoneCode: string; }) => item.zoneCode === 'BH');;
       // this.records1= data.filter((item: { zoneCode: string; }) => item.zoneCode === 'BH');;
       this.processData();
-    });
+    },
+
+
+      (error) => {
+
+        this.spinner.hide(); // Hide the spinner if there's an error
+        this.authService.signOut(); // Use your logout method here
+        this.router.navigate(['']); // Redirect to login page
+
+        if (error instanceof HttpErrorResponse) {
+          console.log("Full error:", error.status);
+          // Handle HTTP errors (server errors, client errors)
+          if (error.status === 401) {
+            // Token expired or unauthorized, log out the user
+            window.alert("Your Login Is Expired. Please log in again.");
+            this.authService.signOut(); // Use your logout method here
+            this.router.navigate(['']); // Redirect to login page
+
+          } else {
+            window.alert(`An error occurred: ${error.status} - ${error.message}`);
+          }
+        } else {
+          // Handle network or unknown errors (non-HTTP errors)
+          window.alert("A network error occurred, or Your Login Credential Is Expired ? Logout.. ");
+        }
+      }
+    );
+
+
+
+
   }
 
   fetchTransitCount() {

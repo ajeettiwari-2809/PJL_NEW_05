@@ -42,6 +42,9 @@ twlhours:any=[];
   }
 
   ngOnInit() {
+  //  if(!sessionStorage.getItem('refresh'))
+  //  {this.authService.signOut()
+  //  }
     this.loadMap();
     this.fetchData();
     this.startAutoRefresh();
@@ -259,6 +262,7 @@ console.log(appver)
         this.router.navigate(['']); // Redirect to login page
 
         if (error instanceof HttpErrorResponse) {
+
           console.log("Full error:", error.status);
           // Handle HTTP errors (server errors, client errors)
           if (error.status === 401) {
